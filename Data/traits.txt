@@ -1,0 +1,668 @@
+// Trait database file
+// The above line **Must** appear exactly as shown:
+//    "// Skills database file"
+//
+// All skills have a numeric value between -32768 and 32767.
+//
+// Use quotes around race/class names that have a '-' in them, 
+// such as for "Half-Elf". Otherwise the '-' is treated as a
+// subtraction operator.
+//
+
+\(BEGIN)
+name = Hit Probability
+adjust = (Strength == 1)    * -5
+adjust = (Strength == 2)    * -3
+adjust = (Strength == 3)    * -3
+adjust = (Strength == 4)    * -2
+adjust = (Strength == 5)    * -2
+adjust = (Strength == 6)    * -1
+adjust = (Strength == 7)    * -1
+adjust = (Strength == 17)   * +1
+adjust = (Strength == 18)   * +2
+adjust = (Strength > 100)   * +1
+adjust = (Strength > 150)   * +1
+adjust = (Strength > 199)   * +1
+adjust = (Strength == 19)   * +3
+adjust = (Strength == 20)   * +3
+adjust = (Strength == 21)   * +4
+adjust = (Strength == 22)   * +4
+adjust = (Strength == 23)   * +5
+adjust = (Strength == 24)   * +6
+adjust = (Strength == 25)   * +7
+\(END)
+
+\(BEGIN)
+name = Damage Adjustment
+adjust = (Strength == 1)   *  -4
+adjust = (Strength == 2)   *  -2
+adjust = (Strength == 3)   *  -1
+adjust = (Strength == 4)   *  -1
+adjust = (Strength == 16)  *  +1
+adjust = (Strength == 17)  *  +1
+adjust = (Strength == 18)  *  +2
+adjust = (Strength > 100)  *  +3
+adjust = (Strength > 150)  *  +0
+adjust = (Strength > 175)  *  +1
+adjust = (Strength > 190)  *  +1
+adjust = (Strength > 199)  *  +1
+adjust = (Strength == 19)  *  +7
+adjust = (Strength == 20)  *  +8
+adjust = (Strength == 21)  *  +9
+adjust = (Strength == 22)  * +10
+adjust = (Strength == 23)  * +11
+adjust = (Strength == 24)  * +12
+adjust = (Strength == 25)  * +14
+\(END)
+
+\(BEGIN)
+name = Weight Allowance
+adjust = (Strength == 1)   *    +1
+adjust = (Strength == 2)   *    +1
+adjust = (Strength == 3)   *    +5
+adjust = (Strength == 4)   *   +10
+adjust = (Strength == 5)   *   +10
+adjust = (Strength == 6)   *   +20
+adjust = (Strength == 7)   *   +20
+adjust = (Strength == 8)   *   +35
+adjust = (Strength == 9)   *   +35
+adjust = (Strength == 10)  *   +40
+adjust = (Strength == 11)  *   +40
+adjust = (Strength == 12)  *   +45
+adjust = (Strength == 13)  *   +45
+adjust = (Strength == 14)  *   +55
+adjust = (Strength == 15)  *   +55
+adjust = (Strength == 16)  *   +70
+adjust = (Strength == 17)  *   +85
+adjust = (Strength == 18)  *  +110
+adjust = (Strength > 100)  *  +135
+adjust = (Strength > 150)  *   +25
+adjust = (Strength > 175)  *   +25
+adjust = (Strength > 190)  *   +50
+adjust = (Strength > 199)  *  +100
+adjust = (Strength == 19)  *  +485
+adjust = (Strength == 20)  *  +535
+adjust = (Strength == 21)  *  +635
+adjust = (Strength == 22)  *  +787
+adjust = (Strength == 23)  *  +935
+adjust = (Strength == 24)  * +1235
+adjust = (Strength == 25)  * +1535
+\(END)
+
+\(BEGIN)
+name = Maximum Press
+adjust = (Strength == 1)   *    +3
+adjust = (Strength == 2)   *    +5
+adjust = (Strength == 3)   *   +10
+adjust = (Strength == 4)   *   +25
+adjust = (Strength == 5)   *   +25
+adjust = (Strength == 6)   *   +55
+adjust = (Strength == 7)   *   +55
+adjust = (Strength == 8)   *   +90
+adjust = (Strength == 9)   *   +90
+adjust = (Strength == 10)  *  +115
+adjust = (Strength == 11)  *  +115
+adjust = (Strength == 12)  *  +140
+adjust = (Strength == 13)  *  +140
+adjust = (Strength == 14)  *  +170
+adjust = (Strength == 15)  *  +170
+adjust = (Strength == 16)  *  +195
+adjust = (Strength == 17)  *  +220
+adjust = (Strength == 18)  *  +255
+adjust = (Strength > 100)  *  +280
+adjust = (Strength > 150)  *   +25
+adjust = (Strength > 175)  *   +25
+adjust = (Strength > 190)  *   +50
+adjust = (Strength > 199)  *  +100
+adjust = (Strength == 19)  *  +640
+adjust = (Strength == 20)  *  +700
+adjust = (Strength == 21)  *  +810
+adjust = (Strength == 22)  *  +970
+adjust = (Strength == 23)  * +1130
+adjust = (Strength == 24)  * +1440
+adjust = (Strength == 25)  * +1750
+\(END)
+
+\(BEGIN)
+name = Open Doors
+adjust = (Strength == 1)   * +1
+adjust = (Strength == 2)   * +1
+adjust = (Strength == 3)   * +2
+adjust = (Strength == 4)   * +3
+adjust = (Strength == 5)   * +3
+adjust = (Strength == 6)   * +4
+adjust = (Strength == 7)   * +4
+adjust = (Strength == 8)   * +5
+adjust = (Strength == 9)   * +5
+adjust = (Strength == 10)  * +6
+adjust = (Strength == 11)  * +6
+adjust = (Strength == 12)  * +7
+adjust = (Strength == 13)  * +7
+adjust = (Strength == 14)  * +8
+adjust = (Strength == 15)  * +8
+adjust = (Strength == 16)  * +9
+adjust = (Strength == 17)  * +10
+adjust = (Strength == 18)  * +11
+adjust = (Strength > 100)  * +12
+adjust = (Strength > 150)  * +1
+adjust = (Strength > 175)  * +1
+adjust = (Strength > 190)  * +1
+adjust = (Strength > 199)  * +1
+adjust = (Strength == 19)  * +16
+adjust = (Strength == 20)  * +17
+adjust = (Strength == 21)  * +17
+adjust = (Strength == 22)  * +18
+adjust = (Strength == 23)  * +18
+adjust = (Strength == 24)  * +19
+adjust = (Strength == 25)  * +19
+\(END)
+
+\(BEGIN)
+name = Open Locked Door
+adjust = Strength > 190)   * +3
+adjust = Strength > 199)   * +3
+adjust = (Strength == 19)  * +8
+adjust = (Strength == 20)  * +10
+adjust = (Strength == 21)  * +12
+adjust = (Strength == 22)  * +14
+adjust = (Strength == 23)  * +16
+adjust = (Strength == 24)  * +17
+adjust = (Strength == 25)  * +18
+\(END)
+
+\(BEGIN)
+name = Bend and Lift
+adjust = (Strength == 8)   * +1
+adjust = (Strength == 9)   * +1
+adjust = (Strength == 10)  * +2
+adjust = (Strength == 11)  * +2
+adjust = (Strength == 12)  * +2
+adjust = (Strength == 13)  * +2
+adjust = (Strength == 14)  * +7
+adjust = (Strength == 15)  * +7
+adjust = (Strength == 16)  * +10
+adjust = (Strength == 17)  * +13
+adjust = (Strength == 18)  * +16
+adjust = (Strength > 100)  * +20
+adjust = (Strength > 150)  * +5
+adjust = (Strength > 175)  * +5
+adjust = (Strength > 190)  * +5
+adjust = (Strength > 199)  * +5
+adjust = (Strength == 19)  * +50
+adjust = (Strength == 20)  * +60
+adjust = (Strength == 21)  * +70
+adjust = (Strength == 22)  * +80
+adjust = (Strength == 23)  * +90
+adjust = (Strength == 24)  * +95
+adjust = (Strength == 25)  * +99
+\(END)
+
+\(BEGIN)
+name = Reaction Adjustment
+adjust = (Dexterity == 1)  * -6
+adjust = (Dexterity == 2)  * -4
+adjust = (Dexterity == 3)  * -3
+adjust = (Dexterity == 4)  * -2
+adjust = (Dexterity == 5)  * -1
+adjust = (Dexterity == 16) * +1
+adjust = (Dexterity == 17) * +2
+adjust = (Dexterity == 18) * +2
+adjust = (Dexterity == 19) * +3
+adjust = (Dexterity == 20) * +3
+adjust = (Dexterity == 21) * +4
+adjust = (Dexterity == 22) * +4
+adjust = (Dexterity == 23) * +4
+adjust = (Dexterity == 24) * +5
+adjust = (Dexterity == 25) * +5
+adjust = (Charisma == 1)   * -7
+adjust = (Charisma == 2)   * -6
+adjust = (Charisma == 3)   * -5
+adjust = (Charisma == 4)   * -4
+adjust = (Charisma == 5)   * -3
+adjust = (Charisma == 6)   * -2
+adjust = (Charisma == 7)   * -1
+adjust = (Charisma == 13)  * 1
+adjust = (Charisma == 14)  * 2
+adjust = (Charisma == 15)  * 3
+adjust = (Charisma == 16)  * 5
+adjust = (Charisma == 17)  * 6
+adjust = (Charisma == 18)  * 7
+adjust = (Charisma == 19)  * 8
+adjust = (Charisma == 20)  * 9
+adjust = (Charisma == 21)  * 10
+adjust = (Charisma == 22)  * 11
+adjust = (Charisma == 23)  * 12
+adjust = (Charisma == 24)  * 13
+adjust = (Charisma == 25)  * 14 
+\(END)
+
+\(BEGIN)
+name = Missile Attack Adjustment
+adjust = (Dexterity == 1)  * -6
+adjust = (Dexterity == 2)  * -4
+adjust = (Dexterity == 3)  * -3
+adjust = (Dexterity == 4)  * -2
+adjust = (Dexterity == 5)  * -1
+adjust = (Dexterity == 16) * +1
+adjust = (Dexterity == 17) * +2
+adjust = (Dexterity == 18) * +2
+adjust = (Dexterity == 19) * +3
+adjust = (Dexterity == 20) * +3
+adjust = (Dexterity == 21) * +4
+adjust = (Dexterity == 22) * +4
+adjust = (Dexterity == 23) * +4
+adjust = (Dexterity == 24) * +5
+adjust = (Dexterity == 25) * +5
+\(END)
+
+\(BEGIN)
+name = Defensive Adjustment
+adjust = (Dexterity == 1)  * +5
+adjust = (Dexterity == 2)  * +5
+adjust = (Dexterity == 3)  * +4
+adjust = (Dexterity == 4)  * +3
+adjust = (Dexterity == 5)  * +2
+adjust = (Dexterity == 6)  * +1
+adjust = (Dexterity == 15) * -1
+adjust = (Dexterity == 16) * -2
+adjust = (Dexterity == 17) * -3
+adjust = (Dexterity == 18) * -4
+adjust = (Dexterity == 19) * -4
+adjust = (Dexterity == 20) * -4
+adjust = (Dexterity == 21) * -5
+adjust = (Dexterity == 22) * -5
+adjust = (Dexterity == 23) * -5
+adjust = (Dexterity == 24) * -6
+adjust = (Dexterity == 25) * -6
+\(END)
+
+\(BEGIN)
+name = Hit Point Adjustment
+adjust = (Constitution == 1)  * -3
+adjust = (Constitution == 2)  * -2
+adjust = (Constitution == 3)  * -2
+adjust = (Constitution == 4)  * -1
+adjust = (Constitution == 5)  * -1
+adjust = (Constitution == 6)  * -1
+adjust = (Constitution == 15) * +1
+adjust = (Constitution == 16) * +2
+adjust = (Constitution == 17) * +2
+adjust = (Constitution == 18) * +2
+adjust = (Constitution == 19) * +2
+adjust = (Constitution == 20) * +2
+adjust = (Constitution == 21) * +2
+adjust = (Constitution == 22) * +2
+adjust = (Constitution == 23) * +2
+adjust = (Constitution == 24) * +2
+adjust = (Constitution == 25) * +2
+adjust = (Constitution == 17) * fighter * 1
+adjust = (Constitution == 18) * fighter * 2
+adjust = (Constitution == 19) * fighter * 3
+adjust = (Constitution == 20) * fighter * 3
+adjust = (Constitution == 21) * fighter * 4
+adjust = (Constitution == 22) * fighter * 4
+adjust = (Constitution == 23) * fighter * 4
+adjust = (Constitution == 24) * fighter * 5
+adjust = (Constitution == 25) * fighter * 5
+\(END)
+
+
+\(BEGIN)
+name = System Shock
+adjust = (Constitution == 1)  * 25
+adjust = (Constitution == 2)  * 30
+adjust = (Constitution == 3)  * 35
+adjust = (Constitution == 4)  * 40
+adjust = (Constitution == 5)  * 45
+adjust = (Constitution == 6)  * 50
+adjust = (Constitution == 7)  * 55
+adjust = (Constitution == 8)  * 60
+adjust = (Constitution == 9)  * 65
+adjust = (Constitution == 10) * 70
+adjust = (Constitution == 11) * 75
+adjust = (Constitution == 12) * 80
+adjust = (Constitution == 13) * 85
+adjust = (Constitution == 14) * 88
+adjust = (Constitution == 15) * 90
+adjust = (Constitution == 16) * 95
+adjust = (Constitution == 17) * 97
+adjust = (Constitution == 18) * 99
+adjust = (Constitution == 19) * 99
+adjust = (Constitution == 20) * 99
+adjust = (Constitution == 21) * 99
+adjust = (Constitution == 22) * 99
+adjust = (Constitution == 23) * 99
+adjust = (Constitution == 24) * 99
+adjust = (Constitution == 25) * 100  
+\(END)
+
+\(BEGIN)
+name = Resurrection Survival
+adjust = (Constitution == 1)  * 30
+adjust = (Constitution == 2)  * 35
+adjust = (Constitution == 3)  * 40
+adjust = (Constitution == 4)  * 45
+adjust = (Constitution == 5)  * 50
+adjust = (Constitution == 6)  * 55
+adjust = (Constitution == 7)  * 60
+adjust = (Constitution == 8)  * 65
+adjust = (Constitution == 9)  * 70
+adjust = (Constitution == 10) * 75
+adjust = (Constitution == 11) * 80
+adjust = (Constitution == 12) * 85
+adjust = (Constitution == 13) * 90
+adjust = (Constitution == 14) * 92
+adjust = (Constitution == 15) * 94
+adjust = (Constitution == 16) * 96
+adjust = (Constitution == 17) * 98
+adjust = (Constitution == 18) * 100
+adjust = (Constitution == 19) * 100
+adjust = (Constitution == 20) * 100
+adjust = (Constitution == 21) * 100
+adjust = (Constitution == 22) * 100
+adjust = (Constitution == 23) * 100
+adjust = (Constitution == 24) * 100
+adjust = (Constitution == 25) * 100  
+\(END)
+
+\(BEGIN)
+name = Poison Save
+adjust = (Constitution == 1)  * -2
+adjust = (Constitution == 2)  * -1
+adjust = (Constitution == 19) * +1
+adjust = (Constitution == 20) * +1
+adjust = (Constitution == 21) * +2
+adjust = (Constitution == 22) * +2
+adjust = (Constitution == 23) * +3
+adjust = (Constitution == 24) * +3
+adjust = (Constitution == 25) * +4  
+\(END)
+
+\(BEGIN)
+name = Regeneration
+// Number of turns to regenerate
+adjust = (Constitution == 20) * +6
+adjust = (Constitution == 21) * +5
+adjust = (Constitution == 22) * +4
+adjust = (Constitution == 23) * +3
+adjust = (Constitution == 24) * +2
+adjust = (Constitution == 25) * +1  
+\(END)
+
+\(BEGIN)
+name = Number of Languages
+adjust = Intelligence >= 2
+adjust = Intelligence >= 9
+adjust = Intelligence >= 12
+adjust = Intelligence >= 14
+adjust = Intelligence >= 16
+adjust = Intelligence >= 17
+adjust = Intelligence >= 18
+adjust = Intelligence >= 19
+adjust = Intelligence >= 20
+adjust = Intelligence >= 21
+adjust = Intelligence >= 22
+adjust = Intelligence >= 23
+adjust = (Intelligence >= 24) * 3
+adjust = (Intelligence >= 25) * 5
+\(END)
+
+\(BEGIN)
+name = Spell Level
+adjust = (Intelligence >= 9) * 4
+adjust = Intelligence >= 10
+adjust = Intelligence >= 12
+adjust = Intelligence >= 14
+adjust = Intelligence >= 16
+adjust = Intelligence >= 18
+\(END)
+
+\(BEGIN)
+name = Chance to Learn Spell
+adjust = (Constitution >= 9)  * 35
+adjust = (Constitution >= 10) * 5
+adjust = (Constitution >= 11) * 5
+adjust = (Constitution >= 12) * 5
+adjust = (Constitution >= 13) * 5
+adjust = (Constitution >= 14) * 5
+adjust = (Constitution >= 15) * 5
+adjust = (Constitution >= 16) * 5
+adjust = (Constitution >= 17) * 5
+adjust = (Constitution >= 18) * 10
+adjust = (Constitution >= 19) * 10
+adjust = (Constitution >= 20) * 1
+adjust = (Constitution >= 21) * 1
+adjust = (Constitution >= 22) * 1
+adjust = (Constitution >= 23) * 1
+adjust = (Constitution >= 24) * 1
+\(END)
+
+\(BEGIN)
+name = Max Spells per Level
+adjust = (Constitution >= 9)  * 6
+adjust = (Constitution >= 10) * 1
+adjust = (Constitution >= 13) * 2
+adjust = (Constitution >= 15) * 2
+adjust = (Constitution >= 17) * 3
+adjust = (Constitution >= 18) * 4
+adjust = (Constitution >= 19) * 9999
+\(END)
+
+\(BEGIN)
+name = Illusion Immunity
+adjust = Constitution >= 19
+adjust = Constitution >= 20
+adjust = Constitution >= 21
+adjust = Constitution >= 22
+adjust = Constitution >= 23
+adjust = Constitution >= 24
+adjust = Constitution >= 25
+\(END)
+
+\(BEGIN)
+name = Magical Defense Adjustment
+adjust = (Wisdom == 1)  * -6
+adjust = (Wisdom == 2)  * -4
+adjust = (Wisdom == 3)  * -3
+adjust = (Wisdom == 4)  * -2
+adjust = (Wisdom == 5)  * -1
+adjust = (Wisdom == 6)  * -1
+adjust = (Wisdom == 7)  * -1
+adjust = (Wisdom == 15) *  1
+adjust = (Wisdom == 16) *  2
+adjust = (Wisdom == 17) *  3
+adjust = (Wisdom == 18) *  4
+adjust = (Wisdom == 19) *  4
+adjust = (Wisdom == 20) *  4
+adjust = (Wisdom == 21) *  4
+adjust = (Wisdom == 22) *  4
+adjust = (Wisdom == 23) *  4
+adjust = (Wisdom == 24) *  4
+adjust = (Wisdom == 25) *  4  
+\(END)
+
+\(BEGIN)
+name = Bonus Spells 1
+adjust = Wisdom >= 13
+adjust = Wisdom >= 14
+adjust = Wisdom >= 19
+adjust = Wisdom >= 23
+\(END)
+
+\(BEGIN)
+name = Bonus Spells 2
+adjust = Wisdom >= 15
+adjust = Wisdom >= 16
+adjust = Wisdom >= 20
+\(END)
+
+\(BEGIN)
+name = Bonus Spells 3
+adjust = Wisdom >= 17
+adjust = Wisdom >= 19
+adjust = Wisdom >= 21
+\(END)
+
+\(BEGIN)
+name = Bonus Spells 4
+adjust = Wisdom >= 20
+adjust = Wisdom >= 22
+\(END)
+
+\(BEGIN)
+name = Bonus Spells 5
+adjust = Wisdom >= 21
+adjust = Wisdom >= 22
+adjust = Wisdom >= 24
+\(END)
+
+\(BEGIN)
+name = Bonus Spells 6
+adjust = Wisdom >= 23
+adjust = Wisdom >= 24
+\(END)
+
+\(BEGIN)
+name = Bonus Spells 7
+adjust = Wisdom >= 25
+\(END)
+
+\(BEGIN)
+name = Chance of Spell Failure
+adjust = (Wisdom == 1)  * 80
+adjust = (Wisdom == 2)  * 60
+adjust = (Wisdom == 3)  * 50
+adjust = (Wisdom == 4)  * 45
+adjust = (Wisdom == 5)  * 40
+adjust = (Wisdom == 6)  * 35
+adjust = (Wisdom == 7)  * 30
+adjust = (Wisdom == 8)  * 25
+adjust = (Wisdom == 9)  * 20
+adjust = (Wisdom == 10) * 15
+adjust = (Wisdom == 11) * 10
+adjust = (Wisdom == 12) * 5
+\(END)
+
+\(BEGIN)
+name = Spell Immunity
+adjust = (Wisdom == 19)  * SpellGroup1
+adjust = (Wisdom == 20)  * SpellGroup2
+adjust = (Wisdom == 21)  * SpellGroup3
+adjust = (Wisdom == 22)  * SpellGroup4
+adjust = (Wisdom == 23)  * SpellGroup5
+adjust = (Wisdom == 24)  * SpellGroup6
+adjust = (Wisdom == 25)  * SpellGroup7
+\(END)
+
+\(BEGIN)
+name = Maximum Number of Henchmen
+adjust = (Charisma == 1)  * 0
+adjust = (Charisma == 2)  * 1
+adjust = (Charisma == 3)  * 1
+adjust = (Charisma == 4)  * 1
+adjust = (Charisma == 5)  * 2
+adjust = (Charisma == 6)  * 2
+adjust = (Charisma == 7)  * 3
+adjust = (Charisma == 8)  * 3
+adjust = (Charisma == 9)  * 4
+adjust = (Charisma == 10) * 4
+adjust = (Charisma == 11) * 4
+adjust = (Charisma == 12) * 5
+adjust = (Charisma == 13) * 5
+adjust = (Charisma == 14) * 6
+adjust = (Charisma == 15) * 7
+adjust = (Charisma == 16) * 8
+adjust = (Charisma == 17) * 10
+adjust = (Charisma == 18) * 15
+adjust = (Charisma == 19) * 20
+adjust = (Charisma == 20) * 25
+adjust = (Charisma == 21) * 30
+adjust = (Charisma == 22) * 35
+adjust = (Charisma == 23) * 40
+adjust = (Charisma == 24) * 45
+adjust = (Charisma == 25) * 50 
+\(END)
+
+\(BEGIN)
+name = Loyalty Base
+adjust = (Charisma == 1)  * -8
+adjust = (Charisma == 2)  * -7
+adjust = (Charisma == 3)  * -6
+adjust = (Charisma == 4)  * -5
+adjust = (Charisma == 5)  * -4
+adjust = (Charisma == 6)  * -3
+adjust = (Charisma == 7)  * -2
+adjust = (Charisma == 8)  * -1
+adjust = (Charisma == 14) * 1
+adjust = (Charisma == 15) * 3
+adjust = (Charisma == 16) * 4
+adjust = (Charisma == 17) * 6
+adjust = (Charisma == 18) * 8
+adjust = (Charisma == 19) * 10
+adjust = (Charisma == 20) * 12
+adjust = (Charisma == 21) * 14
+adjust = (Charisma == 22) * 16
+adjust = (Charisma == 23) * 18
+adjust = (Charisma == 24) * 20
+adjust = (Charisma == 25) * 20 
+\(END)
+
+\(BEGIN)
+name = Saving Throw Bonus
+adjust = (Constitution >= 4)  * Dwarf
+adjust = (Constitution >= 7)  * Dwarf
+adjust = (Constitution >= 11) * Dwarf
+adjust = (Constitution >= 14) * Dwarf
+adjust = (Constitution >= 18) * Dwarf
+
+\(END)
+
+\(BEGIN)
+name = Detect Grade in Passage
+adjust = Dwarf * 83
+\(END)
+
+\(BEGIN)
+name = Detect New Tunnel
+adjust = Dwarf * 83
+\(END)
+
+\(BEGIN)
+name = Detect Sliding Walls
+adjust = Dwarf * 67
+\(END)
+
+\(BEGIN)
+name = Detect Stonework Trap
+adjust = Dwarf * 50
+\(END)
+
+\(BEGIN)
+name = Detect Approximate Depth
+adjust = Dwarf * 50
+\(END)
+
+\(BEGIN) 
+name = Night Vision
+adjust = "Half-Elf" * 60
+\(END)
+
+\(BEGIN)
+name = Weapon Specialization
+adjust = Fighter
+\(END)
+
+\(BEGIN)
+name = immune to disease
+adjust = Paladin
+\(END)
+
+\(BEGIN)
+name = heal by laying on hands
+adjust = Paladin * (2*level)
+\(END)
+
+\(BEGIN)
+name = cure disease
+adjust = Paladin
+\(END)

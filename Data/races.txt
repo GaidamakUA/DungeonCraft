@@ -1,0 +1,140 @@
+// Race database file
+// The line above **must** be the first line of the races file!!! "// Race database file"
+//
+// Adjustments are of the form:
+//    +/-n*(characteristic-k)/d
+// For example to adjust, say, height.  Any of these are legal and equivalent.
+//   Height Adjust  =  +1*(Level-0)/1  ; Means (+1*(level-0))/1
+//   Height Adjust  =   1*(Level-0)/1
+//   Height Adjust  =   1*level/1
+//   Height Adjust  =   level/1
+//   Height Adjust  =   1*level
+//   Height Adjust  =   level
+// Division throws remainder away.  +1/2 = 0   -1/2 = 0
+
+\(BEGIN) template
+name = template
+Height       = 59
+Weight       = 100
+Age          = 18
+MaxAge       = 90
+BaseMovement = 12
+AbilityRequirement = Strength      3/18(100)
+AbilityRequirement = Dexterity     3/18
+AbilityRequirement = Constitution  3/18
+AbilityRequirement = Intelligence  3/18
+AbilityRequirement = Wisdom        3/18
+AbilityRequirement = Charisma      3/18
+AllowedMultiClass  = Fighter/Thief
+\(END)
+
+\(BEGIN) Human
+name = Human
+Height        =  2d10  +  59 + 1 * Male
+Weight        =  6d10  + 100 + 40 * Male
+Age           = 1d4 + 18
+MaxAge        = 1d20 + 75
+BaseMovement  = 12
+AbilityRequirement = Strength       3/18(100)
+AbilityRequirement = Dexterity      3/18
+AbilityRequirement = Constitution   3/18
+AbilityRequirement = Intelligence   3/18
+AbilityRequirement = Wisdom         3/18
+AbilityRequirement = Charisma       3/18
+\(END)
+
+\(BEGIN)
+name = Elf
+Height         = 1d10  +  50 + 5 * Male
+Weight         = 3d10  +  70 + 20 * Male
+Age            = 5d6   + 100
+MaxAge         = 4d100 + 350
+BaseMovement   = 12
+AbilityRequirement = Strength       3/18(100)
+AbilityRequirement = Dexterity      6/19
+AbilityRequirement = Constitution   7/17
+AbilityRequirement = Intelligence   8/18
+AbilityRequirement = Wisdom         3/18
+AbilityRequirement = Charisma       8/18
+AllowedMultiClass  = Fighter/Magic User
+AllowedMultiClass  = Fighter/Thief
+AllowedMultiClass  = Fighter/Magic User/Thief
+AllowedMultiClass  = Magic User/Thief
+\(END)
+
+\(BEGIN)
+name = Dwarf
+Height        = 1d10  +  41 + 2 * Male
+Weight        = 4d10  + 105 + 25 * Male
+Age           = 5d6   +  40
+MaxAge        = 2d100 + 250
+BaseMovement  = 6
+AbilityRequirement = Strength       8/18(99)
+AbilityRequirement = Dexterity      3/17
+AbilityRequirement = Constitution   11/19
+AbilityRequirement = Intelligence   3/18
+AbilityRequirement = Wisdom         3/18
+AbilityRequirement = Charisma       3/16
+AllowedMultiClass  = Cleric/Fighter
+AllowedMultiClass  = Fighter/Thief
+\(END)
+
+\(BEGIN)
+name = Gnome
+Height        = 1d6   +  36 + 2 * Male
+Weight        = 5d4   +  68 + 4 * Male
+Age           = 3d12  +  60
+MaxAge        = 3d100 + 200
+BaseMovement  = 6
+AbilityRequirement = Strength       6/18(100)
+AbilityRequirement = Dexterity      3/18
+AbilityRequirement = Constitution   8/18
+AbilityRequirement = Intelligence   6/19
+AbilityRequirement = Wisdom         3/17
+AbilityRequirement = Charisma       3/18
+AllowedMultiClass  = Cleric/Magic User
+AllowedMultiClass  = Fighter/Thief
+\(END)
+
+\(BEGIN)
+name = Half-Elf
+Height        = 2d6   +  58 + 2 * Male
+Weight        = 3d12  +  85 + 25 * Male
+Age           = 1d6   +  15
+MaxAge        = 3d20  + 125
+BaseMovement  = 12
+AbilityRequirement = Strength       3/18(100)
+AbilityRequirement = Dexterity      6/18
+AbilityRequirement = Constitution   6/18
+AbilityRequirement = Intelligence   4/18
+AbilityRequirement = Wisdom         3/18
+AbilityRequirement = Charisma       3/18
+AllowedMultiClass  = Cleric/Fighter
+AllowedMultiClass  = Cleric/Fighter/Magic User
+AllowedMultiClass  = Cleric/Ranger
+AllowedMultiClass  = Cleric/Magic User
+AllowedMultiClass  = Fighter/Magic User
+AllowedMultiClass  = Fighter/Thief
+AllowedMultiClass  = Fighter/Magic User/Thief
+AllowedMultiClass  = Magic User/Thief
+AllowedMultiClass  = Fighter/Druid
+AllowedMultiClass  = Druid/Magic User
+AllowedMultiClass  = Fighter/Magic User/Druid
+\(END)
+
+\(BEGIN)
+name = Halfling
+Weight        = 5d4   +  48 + 4 * Male
+Height        = 2d8   +  30 + 2 * Male
+Age           = 3d4   +  20
+MaxAge        = 1d100 + 100
+BaseMovement  = 6
+AbilityRequirement = Strength       7/17
+AbilityRequirement = Dexterity      7/19
+AbilityRequirement = Constitution   10/18
+AbilityRequirement = Intelligence   6/18
+AbilityRequirement = Wisdom         3/17
+AbilityRequirement = Charisma       3/18
+AllowedMultiClass  = Fighter/Thief
+\(END)
+

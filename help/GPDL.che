@@ -1,0 +1,1751 @@
+\title GPDL Overview
+\ident GPDL_Overview
+\keys GPDL Overview
+\browse GPDL
+\alink GPDL
+\heading GPDL Overview
+
+{\b\cf1 GPDL Overview}
+"GPDL" stands for "General Purpose Dungeon Language".  It means nothing.  The author found himself attempting to keep identifiers and file names under eight characters and decided he needed a nice four-letter acronym.
+
+GPDL is a language that will remind you of 'C'.  It has 'while' statements, 'return' statements, and lots of curly braces.  If you can write a 'C' program you can quickly learn the differences and limitations of GPDL.
+
+The general idea of using the language is to provide a way for game designers to accomplish those one or two very special cases that are needed to make the game work right.  It is clearly impossible to anticipate every wish when writing a RPG-style engine.
+
+The language was initially used to provide a rudimentary dialog capability in the Ultima fashion.  You can ask questions of the characters you meet and they respond based on key words in the questions.
+
+The game designers will be the driving force in the direction GPDL takes.  As special needs arise, functions can be added to the language to examine and manipulate game state variables and game objects.  For example, one of the first functions added allows the game designer to replace or remove a wall.
+
+We anticpate that functions to alter spells and other objects will be requested and implemented.
+\page
+\title Compiling a GPDL Program
+\ident Compiling_a_GPDL_Program
+\keys Compiling a GPDL Program
+\browse GPDL
+\heading Compiling a GPDL Program
+
+{\b\cf1 Compiling a GPDL Program}
+
+The compiler is named {\f3 GPDLcomp.exe}.  The syntax of the command line to compile a program is:
+{\f3 
+   GPDLcomp  sourceFile  compiledResult  [listing]}
+
+SourceFile is your ascii text file that contains the program and compiledResult is the resulting binary file which must be named {\f3 talk.txt} if it is to be used by UAF at runtime.  The listing is optional.  If a filename is provided for the listing then an "assembly-language" listing file will be generated.  The listing can be useful for debugging because the errors that occur at runtime reference absolute addresses within the program.
+
+Example:
+{\f3 
+   GPDLcomp  RedEye.txt  talk.bin  RedEye.lst}
+\page
+\title Compiling a GPDL Program
+\ident Invoking_a_GPDL_Program
+\keys Compiling a GPDL Program
+\browse GPDL
+\heading Compiling a GPDL Program
+
+{\b\cf1 Invoking a GPDL Program}
+
+The compiled GPDL program must be named {\f3 "talk.bin"}, a name that reflects its first use as a primitive conversation generator.
+
+During gameplay, a GPDL function is invoked by special text in a text event.  This method may seem a bit strange but, like the human appendix, it has a reason that can only be discovered by study of ancient history.
+
+In a text event, you put:
+{\f3 
+  **SHAZAM**functionname(parameters)}
+
+as the first characters.  Anything after that will be ignored.  The function must have been declared {\uldb $PUBLIC}{\v !KLink(Public Functions)} and must have the same number of formal parameters as provided in the call.
+
+For example:
+{\f3 
+  **SHAZAM**checkForApples(3)Check for any apples in backpack}
+
+might be used to determine if the third player in a party has any apples.  The text {\f3 "Check for any apples in the backpack"} will be treated as a comment.
+
+In the program itself there must be a function of one paramter named checkForApples.  Example:
+{\f3 
+   $PUBLIC $FUNC checkForApples ( playerNum )
+   \{
+      $IF ( $IF_CHAR_ATTR(playerNum,"Apples") )
+      \{
+         $SAY ( "Eat your apples, Stupid!");
+      \};
+   \} checkForApples ;
+}
+\page
+\title Data Types
+\ident GPDL_DataTypes
+\keys GPDL Data;Data Type Conversions
+\browse GPDL_Writing a GPDL Program_GPDL Data
+\heading GPDL Data Types
+
+{\b\cf1 GPDL Data}
+Data in GPDL consists of strings of characters.  Period.  No integers, no booleans, no pointers.  Strings only.
+
+You are allowed to write things like  '{\f3 $RANDOM(12)}', meaning a random number between 0 and 11, inclusive.  But even though you did not write quotation marks around '12', the compiler put those quotes in for you.  An equivalent expression is:  '{\f3 $RANDOM("12")}.  The result of this expression is a string such as  "11".
+
+Of course many functions expect and return integer values.  These functions convert the string arguments to integers before using them and convert integer results to strings before returning them.
+
+When an integer or real number is expected as an argument (for example: $nPlus(3,6)) the strings are converted to integers and any non-numeric characters in the string except minus and period are simply ignored. Any minus signs will toggle the sign of the result.  If more than one decimal point appears in a real number, all but the first are ignored.  Real numbers are truncated towards zero when an integer is expected.  As examples:
+
+{\S3 }{\f3 "ab1c3"}  will evaluate to 13.
+{\S3 }{\f3 "Samuel"} will evaluate to 0.
+{\S3 }{\f3 "1.3.4.5"} will evaluate to 1.345 and yield 1 as an integer.
+{\S3 }{\f3 "1.-.-.3.-.4.5"} will evaluate to -1.345 and yield -1 as an integer.
+{\S3 }{\f3 "    +-5E3  "} will evaluate to -53.
+
+
+Now it must be said that although we have not lied to you about the fact that the only data type is a string, it must be said that certain system functions expect and return very special strings.  The GPDL compiler checks that functions expecting such special strings are properly fed what they expect.  The 'TYPE' of the parameters expected by and returned by these functions is specified in the descriptions of the functions themselves.  These 'special' types of strings cannot be created in any way except by a system function that is defined as returning such a value.  These special strings serve two purposes:
+{\S3 }Compile-time error checking.  Makes life easier.
+{\S3 }Efficiency.  Much faster runtime execution.
+\page
+\title GPDL Expressions
+\ident GPDL_Expressions
+\keys GPDL Expressions
+\browse GPDL_Writing a GPDL Program_GPDL Data
+\heading GPDL Expressions
+
+{\b\cf1 GPDL Expressions}
+
+Like most other languages, GPDL allows you to manipulate data using expressions such as:
+
+{\f3
+    HeightInInches = 12 * HeightInFeet;
+}
+
+But since everything in GPDL is a string rather than a number, you will have to get used to some strange-looking expressions when you wish to manipulate numbers. The way to write the above example in GPDL would be 
+
+{\f3
+    HeightInInches = $TIMES(12, HeightInFeet);
+}
+
+This expression is equivalent:
+
+{\f3
+    HeightInInches = $TIMES("12", HeightInFeet);
+}
+
+because GPDL will automatically convert '12' to a string ("12"). The reason that the expression
+
+{\f3
+    HeightInInches = 12 * HeightInFeet;
+}
+
+will not work is because there is no binary operator '*' for text strings. The text might represent numbers, as in
+
+{\f3
+    HeightInInches = 12 * 6; // assuming HeightInFeet = "6"
+}
+
+but it could also just as easily not, as in
+
+{\f3
+    HeightInInches = 12 * "I'm six feet tall";
+}
+
+The $TIMES operator tells the compiler that you want to convert the two text parameters into numbers and perform multiplication on them.
+
+
+There is an operator for combining strings:
+
+{\f3 {\S3 }+   Concatenates two strings
+}
+
+Second, there are operators comparing strings.  All of these compare the strings as alphanumeric text.  For example, "Dog" is greater than "Cat" because 'D' comes after 'C' in the alphabet.  Lower-case letters come after the upper-case letters.  "cat" is greater than "Dog".  All these operators have as their result either true (represented by "1") or false (represented by "").
+
+{\f3 {\S3 }>   Greater
+{\S3 }<   Less
+{\S3 }==  Equal
+{\S3 }>=  Greater than or equal
+{\S3 }<=  Less than or equal
+{\S3 }!=  Not equal
+{\S3 }&&  Both are non-empty
+{\S3 }||  At least one is non empty
+{\S3 }!   Unary.  Is empty.}
+
+Third, there are operators for manipulating numbers as 32-bit integers.  Each of these converts its arguments to 32-bit numbers, performs the appropriate function, and then converts the result to a string.  See{\uldb Data Type Conversions}{\v !KLink(Data Type Conversions)}
+
+{\f3 {\S3 }+#   Addition
+{\S3 }-#   Subtraction
+{\S3 }*#   Multiplication
+{\S3 }/#   Division
+{\S3 }%#   Remainder
+{\S3 }&#   Bitwise AND
+{\S3 }|#   Bitwise OR
+{\S3 }^#   Bitwise Exclusive OR}
+
+Fourth, there are operators to compare 32-bit numbers.
+
+{\f3 {\S3 }==#  Equal
+{\S3 }!=#  Not equal
+{\S3 }<#   Less than
+{\S3 }<=#  Less than or equal
+{\S3 }>#   Greater than
+{\S3 }>=#  Greater than or equal}
+
+Fifth, there are functions to operate on strings as decimal digits with infinite precision.  They are not fast.  But you can easily compute 1000-digit numbers if you so please.
+
+{\S3 }{\f3 $EQUAL}
+{\S3 }{\f3 $LESS}
+{\S3 }{\f3 $GREATER}
+{\S3 }{\f3 $PLUS}
+{\S3 }{\f3 $MINUS}
+{\S3 }{\f3 $TIMES}
+{\S3 }{\f3 $DIV}
+{\S3 }{\f3 $MOD}
+{\S3 }{\f3 $NOT}
+
+All of the operators have a precedence.  For example, multiplications take place before additions.  The normal precedence can be overridden with the use of parentheses.  For example:
+
+   {\f3 x = 12 /# ( Y +# Z )}
+
+means that 12 will be divided by the sum of Y and Z.
+
+Here is the normal precedence of the operators:
+
+{\f3
+  Logical OR      ||
+  Logical AND     &&
+  Bitwise OR      |#
+  Bitwise XOR     ^#
+  Bitwise AND     &#
+  Equality        ==  and ==# and != and !=#
+  Comparison      <   and <#  and > etc
+  plus/minus      +   and +# and -#
+  multiply/divide *#  and /# and %# 
+}
+
+In all cases, the operators and functions that have a true/false value as their result return a string with the single digit '1' to represent a true result and an empty string as false.
+
+Some more examples to illustrate how numbers and strings are manipulated:
+
+$RETURN "10" + "5";         // returns "105"
+$RETURN 10 + 5;             // returns "105"
+$RETURN 10 +# 5;            // returns "15", the '+#' means treat both params as numbers
+
+$RETURN "10" + "-5";        // returns "10-5"
+$RETURN 10 + -5;            // error, there is no unary operator '-' for strings
+$RETURN 10 - 5;             // error, there is no binary operator '-' for strings
+$RETURN 10 -# 5;            // returns "5"
+
+$RETURN $PLUS(10, 5);       // returns "15"
+$RETURN $PLUS("10", "5");   // returns "15"
+$RETURN $MINUS(10, 5);      // returns "5"
+$RETURN $PLUS("10", "-5");  // returns "5"
+$RETURN $PLUS(10, -5);      // error, no unary operator '-' for strings
+\page
+\title GPDL Literals
+\ident GPDL_Literals
+\keys GPDL Literals
+\browse GPDL_Writing a GPDL Program_GPDL Data
+\heading GPDL Literals
+
+{\b\cf1 GPDL Literals}
+
+As you should know by now, all data (and therefore literals, too) are strings.
+
+Sample uses of literals:
+
+{\f3    y = $RANDOM (12);
+
+   z = "This is a "
+       "test of a long "
+       "literal on "
+       "short lines.";
+
+   x = "The sum of y and z is " + y + z;}
+
+The first example demonstrates that numbers can be used as literals.  However, they are treated as strings.  The missing quotation marks are assumed to be present.  The only difference is that the numbers will be put into their 'canonical' form (decimal, no leading zeroes).
+
+The second example shows that adjacent strings are concatenated so that you do not need to write very long lines or to put a plus sign between the parts of a long string.  You could do these things but the automatic concatenation makes things easier and prettier.
+
+The third example shows that you can mix literals and variables in an expression.
+\page
+\title Variables
+\ident GPDL_Variables
+\keys GPDL Variables
+\browse GPDL_Writing a GPDL Program_GPDL Data
+\heading GPDL Variables
+
+{\b\cf1 GPDL Variables}
+Variable names in GPDL can be of any length and are case-sensitive.  System function names alway start with a dollar-sign.  You should probably not start your variable names with a dollar-sign although it is not prohibited.
+
+As in 'C', variables are local to the function in which they are defined.  They cannot be referenced from outside that function.  For example:
+
+{\f3  $FUNC checkForMushroom (characterClass)
+  \{
+    $VAR x;
+    x = "yes";
+  \} checkForMushroom ;
+
+  $FUNC disolveBadges ( )
+  \{
+    if (x == "yes")   // Compiler error
+    \{
+          etc.
+    \};
+  \};
+}
+Variables are allocated on the stack when a function is called.  This means that recursive functions get a new copy of local variables each time it calls itself.
+\page
+\title Associated String Lists
+\ident Associated_String_Lists
+\keys Associated String Lists
+\browse GPDL_Writing a GPDL Program_GPDL Data
+\alink Associated String Lists
+\heading Associated String Lists
+
+{\b\cf1 Associated String Lists  -  ASLs}
+
+For another view of this topic see {\uldb Associated Strings List}{\v !ALink(Associated Strings Lists)}.
+
+Many of the objects in the game can have associated with them a list of strings.  The lists are generally empty unless the designer has provided code to insert data into the lists.  A list is actually comprised of pairs of strings.  The first of each pair is the keyword and the second is a value associated with that keyword.  We will refer to an "Associated String List" as an "ASL" (plural "ASLs") to keep things a bit smaller.
+
+The pairs are referenced by the keyword and the lists are implemented as hash tables so that references are relatively efficient as compared to a linear search.
+
+There is no way to search an ASL without knowing the key.  There can be only one value associated with a given key.  Key/value pairs can be inserted, deleted, and examined.
+
+Example:  Suppose a character has the following key/value pairs:
+
+{\f3
+    diploma                Yale
+    Drivers's License      Yes
+    Mother's Name          Adrianne
+    Favorite food          popsicle
+}
+
+If you wanted a character to have more than one favorite food you could either invent additional keys such as "food1", "food2", "food3" or you could put the several foods in a single string:
+{\f3 
+   Favorite food    popsicle,Oreo cookie,cabbage
+}
+and parse the string yourself to determine the individual food items. You might find {\uldb $GREP}{\v !KLink($GREP)} useful to help do the parsing
+
+The following objects in the game have an ASL:
+{\f3 
+
+    Object Type         Function Names
+
+    -Characters            CHAR
+    -Party                 PARTY
+    -Levels                LEVEL
+    -The game itself       GLOBAL
+    -Level stats           LEVEL_STATS
+    -Temporary             TEMP
+}
+
+{\cf9 
+Someone thought the following had ASLs but I don't see it! (PRS 16Nov04)
+    Quests                QUEST
+    Special objects       SPECIAL_ITEM
+    Items                 ITEM
+    Zones                 ZONE
+    Monsters              MONSTER
+    Spells                SPELL}
+}
+
+The GPDL functions used to get, set, delete, and test for the presence of these ASL entries are called:
+{\f3
+      $GET_<type>_ASL
+      $SET_<type>_ASL
+      $DELETE_<type_ASL
+      $IF_<type>_ASL
+}
+
+For example, to issue a diploma to the second party member you might do the following:
+{\f3 
+    $SET_CHAR_ASL(1,"Diploma","Harvard");}
+
+Some important thing to keep in mind when manipulating ASLs:
+
+ ***** Keywords are case-sensitive.
+So "Diploma" and "diploma" are very different.
+
+ ***** Missing keywords
+If you fetch the value of a keyword that has never been set you will receive an empty string.  To determine if a keyword exists you must use $IF_<type>_ASL.
+
+ ***** Saved games
+ ASLs are saved with the game-state when the player saves a game (except the temporary ASL named "TEMP", which will always be empty when a game is loaded for
+play).
+
+{\cf9 This was in the help file but I don't think it is true! PRS16Nov04
+ ***** Game Design Editor.
+ ASLs may be supplied for items, monsters, and spells at the time your design is being created.  Access the appropriate editor using the "Database" menu.  Or you can directly edit the "items", "spells", or "monsters" databases with any text editor.  See {\uldb Database editing}{\v !KLink(Database Editing)}.
+}
+
+A complete list of functions (including those that reference the ASLs) can be found {\uldb here}{\v !KLink(List of all functions)}.
+\page
+\title List of all functions
+\ident List_of_all_functions
+\keys List of all functions
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading List of all functions
+
+{\b\cf1 List of all functions}
+
+{\uldb String $DEBUG(String)}{\v !KLink($DEBUG)}
+{\uldb String $PLUS(String, String)}{\v !KLink(GPDL Expressions)}
+{\uldb String $MINUS(String, String)}{\v !KLink(GPDL Expressions)}
+{\uldb String $TIMES(String, String)}{\v !KLink(GPDL Expressions)}
+{\uldb String $DIV(String, String)}{\v !KLink(GPDL Expressions)}
+{\uldb String $MOD(String, String)}{\v !KLink(GPDL Expressions)}
+{\uldb String $EQUAL(String, String)}{\v !KLink($EQUAL)}
+{\uldb String $LESS(String, String)}{\v !KLink(GPDL Expressions)}
+{\uldb String $GREATER(String, String)}{\v !KLink(GPDL Expressions)}
+{\uldb String $NOT(String)}{\v !KLink(GPDL Assignment Statements)}
+String $LENGTH(String)
+String $NUMERIC(String)
+{\uldb String $MIDDLE(String, String, String)}{\v !KLink($MIDDLE)}
+{\uldb String $RANDOM(String)}{\v !KLink($RANDOM)}
+{\uldb String $GREP(String, String)}{\v !KLink($GREP)}
+{\uldb String $WIGGLE(string)}{\v !KLink($WIGGLE)}
+{\uldb String $LISTEN()}{\v !KLink($LISTEN)}
+{\uldb String $SAY(String)}{\v !KLink($SAY)}
+{\uldb String $LISTENTEXT()}{\v !KLink($LISTENTEXT)}
+
+{\uldb String $SET_CHAR_DSL(String, String, String)}{\v !KLink($GET CHAR ASL)}
+{\uldb String $GET_CHAR_DSL(String, String)}{\v !KLink($GET CHAR ASL)}
+
+{\uldb (Help for all GET_CHAR_* and SET_CHAR_*){\v !KLink($GET CHAR NAME)}
+
+String $GET_CHAR_SEX(String)
+String $GET_CHAR_NAME(String)
+String $GET_CHAR_AC(String)
+String $SET_CHAR_AC(String, String)
+String $GET_CHAR_HITPOINTS(String)
+String $SET_CHAR_HITPOINTS(String, String)
+String $GET_CHAR_THACO(String)
+String $SET_CHAR_THACO(String, String)
+String $GET_CHAR_RDYTOTRAIN(String)
+String $SET_CHAR_RDYTOTRAIN(String, String)
+String $GET_CHAR_CLERICEXP(String)
+String $SET_CHAR_CLERICEXP(String, String)
+String $GET_CHAR_MAGICUSEREXP(String)
+String $SET_CHAR_MAGICUSEREXP(String, String)
+String $GET_CHAR_FIGHTEREXP(String)
+String $SET_CHAR_FIGHTEREXP(String, String)
+String $GET_CHAR_RANGEREXP(String)
+String $SET_CHAR_RANGEREXP(String, String)
+String $GET_CHAR_THIEFEXP(String)
+String $SET_CHAR_THIEFEXP(String, String)
+String $GET_CHAR_DRUIDEXP(String)
+String $SET_CHAR_DRUIDEXP(String, String)
+String $GET_CHAR_PALADINEXP(String)
+String $SET_CHAR_PALADINEXP(String, String)
+String $GET_CHAR_AGE(String)
+String $SET_CHAR_AGE(String, String)
+String $GET_CHAR_MAXAGE(String)
+String $SET_CHAR_MAXAGE(String, String)
+String $GET_CHAR_MAXMOVE(String)
+String $SET_CHAR_MAXMOVE(String, String)
+String $GET_CHAR_STR(String)
+String $SET_CHAR_STR(String, String)
+String $GET_CHAR_STRMOD(String)
+String $SET_CHAR_STRMOD(String, String)
+String $GET_CHAR_INT(String)
+String $SET_CHAR_INT(String, String)
+String $GET_CHAR_WIS(String)
+String $SET_CHAR_WIS(String, String)
+String $GET_CHAR_DEX(String)
+String $SET_CHAR_DEX(String, String)
+String $GET_CHAR_CON(String)
+String $SET_CHAR_CON(String, String)
+String $GET_CHAR_CHA(String)
+String $SET_CHAR_CHA(String, String)
+String $GET_CHAR_MAXENC(String)
+String $SET_CHAR_MAXENC(String, String)
+String $GET_CHAR_ENC(String)
+String $GET_CHAR_GENDER(String)
+String $SET_CHAR_GENDER(String, String)
+String $GET_CHAR_CLASS(String)
+String $SET_CHAR_CLASS(String, String)
+String $GET_CHAR_ALIGNMENT(String)
+String $SET_CHAR_ALIGNMENT(String, String)
+String $GET_CHAR_STATUS(String)
+String $SET_CHAR_STATUS(String, String)
+String $GET_CHAR_UNDEAD(String)
+String $SET_CHAR_UNDEAD(String, String)
+String $GET_CHAR_SIZE(String)
+String $SET_CHAR_SIZE(String, String)
+String $GET_CHAR_MAGICRESIST(String)
+String $SET_CHAR_MAGICRESIST(String, String)
+String $GET_CHAR_SAVEVSPPDM(String)
+String $SET_CHAR_SAVEVSPPDM(String, String)
+String $GET_CHAR_SAVEVSPP(String)
+String $SET_CHAR_SAVEVSPP(String, String)
+String $GET_CHAR_SAVEVSRSW(String)
+String $SET_CHAR_SAVEVSRSW(String, String)
+String $GET_CHAR_SAVEVSBR(String)
+String $SET_CHAR_SAVEVSBR(String, String)
+String $GET_CHAR_SAVEVSSP(String)
+String $SET_CHAR_SAVEVSSP(String, String)
+String $GET_CHAR_CLERICLVL(String)
+String $GET_CHAR_FIGHTERLVL(String)
+String $GET_CHAR_RANGERLVL(String)
+String $GET_CHAR_DRUIDLVL(String)
+String $GET_CHAR_PALADINLVL(String)
+String $GET_CHAR_THIEFLVL(String)
+String $GET_CHAR_MAGUSERLVL(String)
+String $GET_CHAR_CLERICPREVLVL(String)
+String $GET_CHAR_FIGHTERPREVLVL(String)
+String $GET_CHAR_RANGERPREVLVL(String)
+String $GET_CHAR_DRUIDPREVLVL(String)
+String $GET_CHAR_PALADINPREVLVL(String)
+String $GET_CHAR_THIEFPREVLVL(String)
+String $GET_CHAR_MAGUSERPREVLVL(String)
+String $GET_CHAR_CLERICPDLVL(String)
+String $GET_CHAR_FIGHTERPDLVL(String)
+String $GET_CHAR_RANGERPDLVL(String)
+String $GET_CHAR_DRUIDPDLVL(String)
+String $GET_CHAR_PALADINPDLVL(String)
+String $GET_CHAR_THIEFPDLVL(String)
+String $GET_CHAR_MAGUSERPDLVL(String)
+String $GET_CHAR_NBRHITDICE(String)
+String $GET_CHAR_NBRATTACKS(String)
+String $GET_CHAR_MORALE(String)
+String $SET_CHAR_MORALE(String, String)
+String $GET_CHAR_OPENDOORS(String)
+String $SET_CHAR_OPENDOORS(String, String)
+String $GET_CHAR_OPENMAGICDOORS(String)
+String $SET_CHAR_OPENMAGICDOORS(String, String)
+String $GET_CHAR_BENDLIFT(String)
+String $SET_CHAR_BENDLIFT(String, String)
+String $GET_CHAR_PICKPOCKETS(String)
+String $SET_CHAR_PICKPOCKETS(String, String)
+String $GET_CHAR_OPENLOCKS(String)
+String $SET_CHAR_OPENLOCKS(String, String)
+String $GET_CHAR_FINDTRAPS(String)
+String $SET_CHAR_FINDTRAPS(String, String)
+String $GET_CHAR_MOVESILENT(String)
+String $SET_CHAR_MOVESILENT(String, String)
+String $GET_CHAR_HIDESHADOWS(String)
+String $SET_CHAR_HIDESHADOWS(String, String)
+String $GET_CHAR_HEARNOISE(String)
+String $SET_CHAR_HEARNOISE(String, String)
+String $GET_CHAR_CLIMBWALLS(String)
+String $SET_CHAR_CLIMBWALLS(String, String)
+String $GET_CHAR_READLANG(String)
+String $SET_CHAR_READLANG(String, String)
+String $GET_CHAR_BLESS(String)
+String $SET_CHAR_BLESS(String, String)
+String $GET_CHAR_CURSE(String)
+String $SET_CHAR_CURSE(String, String)
+String $GET_CHAR_UNDEADFEAR(String)
+String $SET_CHAR_UNEADFEAR(String, String)
+String $GET_CHAR_ENLARGE(String)
+String $SET_CHAR_ENLARGE(String, String)
+String $GET_CHAR_REDUCE(String)
+String $SET_CHAR_REDUCE(String, String)
+String $GET_CHAR_CHARMPERSON(String)
+String $SET_CHAR_CHARMPERSON(String, String)
+String $GET_CHAR_REFLECTGAZEATTACK(String)
+String $SET_CHAR_REFLECTGAZEATTACK(String, String)
+String $GET_CHAR_PROTFROMEVIL(String)
+String $SET_CHAR_PROTFROMEVIL(String, String)
+String $GET_CHAR_PROTFROMGOOD(String)
+String $SET_CHAR_PROTFROMGOOD(String, String)
+String $GET_CHAR_SHIELD(String)
+String $SET_CHAR_SHIELD(String, String)
+String $GET_CHAR_SLEEP(String)
+String $SET_CHAR_SLEEP(String, String)
+String $GET_CHAR_FOG(String)
+String $SET_CHAR_FOG(String, String)
+String $GET_CHAR_ENTANGLE(String)
+String $SET_CHAR_ENTANGLE(String, String)
+String $GET_CHAR_INVISIBLETOANIMALS(String)
+String $SET_CHAR_INVISIBLETOANIMALS(String, String)
+String $GET_CHAR_NONUNDEADFEAR(String)
+String $SET_CHAR_NONUNDEADFEAR(String, String)
+String $GET_CHAR_SANCTUARY(String)
+String $SET_CHAR_SANCTUARY(String, String)
+String $GET_CHAR_SHILLELAGH(String)
+String $SET_CHAR_SHILLELAGH(String, String)
+String $GET_CHAR_DISPLACEMENT(String)
+String $SET_CHAR_DISPLACEMENT(String, String)
+String $GET_CHAR_WIZADRY(String)
+String $SET_CHAR_WIZADRY(String, String)
+String $GET_CHAR_DETECTMAGIC(String)
+String $SET_CHAR_DETECTMAGIC(String, String)
+String $GET_CHAR_INVISIBLETOUNDEAD(String)
+String $SET_CHAR_INVISIBLETOUNDEAD(String, String)
+String $GET_CHAR_TYPE(String)
+String $GET_CHAR_VORPALATTACK(String)
+String $SET_CHAR_VORPALATTACK(String, String)
+String $GET_CHAR_HOLDPERSON(String)
+String $SET_CHAR_HOLDPERSON(String, String)
+String $GET_CHAR_SILENCE(String)
+String $SET_CHAR_SILENCE(String, String)
+String $GET_CHAR_POISONED(String)
+String $SET_CHAR_POISONED(String, String)
+String $GET_CHAR_SLOWPOISON(String)
+String $SET_CHAR_SLOWPOISON(String, String)
+
+String $PARTYSIZE()
+{\uldb String $SET_PARTY_ASL(String, String)}{\v !KLink($GET PARTY ASL)}
+{\uldb String $GET_PARTY_ASL(String)}{\v !KLink($GET PARTY ASL)}
+{\uldb String $IF_PARTY_ASL(String)}{\v !KLink($GET PARTY ASL)}
+{\uldb String $DELETE_PARTY_ASL(String)}{\v !KLink($GET PARTY ASL)}
+{\uldb String $GET_PARTY_FACING()}{\v !KLink(Party Variables)}
+{\uldb String $SET_PARTY_FACING(String)}{\v !KLink(Party Variables)}
+{\uldb String $GET_PARTY_DAYS()}{\v !KLink(Party Variables)}
+{\uldb String $SET_PARTY_DAYS(String)}{\v !KLink(Party Variables)}
+{\uldb String $GET_PARTY_HOURS()}{\v !KLink(Party Variables)}
+{\uldb String $SET_PARTY_HOURS(String)}{\v !KLink(Party Variables)}
+{\uldb String $GET_PARTY_MINUTES()}{\v !KLink(Party Variables)}
+{\uldb String $SET_PARTY_MINUTES(String}{\v !KLink(Party Variables)})
+{\uldb String $GET_PARTY_ACTIVECHAR()}{\v !KLink(Party Variables)}
+{\uldb String $SET_PARTY_ACTIVECHAR(String)}{\v !KLink(Party Variables)}
+{\uldb String $GET_PARTY_MONEYAVAILABLE(String)}{\v !KLink(Money Variables)}
+
+{\uldb String $GET_GAME_CURRLEVEL()}{\v !KLink(Game Variables)}
+{\uldb String $GET_GAME_VERSION()}{\v !KLink(Game Variables)}
+{\uldb String $GET_VAULT_MONEYAVAILABLE(String)}{\v !KLink(Money Variables)}
+{\uldb String $COINNAME(String)}{\v !KLink(Money Variables)}
+{\uldb String $COINRATE(String)}{\v !KLink(Money Variables)}
+{\uldb String $SET_GLOBAL_ASL(String, String)}{\v !KLink($GET GLOBAL ASL)}
+{\uldb String $GET_GLOBAL_ASL(String)}{\v !KLink($GET GLOBAL ASL)}
+{\uldb String $SET_LEVEL_STATS_ASL(String, String)}{\v !KLink($GET LEVEL STATS ASL)}
+{\uldb String $DELETE_LEVEL_STATS_ASL(String, String)}{\v !KLink($GET LEVEL STATS ASL)}
+{\uldb String $IF_LEVEL_STATS_ASL(String, String)}{\v !KLink($GET LEVEL STATS ASL)}
+{\uldb String $GET_LEVEL_STATS_ASL(String, String)}{\v !KLink($GET LEVEL STATS ASL)}
+{\uldb String $SMALL_PICTURE(String)}{\v !KLink($SMALL PICTURE)}
+{\uldb String $SET_QUEST(String, String)}{\v !KLink($SET QUEST)}
+
+Actor  $Myself()
+Actor  &Name(String)
+Actor  $Target()
+Actor  $LAST_ATTACKER_OF(Actor)
+Actor  $LAST_HITTER_OF(Actor)
+Actor  $LAST_TARGETER_OF(Actor)
+Actor  $LEAST_DAMAGED_FRIENDLY(Actor)
+Actor  $MOST_DAMAGED_FRIENDLY(Actor)
+Actor  $NEAREST_TO(Actor)
+Actor  $NEAREST_ENEMY_TO(Actor)
+Actor  $LEAST_DAMAGED_ENEMY(Actor)
+Actor  $MOST_DAMAGED_ENEMY(Actor)
+
+String $IndexOf(Actor)
+String $Gender(Actor)
+String &Class(Actor)
+String $Race(Actor)
+String $Status(Actor)
+String $Alignment(Actor)
+String $AlignmentGood(Actor)
+String $AlignmentEvil(Actor)
+String $AlignmentLawful(Actor)
+String $AlignmentNeutral(Actor)
+String $AlignmentChaotic(Actor)
+String $HitPoints(Actor)
+String $InParty(Actor)
+String $SaveVsSpell(Actor)
+String $SaveVsBreathWeapon(Actor)
+String $SaveVsRodStaffWand(Actor)
+String $SaveVsPetPoly(Actor)
+String $SaveVsParPoiDM(Actor)
+String $IsUndead(Actor)
+String $GET_ISMAMMAL(Actor)
+String $GET_ISANIMAL(Actor)
+String $GET_ISSNAKE(Actor)
+String $GET_ISGIANT(Actor)
+String $GET_ISALWAYSLARGE(Actor)
+String $GET_HASDWARFACPENALTY(Actor)
+String $GET_HASGNOMEACPENALTY(Actor)
+String $GET_HASDWARFTHACOPENALTY(Actor)
+String $GET_HASGNOMETHACOPENALTY(Actor)
+String $GET_HASRANGERDMGPENALTY(Actor)
+String $GET_HASPOISONIMMUNITY(Actor)
+String $GET_HASDEATHIMMUNITY(Actor)
+String $GET_HASCONFUSIONIMMUNITY(Actor)
+String $GET_HASVORPALIMMUNITY(Actor)
+String $GET_CANBEHELDORCHARMED(Actor)
+String $GET_AFFECTEDBYDISPELEVIL(Actor)
+String $IS_AFFECTED_BY_SPELL(Actor, String)
+String $IS_AFFECTED_BY_SPELL_ATTR(Actor, String)
+String $CURR_CHANGE_BY_VAL()
+String $GIVE_CHAR_ITEM(Actor, String)
+String $TAKE_CHAR_ITEM(Actor, String)
+
+{\uldb (Help for all operators)}{\v !KLink(GPDL Expressions)}
++
+>
+<
+==
+>=
+<=
+!=
+&&
+||
+!
+
++#
+-#
+*#
+/#
+%#
+&#
+|#
+^#
+
+==#
+!=#
+<#
+<=#
+>#
+>=#
+\page
+\title Regular Expressions
+\ident Regular_Expressions
+\keys Regular Expressions
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\alink RegularExpressions
+\heading Regular Expressions
+
+{\b\cf1 Regular Expressions}
+
+Books have been written on this subject.  But it ain't that bad for our purpose here.
+
+A regular expression is a 'human-readable' (almost and sometimes) program for searching a string.  A simple example:
+{\f3 
+    "cat"}
+
+is a nice regular expression.  This particular expression says to find the letters 'c', 'a', and 't' immediately adjacent to each other anywhere in the string.
+
+Anywhere?  Yes, anywhere.  The search engine starts at the first character of the string and tests to see if it begins with "cat".  If so, it is done and returns 'true'.  If not, then the first character of the string is dropped and the process repeated.  The obvious result is to test whether the word 'cat' appears in the string.
+
+But wait!  What if the string is "My catalytic converter is broken."  Well the answer is that the search will succeed.  Maybe you should have used the regular exresion:
+{\f3 
+   " cat "}
+
+That is a nice regular expression, too.  And it says that there must be a space both before and after the letters "cat".
+
+But wait!  What if the string is "Here.  Take my cat.  Please."  Now the search will fail because "cat" is followed by a period instead of a space.  Solution?  As follows:
+{\f3 
+   " cat[ .,;]"}
+
+Oh, dear.  This is not quite as human-readable.  The pair of brackes means that there is a choice of characters.  In this case the choice is a space, a period, a comma, or a semicolon.
+
+Is the problem of finding the word "cat" solved?  I don't think so.  What about this:
+{\f3 
+   Cats and dogs and toads.}
+
+Maybe we should add an 's' as a possible terminating character.  As follows:
+{\f3 
+   " cats?[ .,;]"}
+
+What is that question-mark doing there?  A question-mark following a character (or choice of characters) means that the character may or may not be there.  The asterisk and plus are very much like the question-mark:
+{\f3 
+{\S3 }?  Character appears 0 or 1 times
+{\S3 }*  Character appears 0 or more times
+{\S3 }+  Character appears 1 or more times
+}
+So does our latest attempt work?  No.  For the reason that there is no space in front of the word "cat" when it is the first word on the line.  We can fix this as follows:
+{\f3 
+   "[^ ]cats?[ .,;]"
+}
+At least the solution is beginning to look unintelligible.  Like an expert did it.  But it still should not work!  We asked for the word "cat" and what was in the sentence was "Cat".  An upper-case 'C'.  But in GPDL this works just fine because we convert everything to upper case before doing the actual pattern match.
+
+And what is that character '^' and how does it help?  That 'hat' will match the empty string at the beginning of the line so we can find 'cat' when it is the first word on the line. (A Cat in the Hat?)
+
+All of this is made more easy by the following 'meta-characters'.
+{\f3 
+\\<   Matches emtpy string at front of word.
+\\>   Matches empty string at end of word
+\\b   Matches empty string at edge of word
+$    Matches empty string at end of line.}
+
+So a simpler solution to our problem might look like this:
+{\f3 
+   "\\bcats?\\b"}
+
+Meaning the edge of a word followed by "cat" followed (perhaps) by an 's' followed by the edge of a word.
+
+Another interesting problem we can try to solve.  Say that we want to know if the player typed a sentence with the word "cat" and the word "dog".  Here is what we might try:
+{\f3 
+   "\\b(cats?\\b.*\\bdogs?|dogs?\\b.*\\bcats?)\\b"
+}
+This probably needs no explanation.  But I will try to explain anyway.
+
+The parenthes simply group the two items between them.  The two items are separated by a vertical-bar, which means that either of the two items can be used to make a match.
+
+The first item will match the word "cat" or "cats" followed by zero or more of anything. , followed by the word "dog" or "dogs".
+
+Do you see that special character, the period?  It means any single character.  And when followed by an asterisk it means 0 or more of whatever the period can match.  We might have use a plus instead of an asterisk.  Would it have made any difference?
+
+The second item similarly will match the two words in the reverse order.   The word edges were placed outside to parenthses so I would have to type them fewer times.  Do you see why it works that way?  We could have written:
+
+{\f3 
+   "\\bcats?\\b.*\\bdogs?\\b|\\bdogs?\\b.*\\bcats?\\b"
+}
+
+A good book on the subject of egrep will tell you a lot more.  A copy of the GNU documentation is at {\uldb More Regular Expressions}{\v !KLink(More Regular Expressions)}.
+
+See {\uldb $GREP}{\v !KLink($GREP)}, {\uldb $GCASE}{\v !KLink($GCASE)}, and {\uldb $WIGGLE}{\v !KLink($WIGGLE)}.
+\page
+\title More Regular Expressions
+\ident More_Regular_Expressions
+\keys More Regular Expressions
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading More Regular Expressions
+
+{\b\cf1 More Regular Expressions}
+
+
+This file documents GREP, a pattern matching engine.
+
+Published by the Free Software Foundation, 59 Temple Place - Suite 330 Boston, MA 02111-1307, USA
+
+Copyright (C) 1998 Free Software Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of this manual provided the copyright notice and this permission notice are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this manual under the conditions for verbatim copying, provided that the entire resulting derived work is distributed under the terms of a permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual into another language, under the above conditions for modified versions, except that this permission notice may be stated in a translation approved by the Foundation.
+
+..... Deleted Section pertaining to grep as a command line tool .....
+
+
+Regular Expressions
+*******************
+
+A "regular expression" is a pattern that describes  a  set  of strings.  Regular expressions are constructed analogously to arithmetic expressions, by using various operators to combine smaller expressions.  GREP understands two different versions of regular expression syntax:   "basic"  and  "extended".  In GNU GREP, there is no difference in available functionality using either syntax.  In other implementations,  basic regular expressions are less powerful. The following description applies to extended regular expressions; differences for basic regular expressions are summarized afterwards.
+
+The fundamental building blocks are the regular expressions that match a single character.  Most characters, including all letters and digits, are regular expressions match themselves.  Any metacharacter with special meaning may be quoted by preceding it with a backslash.  A list of characters enclosed by {\f3`['} and {\f3`]'} matches any single character in that list; if the first character of the list is the caret {\f3 `^'}, then it matches any character *not* in the list.  For example, the regular expression {\f3 `[0123456789]'} matches any single digit. A range of ASCII characters may be specified by giving the first and last characters, separated by a hyphen.  Finally, certain named classes of characters are predefined.   Their names are self explanatory, and they are :
+{\f3 
+`[:alnum:]'}
+     Any of {\f3 [:digit:]} or {\f3 [:alpha:]}
+{\f3 
+`[:alpha:]'}
+     Any local-specific or one of the ASCII letters:
+     {\f3 `a b c ... x y z',
+     `A B C ... X Y Z'.}
+{\f3 
+`[:cntrl:]'}
+     Any of `BEL', `BS', `CR', `FF', `HT', `NL', or `VT'.
+{\f3 
+`[:digit:]'}
+     Any one of {\f3 `0 1 2 3 4 5 6 7 8 9'}.
+
+{\f3 `[:graph:]'}
+     Anything that is not a {\f3 `[:alphanum:]'} or {\f3 `[:punct:]'}.
+{\f3 
+`[:lower:]'}
+     Any one of {\f3 `a b c ... x y z'}.
+{\f3 
+`[:print:]'}
+     Any character from the {\f3 `[:space:]'} class, and any character that is *not* in the {\f3 `[:isgraph:]'} class.
+{\f3 
+`[:punct:]'}
+     Any one of {\f3 `! " #% & ' ( ) ; < = > ? [ \\ ] * + , - . / : ^ _ \{ | \}'}.
+{\f3 
+`[:space:]'}
+     Any one of `CR FF HT NL VT SPACE'.
+{\f3 
+`[:upper:]'}
+     Any one of {\f3 `A B C ... X Y Z'}.
+{\f3 
+`[:xdigit:]'}
+     Any one of {\f3 `a b c d e f A B C D E F 0 1 2 3 4 5 6 7 8 9'}.
+
+For example, {\f3 `[[:alnum:]]'} means {\f3 `[0-9A-Za-z]'}, except the latter form is dependent upon the ASCII character  encoding,  whereas  the former  is portable.  (Note that the brackets in these class names are part of the symbolic names, and must  be  included in  addition  to the brackets delimiting the bracket list).  Most metacharacters lose their special meaning inside lists.  To include a literal {\f3 `]'}, place it first in the list.  Similarly, to include a literal {\f3 `^'}, place it anywhere but first.  Finally, to include a literal {\f3 `-'}, place it last.
+
+The period {\f3 `.'} matches any single character.  The symbol {\f3 `\\w'} is a synonym for {\f3 `[[:alnum:]]'} and {\f3 `\\W'} is a synonym for {\f3 `[^[:alnum]]'}.
+
+The caret {\f3 `^'} and the dollar sign {\f3 `$'} are metacharacters that respectively match the empty string at the beginning and end of a line. The symbols {\f3 `\\<'} and  {\f3 `\\>'} respectively match the empty string at the beginning and end of a word.  The symbol {\f3 `\\b'} matches the empty string at the edge of a  word,  and  {\f3 `\\B'} matches  the empty string provided it's not at the edge of a word.
+
+A regular expression may  be  followed  by  one  of  several repetition operators:
+{\f3 
+`?'}
+     The preceding item is optional and will be matched at most once.
+{\f3 
+`*'}
+     The preceding item will be matched zero or more times.
+{\f3 
+`+'}
+     The preceding item will be matched one or more times.
+{\f3 
+`\{N\}'}
+     The preceding item is matched exactly N times.
+{\f3 
+`\{N,\}'}
+     The preceding item is matched n or more times.
+{\f3 
+`\{,M\}'}
+     The preceding item is optional and is matched at most M times.
+{\f3 
+`\{N,M\}'}
+     The preceding item is matched at least N times, but not more than M times.
+
+Two regular expressions may be concatenated;  the  resulting regular expression matches any string formed by concatenating two substrings that respectively match the concatenated subexpressions.
+
+Two regular expressions may be joined by the infix operator {\f3 `|'}; the resulting regular expression matches any string matching either subexpression.
+
+Repetition takes precedence over concatenation,  which in turn takes precedence over alternation.  A whole subexpression may be enclosed in parentheses to override these precedence rules.
+
+The backreference {\f3 `\\N'}, where N is a single digit, matches the substring previously matched by the Nth parenthesized subexpression of the regular expression.
+
+..... Deleted differences between basic and extended .....
+
+..... Deleted index section .....
+\page
+\title $DEBUG
+\ident $DEBUG
+\keys $DEBUG
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $DEBUG
+
+{\b\cf1 $DEBUG}
+{\f3 
+   $DEBUG (debugFlags)}
+
+Return value:  The old debug flags...so you can put things back the way they were.
+
+Use the $DEBUG function to turn debug capabilities on/off.
+
+Bit 0 = DBG_messageBox
+Causes a Windows message box to appear when certain errors such as improper $GREP search strings are encountered at runtime.
+
+Bit 1 = DBG_functionTrace
+Causes a log message to be created in the GPDL log file whenever a user function is called or returns.  This log entry records the parameters and return value.
+\page
+\title $EQUAL
+\ident $EQUAL
+\keys $EQUAL
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $EQUAL
+
+{\b\cf1 $EQUAL}
+{\f3 
+    $EQUAL ( string1, string2)}
+
+Return value: "1" if the two strings are identical.  Else "".
+
+This function should not be used for numeric comparisons unless you are certain that the numbers are formatted identically.  For example:
+{\f3 
+    $EQUAL ( "03", "3)}
+
+would result in "" (or false).  If the numbers were the result of computations then you can assume that they are indeed formatted identically.
+
+
+See also:
+{\uldb $GREP}{\v !KLink($GREP)}
+\page
+\title Character Associated String Lists
+\ident $GET_CHAR_ASL
+\keys $GET CHAR ASL
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading Character Associated String Lists
+
+{\b\cf1 $GET_ / $SET_ / $IF_ / DELETE_CHAR_ASL}
+{\f3 
+$GET_CHAR_ASL(CharNum,Keyword)
+$SET_CHAR_ASL(CharNum,Keyword,Value)
+$IF_CHAR_ASL(CharNum,Keyword)
+$DELETE_CHAR_ASL(CharNum,Keyword)
+}
+CharNum is the zero-based index of the character in the party.
+
+Keyword is the (case-sensitive) keyword value.
+
+Value is the string associated with the given keyword.
+
+Used to manipulate the Associated String List of a single character in the player's party.  $SET and $GET return the value, $IF returns "1" if the keyword exists else "", and $DELETE returns "".
+
+See {\uldb Associated String Lists}{\v !KLink(Associated String Lists)}
+\page
+\title $GET LEVEL STATS ASL
+\ident $GET_LEVEL_STATS_ASL
+\keys $GET LEVEL STATS ASL
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $GET LEVEL STATS ASL
+
+{\b\cf1 $GET LEVEL STATS ASL}
+
+{\f3 
+$GET_LEVEL_STATS_ASL(Level, Keyword)
+$SET_LEVEL_STATS_ASL(Level, Keyword,Value)
+$IF_LEVEL_STATS_ASL(Level, Keyword)
+$DELETE_LEVEL_STATS_ASL(Level, Keyword)
+}
+
+Level is the dungeon level with which the string is associated. If 'Level' is the empty string ("") then the level is assumed to be the level the party is currently on.
+
+Keyword is the (case-sensitive) keyword value.
+
+Value is the string associated with the given keyword.
+
+Used to manipulate the String List that is Associated with each level of the dungeon.  There is one such 'Associated String List' (ASL) for each level.  $SET and $GET return the value, $IF returns "1" if the keyword exists else "", and $DELETE returns "".
+
+Some very interesting things can be done with these ASLs that are associated with a level.  You can use event-processing to make each wall in the dungeon visible or invisible, blocked or un-blocked, and the wall graphic can be changed.  This is accomplished by adding a string to the level's ASL for each wall that you wnat to be different from the static properties established with the editor.  The two keys that you need to do this are:
+
+"$WALL,x,y,d,n" 
+"$BLOCK,x,y,d,s"
+
+In these keys the 'x' and 'y' are integers giving the location of the cell that the wall is in.  The 'd' is the direction: 'N','E','S', or 'W'.  The parameter 'n' is an integer specifying the wall graphic and '0' means no wall will be shown. The parameter 's' is either "OpenBlk" or "BlockedBlk' to mean that the wall blockage is either 'open' and passable by the party or 'Blocked' and not passable.
+
+An example ... say that (using the editor) we put a blocking wall on the south side of cell (3,5) on level 2 but that we want the wall to disappear and become passable if a particular quest is completed.
+
+We would add two ASL entries - one to make the wall disappear and one to make the passage possible:
+
+$SET_LEVEL_STATS_ASL(2,"$WALL,3,5,S",0);
+$SET_LEVEL_STATS_ASL(2,"$BLOCK,3,5,S","OpenBlk");
+
+These entries could be added using a GPDL script or by using the appropriate actions in a LogicBlock event.
+
+See {\uldb Associated String Lists}{\v !KLink(Associated String Lists)}
+\page
+\title $GET GLOBAL ASL
+\ident $GET_GLOBAL_ASL
+\keys $GET GLOBAL ASL
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading Global Attributes
+
+{\b\cf1 $SET_/ _$GET_ / $IF_ / $DELETE_GLOBAL ASL}
+{\f3 
+$GET_GLOBAL_ASL(Keyword)
+$SET_GLOBAL_ASL(Keyword,Value)
+$IF_GLOBAL_ASL(Keyword)
+$DELETE_GLOBAL_ASL(Keyword)
+}
+
+Keyword is the (case-sensitive) keyword value.
+
+Value is the string associated with the given keyword.
+
+Used to manipulate the Global Associated String List (ASL).  $SET and $GET return the value, $IF returns "1" if the keyword exists else "", and $DELETE returns "".
+
+See {\uldb Associated String Lists}{\v !KLink(Associated String Lists)}
+\page
+\title $GET PARTY ASL
+\ident $GET_PARTY_ASL
+\keys $GET PARTY ASL
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading Party Attributes
+
+{\b\cf1 $GET PARTY ASL}
+
+{\f3 
+$GET_PARTY_ASL(Keyword)
+$SET_PARTY_ASL(Keyword,Value)
+$IF_PARTY_ASL(Keyword)
+$DELETE_PARTY_ASL(Keyword)
+}
+
+Keyword is the (case-sensitive) keyword value.
+
+Value is the string associated with the given keyword.
+
+Used to manipulate the ASL attached to the player's party of characters.  $SET and $GET return the value, $IF returns "1" if the keyword exists else "", and $DELETE returns "".
+
+See {\uldb Associated String Lists}{\v !KLink(Associated String Lists)}
+\page
+\title $GREP
+\ident $GREP
+\keys $GREP
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $GREP
+
+{\b\cf1 $GREP}
+
+$GREP is a regular-expression compiler and search engine.  If you know what that means then all is well.  Otherwise you should check out the topic "{\uldb regular expressions}{\v !KLink(Regular Expressions)}".
+
+$GREP implements 'egrep' regular expressions.
+{\f4
+    $GREP ( regularExpression, string)}
+
+Return value:
+
+The string is searched using the regular expression and returns true ("1") or false ("") depending on whether a match is or is not successful.
+
+As a side-effect, if the match is successful, any substrings that were matched are put safely away where you can reference them before using $GREP (or {\uldb $GCASE}{\v !KLink(GPDL $SWITCH keyword)}) again.  You reference these sub-strings with {\uldb $WIGGLE}{\v !KLink($WIGGLE)}.
+\page
+\title $WIGGLE
+\ident $WIGGLE
+\keys $WIGGLE
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $WIGGLE
+
+{\b\cf1 $WIGGLE}
+
+Here is a neat little function.  It allows you to access the matched sub-expressions from a previous{\uldb $GREP}{\v !KLink()} (or {\uldb $GCASE}{\v !KLink()}) statement.
+
+Each time $GREP (or $GCASE) is executed it leaves behind a list of all the matched subexpressions that were matched in the source string.  These are the subexpressions that can be referenced within the $GREP itself as 'back references'.
+
+The parameter to $WIGGLE is an integer that specifies which substring one is interested in.  The number start at 1 for sub-expressions.  Zero means the entire match expression.  But an example will make this all very much clearer.
+
+Let us say that the source string is "Dungeon Craft is a neat thing".  And that the search string is "(.*)eon.*(n.*n)".  Then the search succeeds because it finds the string "Dungeon Craft is a neat thin".  The first parenthesised expression matched "Dung".  And the second parenthesised expression in the search string matched "neat thin".  So:
+
+$WIGGLE(0) will return "Dungeon Craft is a neat thin"
+$WIGGLE(1) will return "Dung"
+$WIGGLE(2) will return "neat thin"
+
+We could have been more clever at generating an amusing example.
+\page
+\title $LISTEN
+\ident $LISTEN
+\keys $LISTEN
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $LISTEN
+
+{\b\cf1 $LISTEN}
+{\f3 
+   $LISTEN()}
+
+Adds "You Say:" in the text area at the bottom of the screen and waits for the player to type a message and press the carriage-return.
+
+Return Value:  The text entered by the player.  A lone carriage-return results in an empty string.  The text is also saved for later access using {\uldb $LISTENTEXT()}{\v !KLink($LISTENTEXT)}.
+
+Example:
+{\f3 
+  $SAY ("Please name your favorite food");
+  $WHILE ($NOT ($LISTEN()))
+  \{
+      $SAY ("I insist on knowing!");
+  \};
+  $SAY("I like "+$LISTENTEXT()+", too.");}
+\page
+\title $LISTENTEXT
+\ident $LISTENTEXT
+\keys $LISTENTEXT
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $LISTENTEXT
+
+{\b\cf1 $LISTENTEXT}
+{\f3 
+    $LISTENTEXT()}
+
+Return Value:  The result of the most recent {\uldb $LISTEN}{\v !KLink($LISTEN)} call.
+
+This function is not needed.  One could always save the result of a $LISTEN().  But having this function avoids the problem of having to invent a variable everytime you want to communicate with the player.
+
+See {\uldb $LISTEN}{\v !KLink($LISTEN)} for an example.
+\page
+\title $LOGIC BLOCK VALUE
+\ident $LOGIC_BLOCK_VALUE
+\keys $LOGIC BLOCK VALUE
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $LOGIC BLOCK VALUE
+
+{\b\cf1 $LOGIC BLOCK VALUE}
+
+{\f3 
+$LOGIC_BLOCK_VALUE(ValueID)
+}
+
+ValueID is the name of the LOGIC_BLOCK value to be recalled.
+
+Discussion:
+
+The LOGIC_BLOCK event has an option labeled "Record Values At Runtime".  If this option is selected, then when the LOGIC_BLOCK event is processed during execution of the game, all 12 labeled values are saved.  These values can be recalled at any later time by GPDL scripts, using the $LOGIC_BLOCK_VALUE function.  The first character of the ValueID parameter is used to determine which of the 12 values is desired.  It should be an upper-case letter "A" through "L".
+
+The values in the LOGIC_BLOCK are saved after all 12 values have been computed but before the actions are processed.  So what?, you ask.  So this: If you reference value "A" during computation of value "B", you will get the result from the PREVIOUS execution of LOGIC_BLOCK, not the current one.  This can be either a feature or a bug, depending on what you are trying to do.  And....if you want to use any of the recorded values in the Actions (Using GPDL Function $LOGIC_BLOCK_VALUE) then you must set the option "Record Values at Runtime" or you will get the values from any previously executed LOGIC_BLOCK event (And that might be useful!!!).
+\page
+\title $MIDDLE
+\ident $MIDDLE
+\keys $MIDDLE
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $MIDDLE
+
+{\b\cf1 $MIDDLE}
+
+Extracts characters from the middle of a string.
+
+{\f3 $MIDDLE(string, first, number);}
+
+'first' is the index of the first character (starting at 0), and 'number' is the number of characters.  Examples:
+
+{\f3 $MIDDLE("abcd".2,1) = "c"
+$MIDDLE("abcd",1,2) = "bc"}
+\page
+\title $RANDOM
+\ident $RANDOM
+\keys $RANDOM
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $RANDOM
+
+{\b\cf1 $RANDOM}
+{\f3 
+    $RANDOM(Max);}
+
+Returns a random integer less than Max.  For example, to roll a 6-sided die you might do the following:
+{\f3 
+   n=$nPLUS($RANDOM(6),1));}
+
+$RANDOM returns a number between 0 and 5 and adding 1 makes it between 1 and 6.
+\page
+\title $SAY
+\ident $SAY
+\keys $SAY
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $SAY
+
+{\b\cf1 $SAY}
+{\f3 
+   $SAY( text );
+}
+Presents the text in the text window at the bottom of the screen and waits for the player to type a space before proceeding.
+
+Substitutions in the text are provided just as for Event Text.  Moreover, the formating functions (like /g for green) also work.  Example
+{\f3 
+ $SAY ("Hello, /g" +$GET_CHAR_NAME(0) + "/w");}
+
+A new line may be started by including "\n" in the text. For example:
+{\f3
+ $SAY ("This little pig went to market.\nThis little pig stayed home."}
+\page
+\title $SMALL PICTURE
+\ident $SMALL_PICTURE
+\keys $SMALL PICTURE
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $SMALL PICTURE
+
+{\b\cf1 $SMALL PICTURE}
+
+Used to change the small picture being displayed during the text event that initiated the GPDL program function.
+
+** Important **  Warnings are in order here:
+
+{\S3 }The file you specified must be present.
+{\S3 }A small picture must already be displayed.
+{\S3 }The change is semi-permanent.
+{\S3 }The file must be a valid small picture.
+
+The first of these warnings is a bit of a problem.  How do you ensure that the file you specify is present in the design directory?  You can put it there manually.  Or you could provide a chain of events in some corner of some level that is unreachable.  That chain of events could reference all the small pictures you might need for your GPDL programs.
+
+The second warning means that the text event that initiates your GPDL program must specify a small picture.  It will not be seen if your program displays a different picture before doing any text input/outout.  But it must be there.  $SMALL_PICTURE can only replace the file name in an existing small picture.
+
+The third warning means that when you execuute a $SMALL_PICTURE function, it changes the event itself.  The next time the event is initiated the new picture may be displayed or the old picture may be displayed, depending on whether the level has changed or the game saved.  So any event that changes the picture should be careful to initialize itself to the first picture that should be displayed.
+
+Warnings having been heeded, here is how you change the picture:
+
+         $SMALL_PICTURE(filename);
+
+There, that was not too hard.  If you break any rules, either no picture will be displayed or the wrong picture will be displayed.
+\page
+\title $GET CHAR NAME
+\ident Character_Variables
+\keys $GET CHAR NAME
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $GET CHAR NAME
+There are many variables associated with each character.  Age, Sex, and Race are examples.  All of the variables are available to the GPDL program.  Some of the variables can be modified.  Each variable has one function to access the value of the variable and, if the variable is modifiable, one function to set the value. During combat, these functions also work with monsters and NPC's.
+
+All the functions are of the same form:
+
+To access a variable:
+   {\f3 $GET_CHAR_xxxxxx(index);}
+
+To set the value of a variable:
+   {\f3 $SET_CHAR_xxxxxx(index, value);}
+
+In both cases, the xxxxxx is the name of the particular variable of interest and index is the zero-based position of the character in the party.  See {\uldb $FIND CHAR NAME}{\v !KLink($FIND CHAR NAME)} to see how the position of a party member can be determined if his name is known.  In the $SET_CHAR_xxxxxx functions, the value parameter will be assigned to the character's variable if it is a legal value.  You cannot set a character's age to "Very Old", for example.  The GPDL conversion of strings to numbers follows the general rules (See {\uldb Data Type Conversions}{\v !KLink(Data Type Conversions)})
+
+Following is a list of all the $GET and $SET functions associated with a character.  The type of value is one of the following:
+{\S3 }String  -  Such as a name.
+{\S3 }Integer -  Such as an age
+{\S3 }Float  - A 'real' number such as 3.14159
+
+Each entry in the table also indicates whether the variable can be modified with the corresponding {\f3 $SET_CHAR_xxxxx} function.
+
+{\f3
+ Function name        data type  Settable?
+ -------------        ---------  ---------
+$GET_CHAR_NAME           String  No
+$GET_CHAR_AC,            integer Yes
+$GET_CHAR_HITPOINTS      integer Yes
+$GET_CHAR_THACO          integer Yes
+$GET_CHAR_RDYTOTRAIN     integer Yes
+$GET_CHAR_CLERICEXP      integer Yes
+$GET_CHAR_MAGICUSEREXP   integer Yes
+$GET_CHAR_FIGHTEREXP     integer Yes
+$GET_CHAR_RANGEREXP      integer Yes
+$GET_CHAR_THIEFEXP       integer Yes
+$GET_CHAR_DRUIDEXP       integer Yes
+$GET_CHAR_PALADINEXP     integer Yes
+$GET_CHAR_AGE            integer Yes
+$GET_CHAR_MAXAGE         integer Yes
+$GET_CHAR_MAXMOVE        integer Yes
+$GET_CHAR_STR            integer Yes
+$GET_CHAR_STRMOD         integer Yes
+$GET_CHAR_INT            integer Yes
+$GET_CHAR_WIS            integer Yes
+$GET_CHAR_DEX            integer Yes
+$GET_CHAR_CON            integer Yes
+$GET_CHAR_CHA            integer Yes
+$GET_CHAR_MAXENC         integer Yes
+$GET_CHAR_ENC            integer No
+$GET_CHAR_GENDER         integer Yes
+$GET_CHAR_CLASS          integer Yes
+$GET_CHAR_ALIGNMENT      integer Yes
+$GET_CHAR_STATUS         integer Yes
+$GET_CHAR_UNDEAD         integer Yes
+$GET_CHAR_SIZE           integer Yes
+$GET_CHAR_MAGICRESIST    integer Yes
+$GET_CHAR_SAVEVSPPDM     integer Yes
+$GET_CHAR_SAVEVSPP       integer Yes
+$GET_CHAR_SAVEVSRSW      integer Yes
+$GET_CHAR_SAVEVSBR       integer Yes
+$GET_CHAR_SAVEVSSP       integer Yes
+$GET_CHAR_CLERICLVL      integer No
+$GET_CHAR_FIGHTERLVL     integer No
+$GET_CHAR_RANGERLVL      integer No
+$GET_CHAR_DRUIDLVL       integer No
+$GET_CHAR_PALADINLVL     integer No
+$GET_CHAR_THIEFLVL       integer No
+$GET_CHAR_MAGUSERLVL     integer No
+$GET_CHAR_CLERICPREVLVL  integer No
+$GET_CHAR_FIGHTERPREVLVL integer No
+$GET_CHAR_RANGERPREVLVL  integer No
+$GET_CHAR_DRUIDPREVLVL   integer No
+$GET_CHAR_PALADINPREVLVL integer No
+$GET_CHAR_THIEFPREVLVL   integer No
+$GET_CHAR_MAGUSERPREVLVL integer No
+$GET_CHAR_CLERICPDLVL    integer No
+$GET_CHAR_FIGHTERPDLVL   integer No
+$GET_CHAR_RANGERPDLVL    integer No
+$GET_CHAR_DRUIDPDLVL     integer No
+$GET_CHAR_PALADINPDLVL   integer No
+$GET_CHAR_THIEFPDLVL     integer No
+$GET_CHAR_MAGUSERPDLVL   integer No
+$GET_CHAR_NBRHITDICE     Float   No
+$GET_CHAR_NBRATTACKS     Float   No
+$GET_CHAR_MORALE         integer Yes
+$GET_CHAR_OPENDOORS      integer Yes
+$GET_CHAR_OPENMAGICDOORS integer Yes
+$GET_CHAR_BENDLIF        integer Yes
+$GET_CHAR_PICKPOCKETS    integer Yes
+$GET_CHAR_OPENLOCKS      integer Yes
+$GET_CHAR_FINDTRAPS      integer Yes
+$GET_CHAR_MOVESILENT     integer Yes
+$GET_CHAR_HIDESHADOWS    integer Yes
+$GET_CHAR_HEARNOISE      integer Yes
+$GET_CHAR_CLIMBWALLS     integer Yes
+$GET_CHAR_READLANG       integer Yes }
+\page
+\title Game Variables
+\ident Game_Variables
+\keys Game Variables
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading Game Variables
+
+{\b\cf1 Game Variables}
+
+There are some variables associated with the game as a whole.  Game version is an example.  All of the variables are available to the GPDL program.  Some of the variables can be modified.  Each variable has one function to access the value of the variable and, if the variable is modifiable, one function to set the value.
+
+All the functions are of the same form:
+
+To access a variable:
+   {\f3 $GET_GAME_xxxxxx();}
+
+To set the value of a variable:
+   {\f3 $SET_GAME_xxxxxx(value);}
+
+In both cases, the xxxxxx is the name of the particular variable of interest In the $SET_GAME_xxxxxx functions, the value parameter will be assigned to the game's variable if it is a legal value.  You cannot set the games's version to "sin(x)", for example.  The GPDL conversion of strings to numbers follows the general rules (See {\uldb Data Type Conversions}{\v !KLink(Data Type Conversions)})
+
+Following is a list of all the $GET and $SET functions associated with the game.  The type of value is one of the following:
+{\S3 }String  -  Such as a name.
+{\S3 }Integer -  Such as an age
+{\S3 }Float  - A 'real' number such as 3.14159
+
+Each entry in the table also indicates whether the variable can be modified with the corresponding {\f3 $SET_GAME_xxxxx} function.
+
+{\f3
+ Function name        data type  Settable?
+ -------------        ---------  ---------
+  $GET_GAME_CURRLEVEL    Integer    No
+  $GET_GAME_VERSION      FLOAT      No
+
+}
+\page
+\title Money Variables
+\ident Money_Variables
+\keys Money Variables
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading Money Variables
+
+{\b\cf1 Money Variables}
+
+You can determing the names of the coins, their relative value, and the number held by each of the characters.  In all cases, the coinOrdinal is a number from one to ten and is in the order specified in the 'Configure Money Types' dialog.  Number one is usually the most valuable coin.
+
+{\cf9 {\f3 $COINNAME(coinOrdinal);}}
+
+The return value is the name of the coin.  Example: "Silver".
+
+{\cf9 {\f3 $COINRATE(coinOrdinal);}}
+
+The return value is the the 'Conversion Rate' that you specified in the 'Configure Money Types' dialog.  See the menu item Global/Global Settings/Currency in the Design Editor.
+
+{\cf9 {\f3 $COINCOUNT(coinOrdinal, CharacterOrdinal);}}
+
+The return value is the number of coins of this particular type in the possession of one of the characters.  The characters are numbered starting at one and are in the order curently displayed on the adventure screen.  If you specify character number 0 (zero) then the Active Character is assumed.
+
+{\cf9 {\f3 $GET_PARTY_MONEYAVAILABLE(coinOrdinal);}}
+
+This will return the total funds available for all current party members. The coinOrdinal can be zero, which will return the funds in terms of the base coin type (usually copper). If coinOrdinal is 1-10, the return value will be in terms of the specified coin type. For instance, assume the party has 200 platinum pieces and you are using the default money configuration. Using $GET_PARTY_MONEYAVAILABLE(0) will return 200000 (copper), and $GET_PARTY_MONEYAVAILABLE(1) will return 200 (platinum). There is no support for  fractional values. If the party has 999 copper peices and you ask for the total in terms of platinum, the answer will be 0 since 1000 copper = 1 platinum.
+
+{\cf9 {\f3 $GET_VAULT_MONEYAVAILABLE(coinOrdinal);}}
+
+This will return the total funds available in the vault. The coinOrdinal can be zero, which will return the funds in terms of the base coin type (usually copper). If coinOrdinal is 1-10, the return value will be in terms of the specified coin type. For instance, assume the vault has 200 platinum pieces and you are using the default money configuration. Using $GET_VAULT_MONEYAVAILABLE(0) will return 200000 (copper), and $GET_VAULT_MONEYAVAILABLE(1) will return 200 (platinum). There is no support for  fractional values. If the vault has 999 copper peices and you ask for the total in terms of platinum, the answer will be 0 since 1000 copper = 1 platinum.
+\page
+\title Party Variables
+\ident Party_Variables
+\keys Party Variables
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading Party Variables
+
+{\b\cf1 Party Variables}
+
+There are several variables associated with each party as a group.  Time-of-day and direction facing are examples.  All of the variables are available to the GPDL program.  Some of the variables can be modified.  Each variable has one function to access the value of the variable and, if the variable is modifiable, one function to set the value.
+
+All the functions are of the same form:
+
+To access a variable:
+   {\f3 $GET_PARTY_xxxxxx();}
+
+To set the value of a variable:
+   {\f3 $SET_PARTY_xxxxxx(value);}
+
+In both cases, the xxxxxx is the name of the particular variable of interest In the $SET_PARTY_xxxxxx functions, the value parameter will be assigned to the party's variable if it is a legal value.  You cannot set the party's direction to 17.835, for example.  The GPDL conversion of strings to numbers follows the general rules (See {\uldb Data Type Conversions}{\v !KLink(Data Type Conversions)})
+
+Following is a list of all the $GET and $SET functions associated with the party.  The type of value is one of the following:
+{\S3 }String  -  Such as a name.
+{\S3 }Integer -  Such as an age
+{\S3 }Float  - A 'real' number such as 3.14159
+
+Each entry in the table also indicates whether the variable can be modified with the corresponding {\f3 $SET_PARTY_xxxxx} function.
+
+{\f3
+ Function name        data type  Settable?
+ -------------        ---------  ---------
+  $GET_PARTY_FACING     Integer    Yes
+  $GET_PARTY_DAYS       Integer    Yes
+  $GET_PARTY_HOURS      Integer    Yes
+  $GET_PARTY_MINUTES    Integer    Yes
+  $GET_PARTY_ACTIVECHAR Integer    Yes
+  }
+\page
+\title $SET QUEST
+\ident $SET_QUEST
+\keys $SET QUEST
+\browse GPDL_Writing a GPDL Program_GPDL System Functions
+\heading $SET QUEST
+
+{\b\cf1 $SET QUEST}
+
+Format:
+
+       {\f3result = $SET_QUEST(questName, value); }
+
+Value is either an absolute value without any plus or minus sign or it is a increment to be applied to the current value.   Examples:
+
+{\f3
+    result = $SET_QUEST("red", "+0");  // Get current stage.
+    result = $SET_QUEST("blue", 7);  // Set quest to stage 7.
+    result = $SET_QUEST("green", -1); // Subtract one from quest.
+}
+Characters other than '+', '-', and decimal digits are ignored.  If more than one plus or minus sign appears in value then the last one is the one that takes effect.  For example:
+
+{\f3
+    result = $SET_QUEST("red", "h+7p-3");
+}
+
+would result in subtracting 73 from the quest stage.
+
+The result is always the new value of the quest variable.
+\page
+\title GPDL Program structure
+\ident GPDL_Program_structure
+\keys GPDL Program structure
+\browse GPDL_Writing a GPDL Program_GPDL Programs
+\heading GPDL Program structure
+
+{\b\cf1 GPDL Program structure}
+A GPDL program will consist of function definitions.  There is no such thing as'global' data.  Any permanent data must reside in the UAF {\uldb game-state variables}{\v !KLink(game-state variables)}.
+
+The input syntax is free-form.  Except for the comment indicator ( "//" ) that skips to the end of the current line.  Other than that, whitespace is all that is required between 'words' and you are free to make your program as pretty or as ugly as you please.  Ugly is easier.
+
+Function definitions look like this:
+{\f3 
+  $FUNC  name (parameter list)
+  \{
+          body of function
+  \} name ;
+}
+All functions return a value, whether you know it or not.  If no value is specified by a '$RETURN' statement then an empty string is returned by default.
+
+You can provide a prototype for a function.  And you must if you want to use the function before it is defined.  A prototype is like a definition with the body removed:
+{\f3 
+  $FUNC  name (parameter list) ;
+}
+A function definition consists of statements.  Statements end with a semi-colon.  The general classes of statements are:
+
+{\S3 }{\uldb Function definitions}{\v !KLink(GPDL Program structure)}
+{\S3 }{\uldb Assignment statements}{\v !KLink(GPDL Assignment Statements)}
+{\S3 }{\uldb Function calls}{\v !KLink(GPDL Function Calls)}
+{\S3 }{\uldb Comments}{\v !KLink(GPDL Comments)}
+Control Structures.....See:
+{\uldb GPDL $IF keyword}{\v !KLink(GPDL $IF keyword)}
+{\uldb GPDL $SWITCH keyword}{\v !KLink(GPDL $SWITCH keyword)}
+{\uldb GPDL $WHILE keyword}{\v !KLink(GPDL $WHILE keyword)}
+\page
+\title GPDL Assignment Statements
+\ident GPDL_Assignment_Statements
+\keys GPDL Assignment Statements
+\browse GPDL_Writing a GPDL Program_GPDL Programs
+\heading GPDL Assignment Statements
+
+{\b\cf1 GPDL Assignment Statements}
+An assignment statement assigns a value to a variable using the equal sign.  Example:
+{\f3 
+  $FUNC abc ( x )
+  \{
+    $IF ( $NOT ( $EQUAL ( x , "Dagger" )))
+    \{
+      x = "Knife" ;   // Example of assignment
+    \} ;
+    $RETURN x ;
+  \}  abc ;
+}
+In this example, the variable to which a value is assigned is the formal parameter of the function.  The variable, 'x', is set to "Knife" unless it started out as "Dagger".  Its value is then returned as a result of calling the function 'abc'.
+
+Again, all data in GPDL consists of strings.  The compiler accepts integers as literal data but converts them to strings without warning.  Examples:
+
+{\S3 }x = 3 ;   equivalent to   x = "3" ;
+{\S3 }x = 03 ;  equivalent to   x = "3" ;
+{\S3 }x = 0xA ; equivalent to   x = "10" ;  // Hexadecimal
+
+Notice that the assignment statement does not result in a value.  Unlike 'C', you cannot use an assignment statement in an expression:
+{\f3
+  x = (a = b);   // Compile error
+  $IF ( x = y )  // Compile error
+  }
+\page
+\title GPDL Pragma Directives
+\ident GPDL_Pragma_Directives
+\keys GPDL Pragma Directives
+\browse GPDL_Writing a GPDL Program_GPDL Programs
+\alink GPDL Pragma Directives
+\heading GPDL Pragma Directives
+
+{\b\cf1 GPDL Pragma Directives}
+
+There are keywords that you can insert almost anywhere in a program to affect the way the GPDL compiler behaves.  These are very much like the #pragma statements in a C++ program.
+
+The keywords all start with a '#'.
+
+{\cf9 {\f3 #PUBLIC}}
+Causes all subsequent $FUNC definitions to be declared $PUBLIC.
+\page
+\title GPDL Functions
+\ident GPDL_Functions
+\keys GPDL Functions;Public Functions
+\browse GPDL_Writing a GPDL Program_GPDL Programs
+\heading GPDL Functions
+
+{\b\cf1 GPDL Functions}
+Functions are pieces of code that operate on the parameters supplied by the 'calling' function and return a single value to that function.  An example of a system function is:
+
+{\f3  $RANDOM ( n );}
+
+This function receives a single paramter (that it calls n) and returns a single value, a number between 0 and n-1.
+
+You define your own functions as follows:
+{\f3
+  $FUNC  square ( n )
+  \{
+    $RETURN $TIMES ( n, n );
+  \} square ;
+}
+You will immediately notice four interesting things in this example:
+{\S3 }No return value type specified
+{\S3 }The keyword '$FUNC' preceeds the function's name
+{\S3 }No datatype is specified for the parameter 'n'
+{\S3 }The function's name is repeated after the closing curly brace.
+
+No return value type.....This is because {\uldb variables}{\v !KLink(GPDL Variables)} can only be of one type.  It would be a bit redundant to say that it is a string.
+
+The keyword '$FUNC'.....This is for no really good reason.  It makes things easier to compile.  It makes typos easier to isolate because of the added redundancy in the syntax.
+
+No datatype for the parameter.  Again, there is only one datatype.  String.  Period.
+
+The function's name following the definition.....This serves no purpose other than to add redundancy to the syntax.  This makes it easier to find missing braces and other simple errors.  Otherwise, especially because of the {\uldb nested function capability}{\v !KLink(GPDL Nested Functions)}, there are sometimes dozens of lines between the error and the discovery of the error.
+
+In order for a function to be referenced directly at runtime it must also be declared as {\f3 $PUBLIC}.  For example:
+
+{\f3    $PUBLIC $FUNC sayHello ( )
+   \{
+      $SAY ("Hello");
+   \} sayHello ;}
+
+See {\uldb GPDL Pragma Directives}{\v !ALink(GPDL Pragma Directives)} for another way to declare functions public.
+
+Every proper function should finish its work someday and return to its caller.  The return is accomplished with a {\f3 $RETURN} statement.  All functions return a value.  If a value other than "" is to be returned then that value is listed on the {\f3 $RETURN} statement.  Examples:
+{\S3 }{\f3 $RETURN;}   The value returned is the empty string.
+{\S3 }{\f3 $RETURN "Samual" ;}
+{\S3 }{\f3 $RETURN $nPLUS($XXX(39), 3);}
+
+At the end of a function definition the compiler puts a $RETURN that you cannot see.
+\page
+\title Nested Functions
+\ident GPDL_Nested_Functions
+\keys GPDL Nested Functions
+\browse GPDL_Writing a GPDL Program_GPDL Programs
+\heading GPDL Nested Functions
+
+{\b\cf1 GPDL Nested Functions}
+This feature is very much unlike 'C'.  GPDL functions can be nested and the nested functions (unlike local variables) can be accessed from anywhere in your program.  For example:
+{\f3 
+  $FUNC  hyptsqu (x , y)  // Square of hypotenuse
+  \{
+    $VARIABLE temp;
+    $FUNC  square ( k )
+    \{
+      $RETURN $TIMES ( k, k );
+    \} square ;
+    $RETURN $PLUS(square(x), square(y));
+  \} hyptsqu ;
+  $FUNC  sqP1  ( x )  // x ** 2 + 1
+  \{   // Square of x plus 1
+    $RETURN $PLUS(1, hyptsqu@square(x));
+  \} sqP1 ;
+}
+Notice that:
+
+{\S3 }function 'square' is nested inside function 'hyptsqu'
+{\S3 }function 'hyptsqu' references function 'square' as you would expect
+{\S3 }function 'sqP1' can access 'square' from the 'outside'
+
+The function names are defined in nested dictionaries.  When a name such as a@b@c is encountered the search begins by looking for 'a' in the local dictionary and working outward (upward?).  When a find is made then the search for 'b' starts in the context of 'a'.  Etc.
+
+In the case of hyptsqu@square, referenced in sqP1, things proceed as follows:
+
+{\S3 }Look for hyptsqu in sqP1.  No find.
+{\S3 }Look for hyptsqu in next outer function, namely 'root'
+{\S3 }hyptsqu found in root.  Start looking for square in hyptsqu.
+{\S3 }Find successful.
+
+In order for this to work, it is necessary for nested functions to be unable to reference formal parameters of outer functions.  This is because the outer function may never have been called!  In the example, 'square' cannot reference the formal parameter 'x' in the function hyptsqu.
+
+For the same reason, nested functions cannot reference local variables in outer functions.  'square' cannot reference 'temp'.
+\page
+\title GPDL Function Calls
+\ident GPDL_Function_Calls
+\keys GPDL Function Calls
+\browse GPDL_Writing a GPDL Program_GPDL Programs
+\heading GPDL Function Calls
+
+{\b\cf1 GPDL Function Calls}
+A GPDL statement can consist of a 'naked' call to a function.  Example:
+{\f3
+  RemovePotions ( "Healing" );}
+
+The 'RemovePotions' function returns a value ( all functions do ) but that value gets discarded.  'Naked' function calls like this are common.  But it is not legal tto have a 'naked' expression as a statement:
+{\f3
+  "xxx" + $RANDOM(3);  // ****Illegal*****}
+
+A function call may be used anywhere a quoted string might be used in an expression.  The value returned by the function is used to evaluate the expression.  Naturally, a function call can *NOT* be used on the left side of an assignment statement.
+
+When calling a function, you must supply exactly the number of parameters as are declared in the function's definition or prototype.  The actual parameters are supplied to the function as 'call-by-value".  This means that the function can manipulate its parameters but the changes will not be passed back to the calling function.
+\page
+\title GPDL comments
+\ident GPDL_comments
+\keys GPDL comments
+\browse GPDL_Writing a GPDL Program_GPDL Programs
+\heading GPDL comments
+
+{\b\cf1 GPDL comments}
+
+Comments may be placed freely anywhere in a GPDL program.  A comment begins with a double-slash ("//") and continues to the end of the line.  Commonly a comment will be the only text on a line.  Example:
+
+//This function computes the sum of its arguments.
+$FUNC summation(i, j) //Only two parameters
+\{
+   $RETURN i +# j; // Numeric sum
+\} summation;
+\page
+\title GPDL $IF keyword
+\ident GPDL_$IF_keyword
+\keys GPDL $IF keyword
+\browse GPDL_Writing a GPDL Program_GPDL Programs_GPDL Structure keywords
+\heading GPDL $IF keyword
+
+{\b\cf1 GPDL $IF keyword}
+The $IF keyword is used to execute code conditionally.  It may be combined with the $ELSE keyword to execute one of two alternative sections of code.  Syntax is:
+{\f3
+  $IF ( exp ) \{ stmts1 \} [$ELSE \{ stmts2\}];}
+
+The square brackets around the second part indicate that the brackets and what is between the brackets is optional.
+
+When the program runs, exp is evaluated.  If it is true then statements 'stmts1' are executed.  If exp is false the statements 'stmts2' are executed.  Examples:
+{\f3
+Example 1:
+  $IF ( IsHolding ("PotionOfDistortion"))
+  \{
+    Distort(3);
+  \};
+
+Example 2:
+  $IF ( $nEqual ( x, 1))
+  \{
+    $RETURN "Now";  // x==1
+  \}
+  $ELSE
+  \{
+    $RETURN "Later"; // x != 1
+  \};   }
+\page
+\title GPDL $SWITCH keyword
+\ident GPDL_$SWITCH_keyword
+\keys GPDL $SWITCH keyword;GPDL Keyword;$CASE;$GCASE;$SWITCH
+\browse GPDL_Writing a GPDL Program_GPDL Programs_GPDL Structure keywords
+\heading GPDL $SWITCH keyword
+
+{\b\cf1 GPDL $SWITCH keyword}
+{\f3 
+   $SWITCH ( expression )
+   \{
+       $CASE  exp1 :  statements
+       $CASE  exp2 :  statements
+       .
+       .
+       $CASE  expN :  statements
+       $DEFAULT : statements
+   \};}
+
+The expression in parentheses is evaluated once and its value is compared with exp1, exp2, etc. in turn.  For each expN that is equal to expression the associated statments are executed.  You can use the $BREAK statement to exit from the $SWITCH without further comparisons or statement executions.  In fact, this is most common.
+
+Example:
+{\f3 
+   $SWITCH ( $GET_CHAR_ATTR(0,"HairStyle"))
+   \{
+       $CASE "flattop": addExperience(20); $BREAK;
+       $CASE "bald"   : addHat(); $BREAK;
+       $CASE "braided": cutHair(0); $BREAK;
+       $DEFAULT: $SET_CHAR_ATTR(0,"HairStyle","bald");
+   \};}
+
+The $BREAK statements ensure that only one of the four cases gets executed.  Without the $BREAK, all the statments after the first match would be executed.  The $DEFAULT matches any value of expression.
+
+You can substitute $GCASE for any of the $CASE options.  This uses $GREP instead of a test for equality.
+\page
+\title $WHILE keyword
+\ident GPDL_$WHILE_keyword
+\keys GPDL $WHILE keyword;GPDL Keyword
+\browse GPDL_Writing a GPDL Program_GPDL Programs_GPDL Structure keywords
+\heading GPDL $WHILE keyword
+
+{\b\cf1 GPDL $WHILE keyword}
+The $WHILE keyword is used to repeat a group of instructions while a condition is true.
+{\f3
+  $WHILE ( expression ) \{ statements \} ; }
+
+The expression is evaluated and if it does not equal the empty string then the statements are executed.  Then the expression is evaluated again, and so on until the expression does equal the empty string, which represents 'false'.  Example:
+{\f3
+  y = 0;
+  x = 3;
+  $WHILE ( $NOT ( $nEQUAL ( x, 0)))
+  \{
+    y = $nPLUS ( y, x);
+    x = $nMinus ( x, 1);
+  \}; }
+
+This example computes the sum of the integers from 1 to 3.  When x equals zero, the loops exits and y will be equal to "6".
+
+Notice that the body of the loop must be contained in braces even if it consists of only one statement.
+\page

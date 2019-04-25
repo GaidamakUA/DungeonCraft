@@ -1,0 +1,704 @@
+26 August 2000 Paul Stevens
+Compression enabled for .dat files in design directory.
+Ability, BaseClass, classes, races, spellgroups, and traits.
+
+Added this file to record updates until cvs can do it for us.
+
+August 2000 Paul Stevens
+Repaired mishandling of EOF condition in compression.  The last
+code did not get written in Flush().
+
+29 August 2000 Paul Stevens
+Added Editor dialog for LogicBlock Event.  Runtime support, too.
+This is minimally functional.  All the parts seem to work but there
+are very few options implemented.
+
+30 August 2000 Paul Stevens
+Some help file additions for the LogicBlock event.
+
+31 August 2000 Paul Stevens
+Ability to display small pictures from GPDL.  Inludes changes to
+runtime, GPDLcomp, and helpfiles.
+
+31 August 2000 Paul Stevens
+Fixed Drunken Chain in tavern event.  I think.
+
+1 September 2000 Paul Stevens
+The ItemKeyQuest dialog did not work in the 'standard'
+way.  It edited globalData directly.  This had the effect of 
+losing changes when prewssing OK and not discarding changes
+when pressing Cancel.  
+Explanation:  Global menu "edit keys",etc edited globalData
+directly so that pressing Cancel did not Cancel the changes.
+Global menu "Edit Settings" allowed you to change the keys
+and quests in globalData but then overwrote them when you
+pressed OK.
+Also, event editing allowed globalData changes that could
+not be "canceled".
+
+I changed ItemKeyQuest dialog to operate on a copy
+of the object and then the caller could "GetData" if 
+"OK" is pressed.  It can also operate in a read-only mode
+which seems more appropriate for the event editing.  The
+"add", "Delete", and "Edit" keys are hidden.
+
+2 September 2000 Paul Stevens
+Implemented arithmetic plus- and minus-gates in LogicBlock event.
+
+2 September 2000 Paul Stevens
+Implemented NPC List as input to LogicBlock as a way of satisfying
+the open task of determining if a particular NPC is in the party.
+Implemented the & substitution for LogicBlock.  Also rearranged 
+order of computation to provide a bit more flexibility.
+
+
+5 September 2000 RTurner
+Submitted changes for Release 0.568
+
+7 September 2000 Paul Stevens
+Fixed problem that caused events to appear as do-once
+events when the player switched to another level and came back.
+Harri's danceRoom problem.
+
+7 September 2000  Paul Stevens
+GPDLexec had a built-in limit for size of code segment.  It now
+grows to whatever size is needed.
+
+7 September 2000 Paul Stevens
+Zero-length string caused decompression error.  Fixed
+CAR:: operator >> (CString &).
+
+9 September 2000 Paul Stevens
+Do not save levelData.eventData in game save file.  The
+levelData itself is not saved so saving the eventData is
+not only useless, it causes errors during restore because
+there is no levelData to which the eventData can be applied.
+
+9 September 2000 RTurner
+Fixed editor SaveAs to make complete copy of design into new folder.
+
+10 September 2000 RTurner
+After displaying BigPic in event, party names didn't get displayed.
+Replaced calls to currPic.FreePic() to currrPic.Clear() in ProcInp.cpp
+so that the picType gets cleared (and the rest too).
+
+10 September 2000 RTurner
+- Prevent combatants on AI from shooting missiles at unconscious targets
+- Remove combat icon before displaying dying icon when combatant goes unconscious
+- Fixed spelling on EventViewer collapse button
+- Fixed endless loop when AI tries to ready best ammo
+- Added missile launch sounds to itemdb, item editor, item data
+- Fixed monster item masks in monsters.txt
+- Added default launch sounds to items.txt
+- Fixed AI to stop and shoot missiles if available
+- Set combat event happened state based on combat results
+
+10 September 2000 RTurner
+- use directional search when placing monsters around party
+
+10 September 2000 RTurner
+- allow use of very large icons, up to 8x8 tested
+- improve clipping of all objects drawn inside combat frames,
+  including partial clipping of large icons
+
+10 September 2000 RTurner
+- Made an effort to fix looping step/rest events
+
+12 September 2000 RTurner
+Added option to editor to start design using current location, or start from beginning of design.
+
+16 September 2000 RTurner
+- Use ^1 - ^8 to sub party member names 1-8 into event text. Using just ^ still subs active member name.
+- repositioned event dialog buttons
+- made some fixes in quest/utility handling
+- change 'SaveAs' so it handles saving to original folder
+- force map update after menu 'Undo Last'
+- if engine is launched from editor, add quests that are in progress to party inventory. For items/keys/quests, show current stage value.
+- Fixed improper setting of missile animation type to SmallPic. This was disallowing the use of transparency.
+- added editor support for overland maps (not supported in engine yet)
+
+16 September 2000 RTurner
+Allow all levels to be browsed in teleport destination dialog, not just existing levels.
+
+17 September 2000 Paul Stevens
+Defined SetNotStarted() in GlobalData to maintain symmetry of SetStage().
+Fixed spelling of Progess -> Progress in various places.
+
+17 September 2000 RTurner
+- Set MAX_CHAR_NAME=16, which seems to be the longest name that will fit in the party list window using a name composed of only the widest character - 'W'.
+- Fixed importing of entry points from UA designs
+- Fixed assignment of root Step Event when importing UA designs.
+
+22 September 2000 Paul Stevens
+Updated Shared directory to work with all three projects:
+  - UAFWin
+  - UAFWinEd
+  - UAFWin_new
+They all compile and run.  The next few weeks should be intersting.
+
+23 September 2000 Paul Stevens
+UAFWin_new...Save and load event stack.
+
+24 September 2000 Paul Stevens
+UAFWin_new  Step events now work.
+
+24 September 2000 Paul Stevens
+Added support for newline character in GPDL compiler
+and runtime at Kevin's request.
+
+27 September 2000 Paul Stevens
+Added TRANSFER event to UAFWin_new.  Implemented a scheme for
+events to notify parents of actions.  For example, teleport must
+cancel events queued on level.
+
+28 September 2000 Paul Stevens
+TAVERN and DAMAGE events added to UAFWin_new.
+
+28 September 2000 Paul Stevens
+GIVE_DAMAGE , HEAL_PARTY, and GIVE_EXPERIENCE
+added to UAFWin_new
+
+30 September 2000 Paul Stevens
+WHO_PAYS in UAFWin_new
+
+30 September 2000 RTurner
+Added OnPostDraw() and PASS_TIME event.
+Changed third param to DisplayPartyNames() to true
+so that NPC's will be displayed (Screen.cpp).
+
+01 October 2000 RTurner
+Added AddNPC, RemoveNPC, NPCSays, SmallTown, Shop events
+
+01 October 2000 RTurner
+Added Camp event
+
+01 October 2000 RTurner
+Added CHAIN event
+
+01 October 2000 RTurner
+Added UTILITIES and SOUNDS events
+
+01 October 2000 RTurner
+Added SPECIAL_ITEM event
+
+01 October 2000 RTurner
+Fixed problem where a single available menu option is not active/highlighted
+
+02 OCtober 2000 Paul Stevens
+Fixed several remaining problems (never implemented features)
+of the TRANSFER event.  I think maybe it is all OK now.
+
+02 October 2000 RTurner
+Added TAKE_PARTY_ITEMS event
+
+03 October 2000 RTurner
+Added TRAININGHALL, WHO_TRIES, TEMPLE events
+Merged training hall menu with main menu
+
+03 October 2000 Paul Stevens
+Minor change to Transfer Event Dialog to show all directions and
+all entry points without scrolling
+
+04 Octover 2000 Paul Stevens
+Separated GPDL from TEXT_EVENT code.  Made both a lot simpler.
+GPDL can now be a separate event when the editor supports it.
+
+07 October 2000 Paul Stevens
+Removed Invalidate().  Invalidate() is assumed at start of 
+OnInitialEvent and OnKeypress and OnReturnToTopOfQueue
+
+07 October 2000 RTurner
+Fixed encounter event in editor and engine. Inc party clock when 'Looking' and also check for rest events. Expand facing/search text in party status window.
+
+07 October 2000 RTurner
+Made some changes to Logic Block event and dialog
+
+07 October 2000 RTurner
+completed Guided Tour event
+
+08 October 2000 RTurner
+Added sound to GuidedTour event, let character train only once, moved menu adjustment code into OnUpdateUI().
+
+08 October 2000 RTurner
+Added beginnings of combat event
+
+10 October 2000 RTurner
+More combat changes
+
+22 October 2000 RTurner
+Fixed multi-box text, miscError display, animated pics
+
+23 October 2000 RTurner
+Fixed Load/Save game, Editor warp, exit credits/fade, auto death check, event facing trigger, pre-gen dups with load game, flush event stack
+
+24 October 2000 RTurner
+Fixed combat missile animations, removed NewProcinp conditional code, removed code not needed after conversion, fixed 'Trade' usage in combat, changed PARTY visit data to use TagList2D and stopped using __int64.
+
+26 October 2000 RTurner
+Fixed transfer when it happens before entering square (I broke it with an earlier change). Removed frequent sorts on list controls. Load P_OFF from config.txt. Add DC download site to Help->Downloads menu.
+
+06 November 2000 Paul Stevens
+Allow movement to left and right and backward.  Also allow movement
+to be directed by mouse in viewport.
+
+11 November 2000 RTurner
+Toggle large overland map using area view menu option
+Move party on overland using mouse
+Allow 8-direction movement on overlands
+Use all 4 arrows for menus when only 1 party member is present (no need to select a party member)
+Added 'Loading...' message when 'Begin Adventure' is selected
+Fixed dungeon map wrap disable
+Added start equip for new characters in globalData
+Fixed start exp pts for new characters
+Save special items/keys in saved game data
+Use signed math when updating quest stages
+Added some fixes for the editor Validate option
+
+27 November 2000 RTurner
+Mostly adds support for 7 distant walls. Some minor fixes.
+
+27 November 2000 Paul Stevens
+Revised logic block dialog so gate L has a 'top'.
+
+29 November 2000 Paul Stevens
+Logic Block changes 
+Action - Made all inputs and gates work as documented.
+Input  - Added Character Info  -- also help file
+
+Fix - "Give Treasure" did not chain.
+
+04 December 2000 RTurner
+Added view restrictions to levels
+Allow level properties to be edited
+Place Left/Front/Right only places walls on one side
+
+18 Jan 2001 Paul Stevens
+GPDL Help to fix description of $VAR to declare local variables.
+GPDL Help to describe $SET_QUEST.
+GPDL Compiler to implement $SET_QUEST.
+Runtime Engine to interpret SET_QUEST commands.
+GPDL compiler to implement local variables.
+Runtime engine to interpret local variable references
+
+Runtime engine to interpret local variable references
+
+03 March 2001 RTurner
+Added spell attribute changes
+
+3 March 2001 Paul Stevens
+Fixed Logic block editor to use gate type rather than
+combo box index.  I added new functions (not at the end of the
+list) and this made a big difference!
+
+Added logic block gate functions "numeric greater" and
+"Numeric multiply".
+
+5 March 2001 Paul STevens
+Implemented runtime support for logic block divide and
+remainder functions.  Updated Help file for logic block.
+
+10 March 2001 Paul STevens
+Repaired Logic Block Multiply.  Re-entered the helpf file
+changes from 5 March as they got disappeared somehow.
+
+28 March 2001 RTurner
+Fixed choppy mouse action, removed second processing thread, disable mouse cursor during slow text drawing on front buffer, replaced Sleep() with AppSleep() to allow Win32 msgs to be pumped.
+
+01 April 2001 RTurner
+Fixed QuestionYesNo and PassTime events
+
+26 May 2001 Paul Stevens
+GPDL compiler. interpreter and Help file for
+functions to GET and SET the 71 character values.
+
+25 June 2001 RTurner
+Fixed 'stdafx.h' includes for two files.
+
+09 August 2001 Paul Stevens
+Wrote macros to check for blank strings when reading/
+writing archives.  Changed all the instances of checks 
+for blank strings to use the macros.
+
+12 August 2001 Paul Stevens
+Fixed a terrible bug in the saving of Attribute lists
+to the CArchive file.  Caused the file to be unreadable.
+
+25 February 2002 RTurner
+Added more starting equipment options, merged Paul's
+resource and help changes, added more pass time options,
+age characters for each year of game time.
+
+27 February 2002 Paul Stevens
+Allowed designer to enable/disable step/bump sounds in
+editor/runtime.  Changed name qualifier delimiter character
+to a vertical bar instead of slash.
+
+01 March 2002 Paul Stevens
+Update races.txt to have proper multiclass enables.
+ALLOWED_CLASSES class implemented to use data from
+races.txt, baseclass.txt,  and from classes.txt.
+**A BIGGIE**  The runtime engine's main message pump
+has been replaced in an attempt to use less CPU time.
+Wish us luck!
+
+01 March 2002 RTurner
+Populate character class menu options dynamically
+using class restriction data
+
+01 March 2002 RTurner
+Let mouse select items in class/race menu. Populate
+character race menu options dynamically.
+
+02 March 2002 RTurner
+Completed menu changes for char creation menus.
+
+02 March 2002 RTurner
+Copy default art for test character into design folder,
+and use it if needed.
+
+03 March 2002 RTurner
+Fixed automatic passage of time (Rest,PassTime). Keep
+menu and form in synch when mouse selects items.
+
+03 March 2002 RTurner
+Let player stop passage of time while resting
+
+03 March 2002 RTurner
+Let special items/keys be dropped by player
+
+03 March 2002 RTurner
+Don't allow char modification if status is not 'Okay'
+
+04 March 2002 Paul Stevens
+Allow editor map scroll bars to 'drag' to bottom and 
+right of map.
+Remove list buttton from inputs in LogicBlock unless needed.
+Sort item list in GiveTreasure event.
+
+05 March 2002 RTurner
+Use same time delay for combat end turn regardless
+of current game speed.
+Ready multiple items of type NoWeapon in location
+AmmoQuiver (potions, necklaces, etc)
+
+05 March 2002 RTurner
+delete sprite/font surfaces when cleaning up
+other surfaces.
+
+05 March 2002 RTurner
+Fixed calculation of time passage so that passing
+a day or more in a single jump will still be
+handled properly
+
+05 March 2002 RTurner
+Using the mouse to select party members did
+not update the menu options
+
+06 March 2002 RTurner
+Fixed disabling of Quick mode. Fixed multiclass
+spell handling, and spell form display. Don't
+call scheduler when engine app doesn't have the
+input focus.
+
+06 March 2002 RTurner
+Minor fixes for CThread.
+
+06 MArch 2002 Paul Stevens
+Just a test for now.  Use 'TAB' to move between characters
+in adventure screen.
+
+06 March 2002 RTurner
+Maybey fixed the combat lockup, maybe just fixed
+something that should be fixed but has no bearing
+on combat lockup.
+
+07 March 2002 RTurner
+Mark level as changed after editing an existing
+event.
+
+07 MArch 2002 Paul Stevens
+Enable TAB active Character in a few events.
+More to come.
+
+08 March 2002 RTurner
+Convert current Actor context to NPC.
+
+08 March 2002 RTurner
+backup only once when multiple events
+with backup enabled are chained.
+
+08 March 2002 RTurner
+Ask confirmation before exiting game
+from main/training menu.
+
+08 March 2002 RTurner
+Don't queue up an ADVENTURE_MENU_DATA
+when exiting a training hall event.
+
+08 March 2002 RTurner
+execute chained events that follow
+a training hall event
+
+09 March 2002 RTurner
+Ask confirmation to exit game from
+start menu also, just to be
+consistent
+
+09 March 2002 Paul Stevens
+Allow TAB to select active character wherever
+possible.
+
+10 March 2002 RTurner
+Tested some TAB changes, fixed some form
+problems - ItemForm money, SpellForm current
+spell limits list. Fixed WhoPays chain for
+when BackupParty option is used.
+
+10 March 2002 RTurner
+Convert old object name delimiter to
+new during design save.
+
+11 March 2002 RTurner
+Fixed party backup, shop item id names,
+journal entry colors, and don't display
+party direction for overland maps.
+
+14 March 2002 Paul Stevens
+First attempt to route input via INPUTQUEUE
+in anticipation of providing Record/Playback.
+
+16 March 2002 Paul Stevens
+Discard keyboard input whilst in playback 
+mode.  Recognize 'ESC' character in playback
+mode and terminate playback.  Convert Combat
+Sprite function to use virtualGame Time instead
+of timeGetTime().  I'm going slowly at this to 
+see what gets broken.
+
+16 March 2002 RTurner
+Updated zlib source with latest version. Also
+updated PNG lib which uses zlib. Made changes
+to combat spells, but I wouldn't try to cast
+any spells in combat yet.
+
+17 March 2002 RTurner
+More combat spell updates
+
+18 March 2002 RTurner
+More combat spell updates, set looping limit
+on combat sprite animations (for combat spells)
+
+19 March 2002 RTurner
+More combat spell updates.
+
+20 March 2002 Paul STevens
+Modified virtualGameTime clock to try and
+keep up with 'earth time' by skipping forward
+when scheduler takes a significant amount of time.
+
+20 March 2002 RTurner
+Added level name to level nbr in teleport dialog.
+Don't draw screen if combat animation hasn't changed.
+
+20 March 2002 RTurner
+Update moving animations every 60ms instead of 30ms.
+
+22 March 2002 RTurner
+Added more spell sounds, fixed some bugs reported
+on sourceforge.
+
+23 March 2002 RTurner
+More combat spell changes
+
+23 March 2002 RTurner
+More combat spell changes, runtime interface changes.
+
+23 March 2002 RTurner
+Even more combat spell changes
+
+23 March 2002 RTurner
+ditto
+
+24 March 2002 RTurner
+Fixed HEAP exception generated when sprite event
+pops itself and then sets a member variable.
+
+24 March 2002 RTurner
+confirm spell abort
+
+24 March 2002 RTurner
+fixed missing dying icon for party members
+
+24 March 2002 RTurner
+fix for ASSERT when spell caster kills self
+
+27 March 2002 Paul STevens
+Route Mouse Click events through inputQueue.
+
+28 March 2002 RTurner
+Add support for targeting a combat map
+location when casting a spell
+
+03 April 2002 RTurner
+New BASS sound lib version. Updated spell
+text file import/export to match current
+spell definition.
+
+04 April 2002 Paul Stevens
+Added  Set Character Attribute and Get Character
+Attribute to Logic Block event.  Updated Help.
+
+05 April 2002 Paul STevens
+Select Active Character as default in LogicBlock
+parameters.
+
+05 April 2002 Paul STevens
+Help information for preceeding change.
+
+16 April 2002 RTurner
+Converted a few scripts to GPDL. Allow direct
+assignment of special keys to wall blockages.
+
+16 April 2002 RTurner
+Converted remaining scripts to GPDL
+
+19 April 2002 RTurner
+Changed 0/1 to m_false/m_true in GPDLExec.cpp
+
+23 April 2002 RTurner
+Removed Cancel button from special spell config
+
+27 April 2002 RTurner
+Added forward declaration for GPDL_EVENT to GPDLexec.h
+
+27 April 2002 Paul Stevens
+Proper routing of error messages in GPDL compiler.
+Arranged for #PUBLIC pragma in GPDL compiler.
+Help File changes for #PUBLIC
+
+27 April 2002 Paul Stevens
+GPDL Runtime functions:
+   GetFunctionEntryPoint(CString name)
+   BeginExecute (int entrypoint)
+   
+27 April 2002 Paul Stevens
+GPDL scripts can now be compiled and tested
+from within the editor.
+
+28 April 2002 RTurner
+Treat special abilities as spell effects.
+
+29 April 2002 Paul Stevens
+Revised method of compiling/executing GPDL from
+within the editor.
+
+29 April 2002 RTurner
+Allow editing of special ability scripts
+
+29 April 2002 RTurner
+Change script font to Courier
+
+30 April 2002 RTurner
+Removed LUA script libs and include files
+
+30 April 2002 RTurner
+fix for char.cpp serialization problem
+
+30 April 2002 Paul Stevens
+Moved a large amount of code from Runevent to GPDLexec because
+it is needed by GPDLexec in both the editor and runtime.
+
+1 May 2002 Paul Stevens
+Completed implementing all the arithmetic operators
+and functions in GPDL.
+
+01 May 2002 RTurner
+Ask confirmation before losing design changes
+when opening another design or exiting editor.
+
+04 May 2002 RTurner
+Fixed save game load, added more opcodes to GPDL.
+
+06 May 2002 RTurner
+Bug fixes for script compile/execute
+
+22 May 2002 RTurner
+Added party attribute get/set/query to Logic
+Block event. Added $GET_CHAR_TYPE to GPDL,
+and $CHAR_CHARTYPE to RuntimeIf.
+
+23 May 2002 Paul Stevens
+Allow Parameters on GPDL function call in Text Event.
+
+26 May 2002 RTurner
+Updates for version 0.860
+
+17 June 2002 Paul Stevens
+Added expression compiler and interpreter.
+Uses the Runtime Data Reference (RDR) mechanism.
+
+18 June 2002 Paul Stevens
+Add DiceRoll to RDR compiler.  Rename classes
+and retitle.
+
+27 June 2002 Paul Stevens
+Added GPDL Function to Logic Block Inputs
+
+29 June 2002 RTurner
+Added vars to RuntimeIF for querying
+money/gem/jewelry names and amounts
+
+29 June 2002 RTurner
+Stop removing white space before
+compiling spell scripts. Remove
+white space from DicePlus expressions.
+
+29 June 2002 Paul Stevens
+Implement coin information retrieval in GPDL.
+Implement Set and Fetch Temporary Attributes in Logic Block.
+
+30 June 2002 RTurner
+Replace ^a-^z with values from global
+temp attribute list in FormattedText.
+
+30 June 2002 RTurner
+Allow GPDL event trigger.
+
+07 July 2002 RTurner
+Special Ability messages. Add party funds GPDL
+function. Fix missile movement in combat to
+make map less jumpy.
+
+17 August 2002 RTurner
+Make Paladin 'Lay On Hands' healing option
+work once per day.
+
+18 August 2002 Paul Stevens
+Some playback timing/sequence checking.
+
+10 July 2003 Paul Stevens
+Rearrange Logic Block slightly to make space for 
+'GPDL Function' in the Action Blocks and provide
+buttons for GPDL Function Selection.
+
+20 July 2003 RTurner
+Updated cvs with latest source for release 0.906
+
+04 August 2003 RTurner
+Updated cvs with latest source for release 0.907
+
+21 September 2003 Paul Stevens
+--Provide GPDL Function '$LOGIC_BLOCK_VALUE' to retrieve 
+values from previously executed LOGIC_BLOCK event.
+--Add 'Record Values at Runtime' control to the LOGIC_BLOCK 
+event.
+--Add 'GPDL Function' capability to the action blocks in
+the LOGIC_BLOCK event.
+--Provided a copy/paste feature in the GPDL script editor
+(actually this was done in the previous update).
+
+17 January 2004 RTurner
+Fixed event search, and max spell level in Temple event editor.
+
+15 October 2004 RTurner
+Fixed GetDataAsCString function check for NULL Actor in RunTimeIF.cpp

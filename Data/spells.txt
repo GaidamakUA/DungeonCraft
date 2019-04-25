@@ -1,0 +1,5387 @@
+// Spell database file
+//
+// Total validation is performed when reading this data.
+// Nothing you do can cause the program to crash.  It may spit 
+// error messages and quit for lack of something decent to do but
+// it will not crash or do unexpected things.
+// Ha. Ha.  Well, it shouldn't anyway.  Let me know if it does.
+//
+// The first item has an empty name and will be ignored.  You can
+// use it as a 'template'.  Copy it to the bottom of the file and
+// edit the copy to add your item to the database.
+//
+// Each line is of the form    name = value
+//     value may be omitted.
+//     eg:   
+//       special abilities = 
+//     This line will be interpreted as setting special abilities
+//     to the empty string.  This is commonly the default so in
+//     many cases it is the same as omitting the line entirely.
+//     
+// White space is a bit important.  Because names and values can
+// contain blanks.  So the rule is....leading and trailing whitespace
+// are ignored.  So, for example:
+//      attack bonus         =     3         <cr>
+//         attack bonus=3<cr>
+// are equivalent.  But
+//      attack    bonus = 3
+//      attack bonus = 3
+// are different.
+//
+// Lines starting with two slashes are comment lines.  Like me.
+//
+// Attribute names are case-insensitive.  
+//   Name = Wimpy Axe
+//   namE = Wimpy Axe
+//   NAME = Wimpy Axe
+// are equivalent.
+// Text values retain their case.  Values with enumerated possibilities
+// are case-insensitive.  Example  save result = HalF DaMAgE
+//
+// File names can use the UNIX syntax with slashes because the backslash
+// is used to escape special characters and it gets ugly to put
+// double backslashes everywhere.  If you like to use backslashes you
+// may.  We will accept either.  Even mixed in a single filename.
+// Example:    C:/UAF\\src\\guild of ravens/release1/beta\\art/barkeep.bmp
+//
+// Item definitions are delimited by \(BEGIN) ........ \(END) which
+// must start in column 1.  This ain't free, Format.  You get what you
+// pay for.  
+//
+//  ************ Now for the interesting part  ***********
+//
+// Each spell is defined by the following fields:
+//
+// Name (text, required)
+// Each spell must have a uniue name.  You may add a qualifier to a 
+// name (separated with a vertical bar) to make it unique.  For example:
+//    Dimwittify
+//    Dimwittify|sorta
+//    Dimwittify|really
+//
+// The qualifier is only used when editing a design.  The qualifier 
+// is discarded when the binary files for the design are created.  But
+// the unique name is necessary during the design stage to allow unambiguous
+// references to the spells.  During gameplay they are identified by a
+// binary integer 'key' so there is no confusion between the three Dimwittifies
+// even though they are all printed as 'Dimwittify'.
+//
+/// default is all blanks which makes the entire spell a comment
+// eg:     name = subliminal flash
+//
+// Cast Msg (text)
+//   This is the text displayed when the spell is cast. You can substitute
+//   the names of the target, caster, and spell by using /t, /c, and /s
+//   default is none
+//   eg: /c blasts /t with /s
+//
+// Casting sound (file name, or "none", or "Default")
+// default is default spell sound
+// eg:     c:\\sounds/zap.wav
+//
+// Missile sound (file name, or "none", or "Default")
+// default is default spell sound
+// eg:     c:\\sounds/zap.wav
+//
+// Coverage sound (file name, or "none", or "Default")
+// default is default cast sound
+// eg:     c:\\sounds/zap.wav
+//
+// Hit sound (file name, or "none", or "Default")
+// default is default cast sound
+// eg:     c:\\sounds/zap.wav
+//
+// Linger sound (file name, or "none", or "Default")
+// default is default cast sound
+// eg:     c:\\sounds/zap.wav
+//
+// class (MU, Cleric)
+// Only one class allowed
+// this determines which school of magic the spell belongs to
+// default = MU
+// eg:     class = Cleric
+//
+// cast by (MU, Cleric, Ranger, Fighter, Thief, Paladin, Druid)
+// Combine multiple classes using the + sign
+// Only MagicUsers can cast spells from the MagicUser school
+// MagicUsers cannot cast spells from the cleric school
+// Default = value of 'class' (which defaults to MU)
+// The following example creates a spell that can only be cast by
+// clerics and rangers. Also, 'Class = Cleric' should preceed this.
+// eg: cast by = Cleric + Ranger 
+// You can create spells that only Rangers can cast, which still belong
+// to the cleric school, with
+// eg: Cast By = Ranger
+//
+// Friendly Fire ok  (yes or no)
+// Can this spell be cast on a party member?
+// default is no
+// eg:     friendly fire ok = yes
+//
+// Combat Only  ( yes or no )
+// Is this spell castable only during combat?
+// default is yes
+// eg:     combat only = yes
+//
+// Cumulative  ( yes or no )
+// Will this spell affect a target that already has the same spell active?
+// default is yes
+// eg:     cumulative = yes
+//
+// Usable By Party  ( yes or no )
+// Can party members memorize and cast this spell? If not, only monsters/NPCs can use it.
+// default is yes
+// eg:     usable by party = yes
+//
+// Can Scribe ( yes or no )
+//  Should this spell be made available for scribing by MU at level change? 
+//  eg:     can scribe = no
+//
+// Auto Scribe ( yes or no )
+//  MagicUsers are automatically given spells with this property enabled when
+//  they advance to a new level (or start anew at level 1)
+//  default is no
+//  eg:     auto scribe = no
+//
+// Save Versus ("Par/Pois/DM" or "Pet/Poly" or "Rod/Staff/Wand" or "spell" or "Breath Weapon"
+//        Par/Pois/DM = Paralysis/Poison/DeathMagic
+//           Pet/Poly = Petrification/Polymorph
+//
+// Which table of saving throws will be used
+// default is spell
+// eg:     save result = pet/poly
+//
+// Save Result  (none, Negates, Half Damage, Use THAC0)
+// default is none
+// eg:     save result = half damage
+//
+// Targeting type ( self, selectByCount, Party, touch, AreaCircle, SelectByHitDice,
+//                  AreaLinePickStart, AreaLinePickEnd, AreaSquare, AreaCone )
+// default is self
+// eg:     targeting type = AreaCircle
+//
+// Duration units (rounds, damage taken, hours, days, or instantaneous)
+// default is rounds
+// instantaneous equates to instantaneous, the spell effect never expires
+// eg:     duration units = days
+//
+// Level (integer 1-9)
+// default is 1
+// eg:     level = 4
+//
+// Casting Time (integer)
+// default is 1
+// eg:     casting time = 2
+//
+// Casting Time Units ( Immediate, Initiative, Rounds, Turns )
+// default is Immediate
+// eg:  casting time units = rounds
+//
+// Number of targets  ( <num dice> d <sides> + <bonus> [+ <bonus>*level] [>| <maximum>]
+// default is 0d0
+// eg:     Number of targets = 2d4 - 2 + 1*level >| 2
+// eg:     Number of targets = 1d4 - 1
+//
+// Duration  ( <num dice> d <sides> + <bonus> [+<bonus>*level] [>| <maximum>]
+// default is 0d0
+// eg:     Duration = 2d6 + 1 >| 4
+//
+// Target Range  ( <num dice> d <sides> + <bonus> [+<bonus>*level] [>| <maximum>]
+// default is 0d0
+// eg:     target range = 2d4 + 0 + 1*level
+//
+// Price (integer, base coin unit), charged by temple priest in temple event (integer)
+// default is zero
+// eg:     price = 200
+//
+// Special Abilities  (names of special Abilities (consult special ability table in items.txt)
+//  Note that these are cumulative and should be listed one to a line.
+// default = none
+// eg:     special ability = sanctuary
+//         special ability = charm person
+// Cast Art
+// Displayed over caster when spell is cast
+// comma-separated text: 
+//    filename, delay, num frames, frame width, frame height, style, MaxLoops, flags
+//    filename can be blank to use DEFAULT, or "none"
+//    delay in millisecs where 1 sec=1000 ms (must be 0 for spells)
+//    num frames is total frames in image
+//    width is pixel width of single frame in image
+//    height is pixel height
+//    style is animation style, must be 0 for spells
+//    MaxLoops is the max nbr times the animation will loop, if looping enabled by flags
+//    flags is animation properties where: (flags are additive)
+//        0=none
+//        1=not used for spells
+//        2=loop only nbr times in Max Loops
+//        4=loop this animation
+//        flags can be combined, as in 4+2=6 gives looping (4) and uses MaxLoops (2)
+//
+// default is "DEFAULT"
+// eg: Cast art = c:\sprites\fireball.bmp,0,1,16,16,1,0,0
+//
+// Missile Art
+// Displayed while spell is in-route to spell target
+// comma-separated text: 
+//    filename,delay,num frames, frame width, frame height, style, MaxLoops, flags
+//    filename can be blank to use DEFAULT, or "none"
+//    delay in millisecs where 1 sec=1000 ms (must be 0 for spells)
+//    num frames is total frames in image
+//    width is pixel width of single frame in image
+//    height is pixel height
+//    style is animation style where:
+//        0=sequenced (sequences thru frames on way to target)
+//        1=directional (like arrows, requires 8 frames for directions N,NE,E,SE,S,SW,W,NW)
+//    MaxLoops is the max nbr times the animation will loop, if looping enabled by flags
+//    flags is animation properties where: (flags are additive)
+//        0=none
+//        1=not used for spells
+//        2=loop only nbr times in Max Loops
+//        4=loop this animation
+//        flags can be combined, as in 4+2=6 gives looping (4) and uses MaxLoops (2)
+//
+// default is "DEFAULT"
+// eg: missile art = c:\sprites\fireball.bmp,0,1,16,16,1,0,0
+//
+// Target Cover Art
+// Displayed over target after spell hits target
+// comma-separated text: 
+//    filename,delay,num frames, frame width, frame height, style, MaxLoops, flags
+//    filename can be blank to use DEFAULT, or "none"
+//    delay in millisecs where 1 sec=1000 ms (must be 0 for spells)
+//    num frames is total frames in image
+//    width is pixel width of single frame in image
+//    height is pixel height
+//    style is animation style (must be 0 for spells)
+//    MaxLoops is the max nbr times the animation will loop, if looping enabled by flags
+//    flags is animation properties where: (flags are additive)
+//        0=none
+//        1=not used for spells
+//        2=loop only nbr times in Max Loops
+//        4=loop this animation
+//        flags can be combined, as in 4+2=6 gives looping (4) and uses MaxLoops (2)
+//
+// default is "DEFAULT"
+// eg: Target Cover Art = c:\sprites\twinkle.bmp,0,1,16,16,0,0,0
+//
+// Target Hit Art
+// Displayed when spell hits target
+// comma-separated text: 
+//    filename,delay,num frames, frame width, frame height, style, MaxLoops, flags
+//    filename can be blank to use DEFAULT, or "none"
+//    delay in millisecs where 1 sec=1000 ms (must be 0 for spells)
+//    num frames is total frames in image
+//    width is pixel width of single frame in image
+//    height is pixel height
+//    style is animation style (must be 0 for spells)
+//    MaxLoops is the max nbr times the animation will loop, if looping enabled by flags
+//    flags is animation properties where: (flags are additive)
+//        0=none
+//        1=not used for spells
+//        2=loop only nbr times in Max Loops
+//        4=loop this animation
+//        flags can be combined, as in 4+2=6 gives looping (4) and uses MaxLoops (2)
+//
+// default is "DEFAULT"
+// eg: target hit art = c:\sprites\wham.bmp,0,1,16,16,0,0,0
+//
+// Target Linger Art
+// Displayed over area of effect for spell duration
+// comma-separated text: 
+//    filename,delay,num frames, frame width, frame height, style, MaxLoops, flags
+//    filename can be blank to use DEFAULT, or "none"
+//    delay in millisecs where 1 sec=1000 ms (must be 0 for spells)
+//    num frames is total frames in image
+//    width is pixel width of single frame in image
+//    height is pixel height
+//    style is animation style (must be 0 for spells)
+//    MaxLoops is the max nbr times the animation will loop, if looping enabled by flags
+//    flags is animation properties where: (flags are additive)
+//        0=none
+//        1=not used for spells
+//        2=loop only nbr times in Max Loops
+//        4=loop this animation
+//        flags can be combined, as in 4+2=6 gives looping (4) and uses MaxLoops (2)
+//
+// default is "DEFAULT"
+// eg: target linger art = c:\sprites\stinkingcloud.bmp,0,1,16,16,0,0,0
+//
+// Spell Effect
+// Specify which character attributes are modified by this spell. To modify multiple
+// attributes, add multiple 'spell effect' lines.
+//  
+// Format:
+// Attribute,Change Amount(diceplus format),Change Units,Targeting,Cumulative,Script1,Script2,Script3
+//
+//    Attribute = attribute keyword affected, such as $CHAR_THACO
+//    Change Amount = how much to change attribute value, such as 1d4 + 1*level + 2
+//           This is a signed number. To decrease the current value, use a
+//           negative Change Amount.
+//    Change Units = 'delta', 'percent', or 'absolute'.
+//           Delta value is added to current value
+//           Percent changes current value by given percentage
+//           Absolute changes current value to given value
+//    Targeting = 'target','targeter','alltargettypes'
+//           target = affects spell target
+//           targeter = affects whomever targets the spell target (combat only)
+//           alltargettypes = all of the above
+//    Cumulative = 'yes' or 'no', will this attribute change have affect if
+//                 same attribute already modified from same or different spell?
+//    Script1 = optional, A GPDL script that is evaluated at runtime to determine if
+//             spell will affect targets.
+//    Script2 = optional, A GPDL script that is evaluated at runtime to determine how
+//              the Change Amount is modified based on current game data.
+//    Script3 = optional, A GPDL script that is evaluated at runtime to determine how
+//              the saving throw of the spell target is modified based on current game data
+//    Script4 = optional, A GPDL script that is evaluated at runtime - but only if the spell target
+//              failed the saving throw.
+//
+//    Scripts are optional and can be left blank. However, if Script3 is used and the others
+//    are not, placeholder commas must be used.
+// Examples:
+//  spell effect = $CHAR_AC, 1d4+2, delta, target, yes
+//  spell effect = $CHAR_THACO, 1d6, percent, alltargettypes, no
+//
+//  next one shows Script1 and Script2 as being empty, while Script3 is not
+//
+//  spell effect = $CHAR_THACO, 1d6, percent, alltargettypes, no,,,$RETURN true;
+//
+\(BEGIN)
+name = template
+casting sound = none
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = none
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = no
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 0
+casting time = 0
+casting time units = initiative
+Number of targets = 
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+//Cleric Level 1
+
+\(BEGIN)
+name = Bless
+casting sound = cast.wav
+cast msg = /c blesses /t.
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_Bless.png,150,2,48,48,0,1,4
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = bless
+targeting type = party
+level = 1
+casting time = 1
+casting time units = rounds
+Number of targets = 0
+duration = 6
+duration units = rounds
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cause Light Wounds
+casting sound = cast.wav
+cast msg = /t feels pain
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = use THAC0
+targeting type = touch
+level = 1
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-1d8,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cure Light Wound
+casting sound = cast.wav
+cast msg = /t is healed
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_CureLightWounds.png,200,11,48,48,0,1,0
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 1
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 0
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 10
+spell effect 1 = $CHAR_HITPOINTS,1d8,delta,target,yes
+begin script = $IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 0){ $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 1){ $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 3){ $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 8){ $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 9){ $RETURN true;};$RETURN false;
+end script = 
+\(END)
+
+\(BEGIN)
+name = Curse
+casting sound = cast.wav
+cast msg = /c curses /t.
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_Curse.png,210,2,48,48,0,1,4
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = party
+level = 1
+casting time = 1
+casting time units = rounds
+Number of targets = 0
+duration = 6
+duration units = rounds
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Detect Magic|Cleric
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Ranger + Druid + Paladin
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 1
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 10
+duration units = rounds
+target duration = 
+target range = 0
+price = 100
+spell effect 1 = $CHAR_DETECTMAGIC,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection From Evil|Cleric
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Prot from Evil
+targeting type = touch
+level = 1
+casting time = 4
+casting time units = initiative
+Number of targets = 1
+duration = 3*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection From Good| Cleric
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,2
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Prot from Good
+targeting type = touch
+level = 1
+casting time = 4
+casting time units = initiative
+Number of targets = 1
+duration = 3*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Resist Cold
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,2
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 1
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 10*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+spell attribute = ProtectsFromCold
+begin script = 
+end script = 
+\(END)
+
+//Cleric Level 2
+
+\(BEGIN)
+name = Find Traps
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 30
+duration units = rounds
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = $CHAR_FINDTRAPS,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Hold Person
+casting sound = cast.wav
+cast msg = /t is held.
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_HoldPerson.png,210,4,48,48,0,1,4
+target linger art = spell_linger_HoldPerson.png,150,26,48,48,0,1,4
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = no
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+Special Ability = Hold Person
+targeting type = selectByCount
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 1d4
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 6
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Resist Fire
+casting sound = cast.wav
+cast msg = /t is protected from fire
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+spell attribute = ProtectsFromFire
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Silence 15' Radius
+casting sound = cast.wav
+cast msg = /t is silenced
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_Silence15.png,210,4,48,48,0,1,4
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+Special Ability = Silenced
+targeting type = areacircle
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 999
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 2
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Slow Poison
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_SlowPoison.png,150,7,48,48,0,1,0
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 2
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 1*level
+duration units = hours
+target duration = 
+target range = 1
+price = 200
+spell effect 1 = $CHAR_HITPOINTS,1,absolute,target,yes
+spell effect 2 = $CHAR_SLOWPOISON,1,absolute,target,yes
+activate script 1 = $IF ($GET_CHAR_POISONED($TargetIndex())){ $RETURN ($GET_CHAR_HITPOINTS($TargetIndex()) < 1);};
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Snake Charm
+casting sound = cast.wav
+cast msg = /t is charmed
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = no
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areasquare
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 3
+duration = 1d4+4
+duration units = rounds
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = $CHAR_HOLDPERSON,1,absolute,target,yes
+activate script 1 = $RETURN ($GET_ISSNAKE($Target()));
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Spiritual Hammer
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 3
+duration units = rounds
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = none
+begin script = $GIVE_CHAR_ITEM($Target(), "Spiritual Hammer");
+end script = $TAKE_CHAR_ITEM($Target(), "Spiritual Hammer");
+\(END)
+
+//Cleric Level 3
+
+\(BEGIN)
+name = Bestow Curse
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 6
+casting time units = initiative
+Number of targets = 1
+duration = 10*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_THACO,4,delta,target,yes
+spell effect 2 = $CHAR_SAVEVSBR,4,delta,target,yes
+spell effect 3 = $CHAR_SAVEVSPP,4,delta,target,yes
+spell effect 4 = $CHAR_SAVEVSPPDM,4,delta,target,yes
+spell effect 5 = $CHAR_SAVEVSRSW,4,delta,target,yes
+spell effect 6 = $CHAR_SAVEVSSP,4,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cause Blindness
+casting sound = cast.wav
+cast msg = /t is blinded
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = touch
+level = 3
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_BLINDNESS,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cause Disease
+casting sound = cast.wav
+cast msg = /t is diseased
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = touch
+level = 3
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_DISEASED,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cure Blindness
+casting sound = cast.wav
+cast msg = /t can see again
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_BLINDNESS,0,remove,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cure Disease
+casting sound = cast.wav
+cast msg = /t is cured
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_DISEASED,0,remove,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Dispel Magic
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = areasquare
+level = 3
+casting time = 6
+casting time units = initiative
+Number of targets = 3
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = none
+begin script = $RETURN ($CHAR_DISPELMAGIC( $Target(), $GET_CHAR_CLERICLVL($MyIndex())));
+end script = 
+\(END)
+
+\(BEGIN)
+name = Prayer
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_Prayer.png,150,2,48,48,0,1,2
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacircle
+level = 3
+casting time = 6
+casting time units = initiative
+Number of targets = 500
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 6
+price = 0
+spell effect 1 = $CHAR_DAMAGEBONUS,1,delta,target,yes
+spell effect 2 = $CHAR_THACO,-1,delta,target,yes
+spell effect 3 = $CHAR_SAVEVSBR,-1,delta,target,yes
+spell effect 4 = $CHAR_SAVEVSPP,-1,delta,target,yes
+spell effect 5 = $CHAR_SAVEVSPPDM,-1,delta,target,yes
+spell effect 6 = $CHAR_SAVEVSRSW,-1,delta,target,yes
+spell effect 7 = $CHAR_SAVEVSSP,-1,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Remove Curse
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 6
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = $CHAR_REMOVESPELL( $Target(), "Curse" );$CHAR_REMOVESPELL( $Target(), "Bestow Curse" );$CHAR_REMOVEALLITEMCURSE( $Target() );$SET_CHAR_CURSE( $TargetIndex(), "0" );$RETURN true;
+end script = 
+\(END)
+
+//Cleric Level 4
+
+\(BEGIN)
+name = Cause Serious Wounds
+casting sound = cast.wav
+cast msg = /t feels pain
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = use THAC0
+targeting type = touch
+level = 4
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(2d8+1),delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cure Serious Wound
+casting sound = cast.wav
+cast msg = /t is healed
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 4
+casting time = 7
+casting time units = initiative
+Number of targets = 1
+duration = 0
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 10
+spell effect 1 = $CHAR_HITPOINTS,2d8+1,delta,target,yes
+begin script = $IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 0){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 1){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 3){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 8){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 9){   $RETURN true;};$RETURN false;
+end script = 
+\(END)
+
+\(BEGIN)
+name = Neutralize Poison
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_NeutralizePoison.png,200,14,48,48,0,1,0
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 4
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,1,absolute,target,yes
+spell effect 2 = $CHAR_POISONED,0,absolute,target,yes
+activate script 1 = $RETURN ($GET_CHAR_POISONED($TargetIndex()));
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Poison
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_Poison.png,200,8,48,48,0,1,0
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 4
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_POISONED,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection From Evil 10' Radius| Cleric
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Prot from Evil
+targeting type = areacircle
+level = 4
+casting time = 7
+casting time units = initiative
+Number of targets = 999
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection From Good 10' Radius| Cleric
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Prot from Good
+targeting type = areacircle
+level = 4
+casting time = 7
+casting time units = initiative
+Number of targets = 999
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Sticks to Snakes
+casting sound = cast.wav
+cast msg = /t is surrounded by snakes.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = cast.wav
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric + Paladin
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = yes
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacircle
+level = 4
+casting time = 7
+casting time units = initiative
+Number of targets = 30
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(1d4)+1*level,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Cleric Level 5
+
+\(BEGIN)
+name = Cause Critical Wounds
+casting sound = cast.wav
+cast msg = /t feels pain
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = use THAC0
+targeting type = touch
+level = 5
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(3d8+3),delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cure Critical Wounds
+casting sound = cast.wav
+cast msg = /t is healed
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 5
+casting time = 8
+casting time units = initiative
+Number of targets = 1
+duration = 0
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 10
+spell effect 1 = $CHAR_HITPOINTS,3d8+3,delta,target,yes
+begin script = $IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 0){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 1){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 3){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 8){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 9){   $RETURN true;};$RETURN false;
+end script = 
+\(END)
+
+\(BEGIN)
+name = Dispel Evil
+casting sound = none
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 5
+casting time = 8
+casting time units = initiative
+Number of targets = 1
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = $RETURN ($CHAR_DISPELEVIL( $Target(), $GET_CHAR_CLERICLVL($MyIndex())));
+end script = 
+\(END)
+
+\(BEGIN)
+name = Flame Strike
+casting sound = Flame1.wav
+cast msg = /c blasts /t
+missile sound = none
+coverage sound = Annihilation1.wav
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_FlameStrike.png,200,4,48,48,0,1,2
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = half damage
+targeting type = arealinepickstart
+level = 5
+casting time = 8
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(6d8),delta,target,yes
+activate script 1 = $IF($IS_AFFECTED_BY_SPELL_ATTR($Target(), "ProtectsFromFire")){$RETURN false;}$ELSE{$RETURN true;};
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Raise Dead
+casting sound = none
+cast msg = /t is raised from the dead.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_RaiseDead.png,200,26,48,48,0,1,0
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 5
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,1,absolute,target,yes
+spell effect 2 = $CHAR_STATUS,0,absolute,target,yes
+begin script = $IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 2){   $RETURN true;};$RETURN false;
+end script = 
+\(END)
+
+\(BEGIN)
+name = Slay Living
+casting sound = none
+cast msg = /t is slain.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_SlayLiving.png,200,4,48,48,0,1,4
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = Par/Pois/DM
+save result = half damage
+targeting type = touch
+level = 5
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-100,percent,target,yes
+spell effect 2 = $CHAR_STATUS,2,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Cleric Level 6
+
+\(BEGIN)
+name = Blade Barrier
+casting sound = none
+cast msg = /t is cut by blades.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = areasquare
+level = 6
+casting time = 9
+casting time units = initiative
+Number of targets = 3
+duration = 3*level
+duration units = rounds
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-8d8,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Harm
+casting sound = none
+cast msg = /t is healed.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 6
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,1d4,absolute,target,yes
+spell effect 2 = $CHAR_DISEASED,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Heal
+casting sound = none
+cast msg = /t is healed.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_Heal.png,200,2,48,48,0,1,4
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 6
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,100,percent,target,yes
+spell effect 2 = $CHAR_BLINDNESS,0,remove,target,yes
+spell effect 3 = $CHAR_DISEASED,0,remove,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Cleric Level 7
+
+\(BEGIN)
+name = Destruction
+casting sound = none
+cast msg = /t is destroyed.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = Par/Pois/DM
+save result = none
+targeting type = touch
+level = 7
+casting time = 1
+casting time units = turns
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-15,absolute,target,yes
+spell effect 2 = $CHAR_STATUS,2,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Energy Drain
+casting sound = none
+cast msg = /t feels drained.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 7
+casting time = 3
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_AGE,2,delta,target,yes
+spell effect 2 = $CHAR_FIGHTERLVL,-1,delta,target,yes
+spell effect 3 = $CHAR_CLERICLVL,-1,delta,target,yes
+spell effect 4 = $CHAR_DRUIDLVL,-1,delta,target,yes
+spell effect 5 = $CHAR_MAGICUSERLVL,-1,delta,target,yes
+spell effect 6 = $CHAR_PALADINLVL,-1,percent,target,yes
+spell effect 7 = $CHAR_RANGERLVL,-1,percent,target,yes
+spell effect 8 = $CHAR_THIEFLVL,-1,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Restoration
+casting sound = none
+cast msg = /t feels restored.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 7
+casting time = 3
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_AGE,2,delta,target,yes
+spell effect 2 = $CHAR_ENFEEBLED,0,remove,target,yes
+spell effect 3 = $CHAR_STATUS,0,absolute,target,yes
+spell effect 4 = $GET_CHAR_CLERICPDLVL,0,remove,target,yes
+spell effect 5 = $GET_CHAR_DRUIDPDLVL,0,remove,target,yes
+spell effect 6 = $GET_CHAR_FIGHTERPDLVL,0,remove,target,yes
+spell effect 7 = $GET_CHAR_MAGUSERPDLVL,0,remove,target,yes
+spell effect 8 = $GET_CHAR_PALADINPDLVL,0,remove,target,yes
+spell effect 9 = $GET_CHAR_RANGERPDLVL,0,remove,target,yes
+spell effect 10 = $GET_CHAR_THIEFPDLVL,0,remove,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Resurrection
+casting sound = none
+cast msg = /t is alive.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Priest.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 7
+casting time = 1
+casting time units = turns
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_AGE,3,delta,target,yes
+spell effect 2 = $CHAR_HITPOINTS,100,percent,target,yes
+spell effect 3 = $CHAR_STATUS,0,absolute,target,yes
+spell effect 4 = $CHAR_STR,100,percent,target,yes
+spell effect 5 = $CHAR_CON,100,percent,target,yes
+spell effect 6 = $CHAR_DEX,100,percent,target,yes
+spell effect 7 = $CHAR_ENFEEBLED,0,remove,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Druid Level 1
+
+\(BEGIN)
+name = Entangle|Druid
+casting sound = cast.wav
+cast msg = Vines entangle /t
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = spell_coverage_Entangle.png,200,8,48,48,0,1,0
+target hit art = none
+target linger art = spell_linger_Entangle.png,200,2,48,48,0,1,4
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = yes
+can be dispelled = yes
+lingers = yes
+linger affects once = yes
+save versus = spell
+save result = half damage
+Special Ability = Entangle
+targeting type = areacircle
+level = 1
+casting time = 3
+casting time units = initiative
+Number of targets = 16
+duration = 10
+duration units = rounds
+target duration = 
+target range = 2
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Faerie Fire|Druid
+casting sound = none
+cast msg = /t is outlined in light
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_FaerieFire.png,210,2,48,48,0,1,4
+target linger art = spell_linger_FaerieFire.png,200,4,48,48,0,1,4
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = no
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = selectByCount
+level = 1
+casting time = 3
+casting time units = initiative
+Number of targets = 1
+duration = 4*level
+duration units = rounds
+target duration = 
+target range = 4
+price = 0
+spell effect 1 = $CHAR_AC,2,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Invisibility to Animals|Druid
+casting sound = none
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 1
+casting time = 4
+casting time units = initiative
+Number of targets = 1
+duration = 10+(level)
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_INVISIBLETOANIMALS,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Druid Level 2
+
+\(BEGIN)
+name = Barkskin|Druid
+casting sound = none
+cast msg = /t's skin turns to bark.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 2
+casting time = 3
+casting time units = initiative
+Number of targets = 1
+duration = (4+level)
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_AC,6-(1/4*LEVEL),absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cause Light Wounds|Druid
+casting sound = cast.wav
+cast msg = /t feels pain
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = use THAC0
+targeting type = touch
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-1d8,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Charm Person|Druid
+casting sound = cast.wav
+cast msg = /t is charmed
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = selectByCount
+level = 2
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 12
+price = 0
+spell effect 1 = $CHAR_CHARMPERSON,1,absolute,target,yes
+activate script 1 = $IF ($GET_ISALWAYSLARGE($Target())){ $RETURN false;}$ELSE{ $RETURN ($GET_ISMAMMAL($Target()));};
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cure Light Wounds|Druid
+casting sound = cast.wav
+cast msg = /t is healed
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_CureLightWounds.png,200,11,48,48,0,1,0
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 0
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 10
+spell effect 1 = $CHAR_HITPOINTS,1d8,delta,target,yes
+begin script = $IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 0){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 1){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 3){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 8){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 9){   $RETURN true;};$RETURN false;
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cause Disease|Druid
+casting sound = cast.wav
+cast msg = /t is diseased
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = touch
+level = 3
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_DISEASED,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cure Disease|Druid
+casting sound = cast.wav
+cast msg = /t is cured
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 1
+casting time units = rounds
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_DISEASED,0,remove,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Hold Animal|Druid
+casting sound = cast.wav
+cast msg = /t is held
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_HoldAnimal.png,210,2,48,48,0,1,4
+target linger art = spell_linger_HoldAnimal.png,150,26,48,48,0,1,4
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = no
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+Special Ability = Hold Person
+targeting type = selectByCount
+level = 2
+casting time = 5
+casting time units = initiative
+Number of targets = 1d4
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 6
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+//Druid Level 3
+
+\(BEGIN)
+name = Neutralize Poison|Druid
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_NeutralizePoison.png,150,14,48,48,0,1,0
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,1,absolute,target,yes
+spell effect 2 = $CHAR_POISONED,0,absolute,target,yes
+activate script 1 = $RETURN ($GET_CHAR_POISONED($TargetIndex()));
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Poison|Druid
+casting sound = cast.wav
+cast msg = /t feels ill.
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_Poison.png,150,8,48,48,0,1,0
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_POISONED,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection from Fire|Druid
+casting sound = cast.wav
+cast msg = /t is protected from fire
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Ranger + Druid
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+spell attribute = ProtectsFromFire
+begin script = 
+end script = 
+\(END)
+
+//Druid Level 4
+
+\(BEGIN)
+name = Cause Serious Wounds|Druid
+casting sound = cast.wav
+cast msg = /t feels pain
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Druid
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = use THAC0
+targeting type = touch
+level = 4
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(2d8+1),delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cure Serious Wounds|Druid
+casting sound = cast.wav
+cast msg = /t is healed.
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Druid
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 4
+casting time = 7
+casting time units = initiative
+Number of targets = 1
+duration = 0
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 10
+spell effect 1 = $CHAR_HITPOINTS,2d8+1,delta,target,yes
+begin script = $IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 0){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 1){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 3){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 8){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 9){   $RETURN true;};$RETURN false;
+end script = 
+\(END)
+
+\(BEGIN)
+name = Dispel Magic|Druid
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Druid
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = areasquare
+level = 4
+casting time = 6
+casting time units = initiative
+Number of targets = 3
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = none
+begin script = $RETURN ($CHAR_DISPELMAGIC( $Target(), $GET_CHAR_CLERICLVL($MyIndex())));
+end script = 
+\(END)
+
+//Druid Level 5
+
+//\(BEGIN)
+//name = Insect Plague| Druid
+//\(END)
+
+\(BEGIN)
+name = Sticks to Snakes|Druid
+casting sound = cast.wav
+cast msg = /t is surrounded by snakes.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = cast.wav
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Druid
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = yes
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacircle
+level = 5
+casting time = 7
+casting time units = initiative
+Number of targets = 30
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(1d4)+1*level,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Druid Level 6
+
+\(BEGIN)
+name = Cause Critical Wounds|Druid
+casting sound = cast.wav
+cast msg = /t feels pain
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Druid
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = use THAC0
+targeting type = touch
+level = 6
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(3d8+3),delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Conjure Fire Elemental
+//\(END)
+
+\(BEGIN)
+name = Cure Critical Wounds| Druid
+casting sound = cast.wav
+cast msg = /t is healed.
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Druid
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = yes
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 6
+casting time = 8
+casting time units = initiative
+Number of targets = 1
+duration = 0
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 10
+spell effect 1 = $CHAR_HITPOINTS,3d8+3,delta,target,yes
+begin script = $IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 0){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 1){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 3){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 8){   $RETURN true;};$IF ($GET_CHAR_STATUS($MyIndex()) \=\=# 9){   $RETURN true;};$RETURN false;
+end script = 
+\(END)
+
+\(BEGIN)
+name = Feeblemind|Druid
+casting sound = none
+cast msg = /t starts to drool
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Druid
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = self
+level = 6
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 10*level
+price = 0
+spell effect 1 = $CHAR_INT,3,absolute,target,yes
+activate script 1 = $IF($GET_CHAR_PALADINLVL($TargetIndex()) ># 8) {$RETURN 1;};$IF ($GET_CHAR_RANGERLVL($TargetIndex()) ># 8) {$RETURN 1;};$IF($GET_CHAR_CLERICLVL($TargetIndex()) ># 0) {$RETURN 1;};$IF($GET_CHAR_MAGICUSERLVL($TargetIndex()) ># 0) {$RETURN 1;};$IF($GET_CHAR_DRUIDLVL($TargetIndex()) ># 0) {$RETURN 1;};
+begin script = 
+end script = 
+\(END)
+
+//Druid Level 7
+
+\(BEGIN)
+name = Confusion|Druid
+casting sound = none
+cast msg = /t feels disoriented
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_Druid.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Druid
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areasquare
+level = 7
+casting time = 4
+casting time units = initiative
+Number of targets = 30
+duration = 2+1*level
+duration units = rounds
+target duration = 
+target range = 6
+price = 0
+spell effect 1 = $CHAR_INT,-5,delta,target,yes
+spell effect 2 = $CHAR_WIS,-5,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Conjure Earth Elemental
+//\(END)
+
+//Magic User Level 1
+
+\(BEGIN)
+name = Burning Hands
+casting sound = cast.wav
+cast msg = /c blasts /t with /s.
+missile sound = cast.wav
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_BurningHands.png,150,4,48,48,0,1,2
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = half damage
+targeting type = touch
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 0
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 5
+spell effect 1 = $CHAR_HITPOINTS,-1*level,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Charm Person
+casting sound = cast.wav
+cast msg = /t is charmed
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = selectByCount
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 12
+price = 0
+spell effect 1 = $CHAR_CHARMPERSON,1,absolute,target,yes
+activate script 1 = $IF ($GET_ISALWAYSLARGE($Target())){ $RETURN false;}$ELSE{ $RETURN ($GET_ISMAMMAL($Target()));};
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Detect Magic|MagicUser
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = level*2
+duration units = rounds
+target duration = 
+target range = 0
+price = 100
+spell effect 1 = $CHAR_DETECTMAGIC,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Enlarge
+casting sound = cast.wav
+cast msg = /t is enlarged
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+Special Ability = Enlarge
+targeting type = selectByCount
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 11*level
+duration units = rounds
+target duration = 
+target range = 1*level
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Reduce
+casting sound = cast.wav
+cast msg = /t is reduced
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+Special Ability = Reduce
+targeting type = selectByCount
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 11*level
+duration units = rounds
+target duration = 
+target range = 1*level
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Friends
+casting sound = cast.wav
+cast msg = /t is more charismatic
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = $CHAR_CHA,2d4,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Magic Missile
+casting sound = cast.wav
+cast msg = /c blasts /t
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = spell_missile_MagicMissile.png,50,8,48,48,1,1,0
+target cover art = none
+target hit art = spell_hit_MagicMissile.png,150,6,48,48,0,1,0
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = selectByCount
+level = 1
+casting time = 0
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 6*level
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(1d4+1)*(level/2),delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection From Evil|MagicUser
+casting sound = cast.wav
+cast msg = /t is protected from evil
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Prot from Evil
+targeting type = touch
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection From Good|MagicUser
+casting sound = cast.wav
+cast msg = /t is protected from good.
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Prot from Good
+targeting type = touch
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Read Magic
+//\(END)
+
+\(BEGIN)
+name = Shield
+casting sound = cast.wav
+cast msg = /t is shielded
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 5*level
+duration units = rounds
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = $CHAR_SHIELD,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Shocking Grasp
+casting sound = cast.wav
+cast msg = /t is shocked
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,4
+missile art = none
+target cover art = none
+target hit art = spell_hit_ShockingGrasp.png,150,4,48,48,0,1,0
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,1d8+(1*level),delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Sleep
+casting sound = cast.wav
+cast msg = /t is put to sleep
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Sleep
+targeting type = SelectByHitDice
+level = 1
+casting time = 1
+casting time units = initiative
+Number of targets = 16
+duration = 5*level
+duration units = rounds
+target duration = 
+target range = 3+level
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+//Magic User Level 2
+
+\(BEGIN)
+name = Detect Invisibility
+casting sound = cast.wav
+cast msg = /t can see more clearly
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 2
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 5*level
+duration units = rounds
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = $CHAR_DETECTINVISIBLE,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Invisibility
+casting sound = cast.wav
+cast msg = /t is invisible
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 2
+casting time = 2
+casting time units = initiative
+Number of targets = 1
+duration = 1
+duration units = days
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_INVISIBLE,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Knock
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 2
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Mirror Image
+casting sound = cast.wav
+cast msg = /t now has mirror images.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 2
+casting time = 2
+casting time units = initiative
+Number of targets = 1
+duration = 3*level
+duration units = rounds
+target duration = 
+target range = 0
+price = 0
+spell effect 1 = $CHAR_MIRRORIMAGE,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Ray of Enfeeblement
+casting sound = cast.wav
+cast msg = /t feels weaker
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = spell_missile_RayOfEnfeeblement.png,50,8,48,48,1,1,0
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = selectByCount
+level = 2
+casting time = 2
+casting time units = initiative
+Number of targets = 1
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 1+(1*level)
+price = 0
+spell effect 1 = $CHAR_STR,5,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Stinking Cloud
+casting sound = cast.wav
+cast msg = /t is paralyzed by a wretched stink.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = spell_linger_StinkingCloud.png,200,2,48,48,0,1,4
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = yes
+linger affects once = no
+save versus = Par/Pois/DM
+save result = negates
+targeting type = areasquare
+level = 2
+casting time = 2
+casting time units = initiative
+Number of targets = 2
+duration = 1*level
+duration units = rounds
+target duration = 1d4+1
+target range = 2
+price = 0
+spell effect 1 = $CHAR_HOLDPERSON,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Strength
+casting sound = cast.wav
+cast msg = /t feels stronger
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU + Ranger
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 2
+casting time = 1
+casting time units = turns
+Number of targets = 1
+duration = 1*level
+duration units = hours
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_STR,1d4,delta,target,yes
+spell effect 2 = $CHAR_STRMOD,1d0,delta,target,yes
+spell effect 3 = $CHAR_DAMAGEBONUS,1,delta,target,yes
+spell effect 4 = $CHAR_HITBONUS,1,delta,target,yes
+activate script 2 = $IF ($GET_CHAR_FIGHTERLVL($TargetIndex()) ># 0){ $RETURN 1; };$IF ($GET_CHAR_PALADINLVL($TargetIndex()) ># 0){ $RETURN 1; };$IF ($GET_CHAR_RANGERLVL($TargetIndex()) ># 0) { $RETURN 1; };$RETURN 0;
+modify script 1 = $IF ($GET_CHAR_FIGHTERLVL($TargetIndex()) ># 0) {$RANDOM(4);};$IF ($GET_CHAR_PALADINLVL($TargetIndex()) ># 0) {$RANDOM(4);};$IF ($GET_CHAR_RANGERLVL($TargetIndex()) ># 0) {$RANDOM(4);};$IF ($GET_CHAR_CLERICLVL($TargetIndex()) ># 0) {$RANDOM(2);};$IF ($GET_CHAR_DRUIDLVL($TargetIndex()) ># 0) {$RANDOM(2);};$IF ($GET_CHAR_THIEFLVL($TargetIndex()) ># 0) {$RANDOM(2);};$RETURN false;
+modify script 2 = $RETURN ($RANDOM(8) *# 10);
+begin script = 
+end script = 
+\(END)
+
+//Magic User Level 3
+
+//\(BEGIN)
+//name = Blink
+//\(END)
+
+\(BEGIN)
+name = Dispel Magic|Magic User
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = areasquare
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 3
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = none
+begin script = $RETURN ($CHAR_DISPELMAGIC( $Target(), $GET_CHAR_MAGUSERLVL($MyIndex())));
+end script = 
+\(END)
+
+\(BEGIN)
+name = Fireball
+casting sound = cast.wav
+cast msg = /c blasts /t
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = spell_missile_Fireball.png,50,8,48,48,1,1,0
+target cover art = spell_coverage_Fireball.png,150,2,48,48,0,1,4
+target hit art = spell_hit_Fireball.png,150,2,48,48,0,1,4
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = half damage
+targeting type = areacircle
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 30
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(1d6)*level,delta,target,yes
+activate script 1 = $IF($IS_AFFECTED_BY_SPELL_ATTR($Target(), "ProtectsFromFire")){$RETURN false;}$ELSE{$RETURN true;};
+spell attribute = FireBased
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Haste
+casting sound = none
+cast msg = /t feels faster
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 1
+duration = 3+(1*level)
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_AGE,1,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Hold Person|Magic User
+casting sound = cast.wav
+cast msg = /t is held
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = spell_hit_HoldPerson.png,210,4,48,48,0,1,4
+target linger art = spell_linger_HoldPerson.png,150,26,48,48,0,1,4
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+Special Ability = Hold Person
+targeting type = selectByCount
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 1d4
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 6
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Invisibility 10' Radius
+casting sound = cast.wav
+cast msg = /t is invisible
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacircle
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 9
+duration = 1
+duration units = days
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_INVISIBLE,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Lightning Bolt
+casting sound = none
+cast msg = /c zaps /t.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = spell_missile_LightningBolt.png,50,8,48,48,1,1,0
+target cover art = none
+target hit art = spell_hit_LightningBolt.png,150,4,48,48,0,1,2
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = arealinepickstart
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 4+1*LEVEL
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(1d6)*LEVEL,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection From Evil 10' Radius| Magic User
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = yes
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Prot from Evil
+targeting type = areacircle
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 30
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Protection From Good 10' Radius| Magic User
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = yes
+linger affects once = no
+save versus = spell
+save result = none
+Special Ability = Prot from Good
+targeting type = areacircle
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 30
+duration = 2*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Protection from Normal Missiles
+//\(END)
+
+\(BEGIN)
+name = Slow
+casting sound = none
+cast msg = /t feels faster
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 3
+casting time = 3
+casting time units = initiative
+Number of targets = 1
+duration = 3+(1*level)
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = 
+end script = 
+\(END)
+
+//Magic User Level 4
+
+\(BEGIN)
+name = Bestow Curse|Magic User
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = no
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 4
+casting time = 4
+casting time units = initiative
+Number of targets = 1
+duration = 10*level
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_THACO,4,delta,target,yes
+spell effect 2 = $CHAR_SAVEVSBR,4,delta,target,yes
+spell effect 3 = $CHAR_SAVEVSPP,4,delta,target,yes
+spell effect 4 = $CHAR_SAVEVSPPDM,4,delta,target,yes
+spell effect 5 = $CHAR_SAVEVSRSW,4,delta,target,yes
+spell effect 6 = $CHAR_SAVEVSSP,4,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Charm Monster
+casting sound = cast.wav
+cast msg = /t is charmed
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = areacircle
+level = 4
+casting time = 4
+casting time units = initiative
+Number of targets = 9
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 2
+price = 0
+spell effect 1 = $CHAR_CHARMPERSON,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Confusion
+casting sound = none
+cast msg = /t feels disoriented
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areasquare
+level = 4
+casting time = 4
+casting time units = initiative
+Number of targets = 30
+duration = 2+1*level
+duration units = rounds
+target duration = 
+target range = 6
+price = 0
+spell effect 1 = $CHAR_INT,-5,delta,target,yes
+spell effect 2 = $CHAR_WIS,-5,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Dimension Door
+//\(END)
+
+//\(BEGIN)
+//name = Fear
+//\(END)
+
+//\(BEGIN)
+//name = Fire Shield
+//\(END)
+
+\(BEGIN)
+name = Fumble
+casting sound = none
+cast msg = /t feels awkward
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = yes
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 4
+casting time = 4
+casting time units = initiative
+Number of targets = 9
+duration = 1*level
+duration units = rounds
+target duration = 1*level
+target range = 2
+price = 0
+spell effect 1 = $CHAR_DEX,4,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Ice Storm
+casting sound = none
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = spell_missile_IceStorm.png,50,8,48,48,1,1,0
+target cover art = spell_coverage_IceStorm.png,150,9,336,336,0,1,4
+target hit art = spell_hit_IceStorm.png,150,3,48,48,0,1,2
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacircle
+level = 4
+casting time = 4
+casting time units = initiative
+Number of targets = 30
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(3d10),delta,target,yes
+activate script 1 = $IF($IS_AFFECTED_BY_SPELL_ATTR($Target(), "ProtectsFromCold")){$RETURN false;}$ELSE{$RETURN true;};
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Minor Globe of Invulnerability
+//\(END)
+
+\(BEGIN)
+name = Remove Curse|Magic User
+casting sound = cast.wav
+cast msg = 
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 4
+casting time = 4
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = none
+begin script = $CHAR_REMOVESPELL( $Target(), "Curse" );$CHAR_REMOVESPELL( $Target(), "Bestow Curse" );$CHAR_REMOVEALLITEMCURSE( $Target() );$SET_CHAR_CURSE( $TargetIndex(), "0" );$RETURN true;
+end script = 
+\(END)
+
+//Magic User Level 5
+
+\(BEGIN)
+name = Cloudkill
+casting sound = cast.wav
+cast msg = /t is paralyzed by a deadly cloud.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = spell_linger_Cloudkill.png,210,4,48,48,0,1,2
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = yes
+linger affects once = no
+save versus = Par/Pois/DM
+save result = none
+targeting type = areasquare
+level = 5
+casting time = 5
+casting time units = initiative
+Number of targets = 9
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 2
+price = 0
+spell effect 1 = $CHAR_HOLDPERSON,1,absolute,target,yes
+spell effect 2 = $CHAR_HITPOINTS,-(2d10+21),delta,target,yes
+spell effect 3 = $CHAR_POISONED,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Cone of Cold
+casting sound = none
+cast msg = /t is frozen
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = spell_missile_ConeOfCold.png,50,8,48,48,1,1,0
+target cover art = none
+target hit art = spell_hit_ConeOfCold.png,200,4,48,48,0,1,4
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacone
+level = 5
+casting time = 5
+casting time units = initiative
+Number of targets = 30
+duration = 
+duration units = instantaneous
+target duration = 
+target range = level/2
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(1d4+1)*level,delta,target,yes
+activate script 1 = $IF($IS_AFFECTED_BY_SPELL_ATTR($Target(), "ProtectsFromCold")){$RETURN false;}$ELSE{$RETURN true;};
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Feeblemind
+casting sound = none
+cast msg = /t starts to drool
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = self
+level = 5
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 10*level
+price = 0
+spell effect 1 = $CHAR_INT,3,absolute,target,yes
+activate script 1 = $IF($GET_CHAR_PALADINLVL($TargetIndex()) ># 8) {$RETURN 1;};$IF ($GET_CHAR_RANGERLVL($TargetIndex()) ># 8) {$RETURN 1;};$IF($GET_CHAR_CLERICLVL($TargetIndex()) ># 0) {$RETURN 1;};$IF($GET_CHAR_MAGICUSERLVL($TargetIndex()) ># 0) {$RETURN 1;};$IF($GET_CHAR_DRUIDLVL($TargetIndex()) ># 0) {$RETURN 1;};
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Fire Touch
+casting sound = none
+cast msg = /t is burned
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 5
+casting time = 5
+casting time units = initiative
+Number of targets = 
+duration = 1*level
+duration units = instantaneous
+target duration = 
+target range = 
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(2d6),delta,target,yes
+activate script 1 = $IF($IS_AFFECTED_BY_SPELL_ATTR($Target(), "ProtectsFromFire")){$RETURN false;}$ELSE{$RETURN true;};
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Hold Monster
+casting sound = none
+cast msg = /t is held immobile
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = spell_hit_HoldMonster.png,200,4,48,48,0,1,4
+target linger art = spell_linger_HoldMonster.png,200,26,48,48,0,1,4
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areasquare
+level = 5
+casting time = 5
+casting time units = initiative
+Number of targets = 4
+duration = 1*level
+duration units = rounds
+target duration = 
+target range = 40
+price = 0
+spell effect 1 = $CHAR_HOLDPERSON,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Iron Skin
+casting sound = none
+cast msg = /t feels tougher.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 5
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 1+1*level
+duration units = rounds
+target duration = 
+target range = 
+price = 0
+spell effect 1 = $CHAR_AC,-4,delta,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Magic User Level 6
+
+\(BEGIN)
+name = Death Spell
+casting sound = none
+cast msg = /t is slain
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 6
+casting time = 6
+casting time units = initiative
+Number of targets = 40
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 6+1*level
+price = 0
+spell effect 1 = $CHAR_HITPOINT,-11,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Disintegrate
+casting sound = none
+cast msg = t is disintegrated
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 6
+casting time = 6
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = .5*level
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-11,absolute,target,yes
+spell effect 2 = $CHAR_STATUS,5,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Flesh to Stone
+casting sound = none
+cast msg = /t is petrified
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 6
+casting time = 6
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1*level
+price = 0
+spell effect 1 = $CHAR_STATUS,4,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Globe of Invulnerability
+//\(END)
+
+\(BEGIN)
+name = Stone to Flesh
+casting sound = none
+cast msg = /t can move again
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 6
+casting time = 6
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1*level
+price = 0
+spell effect 1 = $CHAR_STATUS,0,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Magic User Level 7
+
+\(BEGIN)
+name = Delayed Blast Fireball
+casting sound = none
+cast msg = /c blasts /t
+missile sound = none
+coverage sound = none
+hit sound = Hit.wav
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = spell_missile_Fireball.png,50,8,48,48,1,1,0
+target cover art = spell_coverage_Fireball.png,200,2,48,48,0,1,4
+target hit art = spell_hit_Fireball.png,200,2,48,48,0,1,4
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = half damage
+targeting type = areacircle
+level = 7
+casting time = 7
+casting time units = initiative
+Number of targets = 30
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 3+1*level
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(1d6+1)*level,delta,target,yes
+activate script 1 = $IF($IS_AFFECTED_BY_SPELL_ATTR($Target(), "ProtectsFromFire")){$RETURN false;}$ELSE{$RETURN true;};
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Mass Invisibility
+casting sound = none
+cast msg = /t fades from view
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = yes
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacircle
+level = 7
+casting time = 7
+casting time units = initiative
+Number of targets = 50
+duration = 1
+duration units = days
+target duration = 
+target range = 3
+price = 0
+spell effect 1 = $CHAR_INVISIBLE,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Power Word, Stun
+casting sound = none
+cast msg = /t is stunned.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = self
+level = 7
+casting time = 1
+casting time units = initiative
+Number of targets = 1
+duration = 3d4
+duration units = rounds
+target duration = 
+target range = 1.5*level
+price = 0
+spell effect 1 = $CHAR_INT,3,absolute,target,yes
+spell effect 2 = $CHAR_MAXMOVE,0,absolute,target,yes
+spell effect 3 = $CHAR_NBRATTACKS,0,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Magic user Level 8
+
+\(BEGIN)
+name = Mass Charm
+casting sound = none
+cast msg = /t is charmed.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = negates
+targeting type = self
+level = 8
+casting time = 8
+casting time units = initiative
+Number of targets = 2*level
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1.5*level
+price = 0
+spell effect 1 = $CHAR_CHARMPERSON,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Mind Blank
+//\(END)
+
+\(BEGIN)
+name = Otto's Irresistible Dance
+casting sound = none
+cast msg = /t is dancing maniacally.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = touch
+level = 8
+casting time = 5
+casting time units = initiative
+Number of targets = 1
+duration = 1d4+1
+duration units = rounds
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_AC,4,delta,target,yes
+spell effect 2 = $CHAR_SAVEVSPPDM,20,absolute,target,yes
+spell effect 3 = $CHAR_SAVEVSPP,20,absolute,target,yes
+spell effect 4 = $CHAR_SAVEVSRSW,20,absolute,target,yes
+spell effect 5 = $CHAR_SAVEVSBR,20,absolute,target,yes
+spell effect 6 = $CHAR_SAVEVSSP,20,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+\(BEGIN)
+name = Power Word, Blind
+casting sound = none
+cast msg = /t is blinded
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacircle
+level = 8
+casting time = 1
+casting time units = initiative
+Number of targets = 9
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 2
+price = 0
+spell effect 1 = $CHAR_BLINDNESS,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Magic User Level 9
+
+\(BEGIN)
+name = Meteor Swarm
+casting sound = none
+cast msg = /c blasts /t
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = yes
+lingers = yes
+linger affects once = yes
+save versus = spell
+save result = none
+targeting type = arealinepickend
+level = 9
+casting time = 9
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 12+1*level
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-(10d4),delta,target,yes
+activate script 1 = $IF($IS_AFFECTED_BY_SPELL_ATTR($Target(), "ProtectsFromFire")){$RETURN false;}$ELSE{$RETURN true;};
+begin script = 
+end script = 
+\(END)
+
+//\(BEGIN)
+//name = Monster Summoning
+//\(END)
+
+\(BEGIN)
+name = Power Word, Kill
+casting sound = none
+cast msg = /c slays /t
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = spell_cast_MU.png,210,2,48,48,0,1,0
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = MU
+cast by = MU
+friendly fire ok = no
+cumulative = yes
+usable by party = yes
+can scribe = yes
+auto scribe = no
+combat only = yes
+can be dispelled = no
+lingers = no
+linger affects once = no
+save versus = spell
+save result = none
+targeting type = areacircle
+level = 9
+casting time = 1
+casting time units = initiative
+Number of targets = 9
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1*level
+price = 0
+spell effect 1 = $CHAR_HITPOINTS,-11,absolute,target,yes
+spell effect 2 = $CHAR_STATUS,5,absolute,target,yes
+begin script = 
+end script = 
+\(END)
+
+//Miscellaneous
+
+\(BEGIN)
+name = MonsterPoison
+casting sound = none
+cast msg = /c poisons /t.
+missile sound = none
+coverage sound = none
+hit sound = none
+linger sound = none
+cast art = none
+missile art = none
+target cover art = none
+target hit art = none
+target linger art = none
+class = Cleric
+cast by = Cleric
+friendly fire ok = no
+cumulative = yes
+usable by party = no
+can scribe = yes
+auto scribe = no
+combat only = no
+can be dispelled = yes
+lingers = no
+linger affects once = no
+save versus = Par/Pois/DM
+save result = none
+targeting type = touch
+level = 1
+casting time = 0
+casting time units = initiative
+Number of targets = 1
+duration = 
+duration units = instantaneous
+target duration = 
+target range = 1
+price = 0
+spell effect 1 = $CHAR_POISONED,1,absolute,target,yes
+begin script = 
+end script = 
+\(END)

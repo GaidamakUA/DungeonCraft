@@ -1,0 +1,161 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ConvertFRUA - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\dad\AppData\Local\Temp\RSPBF16.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /FR"Release/" /Fp"Release/ConvertFRUA.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\projects\UAF\UAF\src\ConvertFRUA\ConvertFRUA.cpp"
+"D:\projects\UAF\UAF\src\ConvertFRUA\Event_SmallTown.cpp"
+"D:\projects\UAF\UAF\src\ConvertFRUA\Event_Utilities.cpp"
+"D:\projects\UAF\UAF\src\ConvertFRUA\Event_WhoPays.cpp"
+"D:\projects\UAF\UAF\src\ConvertFRUA\Event_WhoTries.cpp"
+"D:\projects\UAF\UAF\src\ConvertFRUA\Levels.cpp"
+"D:\projects\UAF\UAF\src\ConvertFRUA\Miscellaneous.cpp"
+"D:\projects\UAF\UAF\src\ConvertFRUA\Spells.cpp"
+"D:\projects\UAF\UAF\src\ConvertFRUA\TransferModule.cpp"
+]
+Creating command line "cl.exe @C:\Users\dad\AppData\Local\Temp\RSPBF16.tmp" 
+Creating temporary file "C:\Users\dad\AppData\Local\Temp\RSPBF17.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/ConvertFRUA.pdb" /machine:I386 /out:"Release/ConvertFRUA.exe" 
+.\Release\Class.obj
+.\Release\ConvertFRUA.obj
+.\Release\Event_AddNPC.obj
+.\Release\Event_Camp.obj
+.\Release\Event_Chain.obj
+.\Release\Event_Combat.obj
+.\Release\Event_CombatTreasure.obj
+.\Release\Event_Encounter.obj
+.\Release\Event_GainExperience.obj
+.\Release\Event_GiveDamage.obj
+.\Release\Event_GiveTreasure.obj
+.\Release\Event_GuidedTour.obj
+.\Release\Event_HealParty.obj
+.\Release\Event_Journal.obj
+.\Release\Event_Monster.obj
+.\Release\Event_NPCSays.obj
+.\Release\Event_Null.obj
+.\Release\Event_PassTime.obj
+.\Release\Event_Password.obj
+.\Release\Event_Quest.obj
+.\Release\Event_QuestionButton.obj
+.\Release\Event_QuestionList.obj
+.\Release\Event_QuestionYesNo.obj
+.\Release\Event_Random.obj
+.\Release\Event_RemoveNPC.obj
+.\Release\Event_Rest.obj
+.\Release\Event_Shop.obj
+.\Release\Event_SmallTown.obj
+.\Release\Event_Sound.obj
+.\Release\Event_SpecialItems.obj
+.\Release\Event_TakePartyItems.obj
+.\Release\Event_Tavern.obj
+.\Release\Event_TavernTales.obj
+.\Release\Event_Teleporter.obj
+.\Release\Event_Temple.obj
+.\Release\Event_TextStatement.obj
+.\Release\Event_Tour.obj
+.\Release\Event_TrainingHall.obj
+.\Release\Event_Utilities.obj
+.\Release\Event_Vault.obj
+.\Release\Event_WhoPays.obj
+.\Release\Event_WhoTries.obj
+.\Release\Globals.obj
+.\Release\Items.obj
+.\Release\J.obj
+.\Release\Levels.obj
+.\Release\MapGrid.obj
+.\Release\Miscellaneous.obj
+.\Release\Monsters.obj
+.\Release\Spells.obj
+.\Release\StdAfx.obj
+.\Release\StepEvents.obj
+.\Release\TransferModule.obj
+.\Release\ConvertFRUA.res
+]
+Creating command line "link.exe @C:\Users\dad\AppData\Local\Temp\RSPBF17.tmp"
+<h3>Output Window</h3>
+Compiling...
+ConvertFRUA.cpp
+Event_SmallTown.cpp
+Event_Utilities.cpp
+Event_WhoPays.cpp
+Event_WhoTries.cpp
+Levels.cpp
+Miscellaneous.cpp
+Spells.cpp
+TransferModule.cpp
+Generating Code...
+Linking...
+Creating temporary file "C:\Users\dad\AppData\Local\Temp\RSPCF73.tmp" with contents
+[
+/nologo /o"Release/ConvertFRUA.bsc" 
+.\Release\StdAfx.sbr
+.\Release\Class.sbr
+.\Release\ConvertFRUA.sbr
+.\Release\Event_AddNPC.sbr
+.\Release\Event_Camp.sbr
+.\Release\Event_Chain.sbr
+.\Release\Event_Combat.sbr
+.\Release\Event_CombatTreasure.sbr
+.\Release\Event_Encounter.sbr
+.\Release\Event_GainExperience.sbr
+.\Release\Event_GiveDamage.sbr
+.\Release\Event_GiveTreasure.sbr
+.\Release\Event_GuidedTour.sbr
+.\Release\Event_HealParty.sbr
+.\Release\Event_Journal.sbr
+.\Release\Event_Monster.sbr
+.\Release\Event_NPCSays.sbr
+.\Release\Event_Null.sbr
+.\Release\Event_PassTime.sbr
+.\Release\Event_Password.sbr
+.\Release\Event_Quest.sbr
+.\Release\Event_QuestionButton.sbr
+.\Release\Event_QuestionList.sbr
+.\Release\Event_QuestionYesNo.sbr
+.\Release\Event_Random.sbr
+.\Release\Event_RemoveNPC.sbr
+.\Release\Event_Rest.sbr
+.\Release\Event_Shop.sbr
+.\Release\Event_SmallTown.sbr
+.\Release\Event_Sound.sbr
+.\Release\Event_SpecialItems.sbr
+.\Release\Event_TakePartyItems.sbr
+.\Release\Event_Tavern.sbr
+.\Release\Event_TavernTales.sbr
+.\Release\Event_Teleporter.sbr
+.\Release\Event_Temple.sbr
+.\Release\Event_TextStatement.sbr
+.\Release\Event_Tour.sbr
+.\Release\Event_TrainingHall.sbr
+.\Release\Event_Utilities.sbr
+.\Release\Event_Vault.sbr
+.\Release\Event_WhoPays.sbr
+.\Release\Event_WhoTries.sbr
+.\Release\Globals.sbr
+.\Release\Items.sbr
+.\Release\J.sbr
+.\Release\Levels.sbr
+.\Release\MapGrid.sbr
+.\Release\Miscellaneous.sbr
+.\Release\Monsters.sbr
+.\Release\Spells.sbr
+.\Release\StepEvents.sbr
+.\Release\TransferModule.sbr]
+Creating command line "bscmake.exe @C:\Users\dad\AppData\Local\Temp\RSPCF73.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+ConvertFRUA.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

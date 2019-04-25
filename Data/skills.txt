@@ -1,0 +1,104 @@
+// Trait database file
+// The above line **Must** appear exactly as shown:
+//    "// Skills database file"
+//
+// All skills have a numeric value between -32768 and 32767.
+//
+// Use quotes around race/class names that have a '-' in them, 
+// such as for "Half-Elf". Otherwise the '-' is treated as a
+// subtraction operator.
+//
+
+\(BEGIN)
+name = Pick Pockets
+adjust = thief             *  +15
+adjust = (Dexterity == 9)  * -15
+adjust = (Dexterity == 10) * -10
+adjust = (Dexterity == 11) *  -5
+adjust = (Dexterity == 17) *  +5
+adjust = (Dexterity == 18) * +10
+adjust = (Dexterity == 19) * +10
+adjust = Dwarf             *  +5
+adjust = "Half-Elf"        * +10
+adjust = Halfling          *  +5
+\(END)
+
+\(BEGIN)
+name = Open Locks 
+adjust = thief             * +10
+adjust = (Dexterity == 9)  * -10
+adjust = (Dexterity == 10) *  -5
+adjust = (Dexterity == 16) *  +5
+adjust = (Dexterity == 17) * +10
+adjust = (Dexterity == 18) * +15
+adjust = (Dexterity == 19) * +20
+adjust = Dwarf             * +10
+adjust = Elf               *  -5
+adjust = Gnome             *  +5
+adjust = Halfling          *  +5
+\(END)
+
+\(BEGIN)
+name = Find/Remove Traps
+adjust = thief             *  +5
+adjust = (Dexterity == 9)  * -10
+adjust = (Dexterity == 10) * -10
+adjust = (Dexterity == 11) *  -5
+adjust = (Dexterity == 18) *  +5 
+adjust = (Dexterity == 19) * +10
+adjust = Dwarf             * +15
+adjust = Gnome             * +10 
+adjust = Halfling          *  +5
+\(END)
+
+\(BEGIN)
+name = Move Silently
+adjust = thief             * +10
+adjust = (Dexterity == 9)  * -20
+adjust = (Dexterity == 10) * -15
+adjust = (Dexterity == 11) * -10
+adjust = (Dexterity == 12) *  -5
+adjust = (Dexterity == 17) *  +5
+adjust = (Dexterity == 18) * +10
+adjust = (Dexterity == 19) * +15
+adjust = Elf               *  +5
+adjust = Gnome             *  +5
+adjust = Halfling          * +10
+\(END)
+
+\(BEGIN)
+name = Hide in Shadows
+adjust = thief             *  +5
+adjust = (Dexterity == 9)  * -10
+adjust = (Dexterity == 10) *  -5
+adjust = (Dexterity == 17) *  +5
+adjust = (Dexterity == 18) * +10
+adjust = (Dexterity == 19) * +15
+adjust = Elf               * +10
+adjust = Gnome             *  +5
+adjust = "Half-Elf"        *  +5
+adjust = Halfling          * +15
+\(END)
+
+\(BEGIN)
+name = Detect Noise
+adjust = thief      * +15
+adjust = Elf        *  +5
+adjust = Gnome      * +10
+adjust = Halfling   *  +5
+\(END)
+
+\(BEGIN)
+name = Climb Walls
+adjust = thief      * +60
+adjust = Dwarf      * -10
+adjust = Gnome      * -15
+adjust = Halfling   * -10
+\(END)
+
+\(BEGIN)
+name = Read Languages
+adjust = thief		* +10
+adjust = Dwarf      * -5
+adjust = Halfling   * -5
+\(END)

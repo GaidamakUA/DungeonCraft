@@ -1,0 +1,167 @@
+:Base UAForever.HLP>UAF
+:Base UAF.hlp
+:Title UAF
+1 About UA Forever
+2 UAF History=UAF_History
+2 Contact=Contact
+2 Minimum Requirements=Minimum_Requirements
+2 Features=Features
+2 Change History=Change_History
+1 License
+2 Forever Free=Forever_Free
+2 Gnu Public License=Gnu_Public_License
+1 Installation
+2 Installing UAF=Installing_UAF
+2 Default Art=Default_Art
+1 General
+2 UAF Version Numbers=UAF_Version_Numbers
+2 Screen Resolution=Screen_Resolution
+2 Encountering Problems=Encountering_Problems
+2 Coding Notes=Coding_Notes
+2 Distribute A Design=Distribute_A_Design
+1 Engine
+2 General
+3 Engine General=Engine_General
+1 Editor
+2 Level Settings
+3 Level Properties=Level_Properties
+2 General
+3 Config File=Config_File
+3 Editor General=Editor_General
+3 Saved Designs=Saved_Designs
+3 Toolbar=Toolbar
+3 Testing Designs=Testing_Designs
+3 DicePlus=DicePlus
+3 Keyboard Shortcuts=Keyboard_Shortcuts
+2 Editing Modes
+3 Editing Modes=Editing_Modes
+3 UnDo=UnDo
+2 Global Settings
+3 Global Game Configuration=Global_Game_Configuration
+2 Walls
+3 Deleting a Wall=Deleting_a_Wall
+3 KwikKlik=KwikKlik
+3 Wall Editing=Wall_Editing
+3 Select Wall Slot=Select_Wall_Slot
+3 Replacing a Wall=Replacing_a_Wall
+3 Place Walls=Place_Walls
+3 Place Walls Using 2-d map=Place_Walls_Using_2-d_map
+3 Moving Around Using Mouse=Moving_Around_Using_Mouse
+3 Moving Around Using Arrow Keys=Moving_Around_Using_Arrow_Keys
+3 Place Walls on 3-d View=Place_Walls_on_3-d_View
+3 Show Access=Show_Access
+2 Events
+3 Event Viewer=Event_Viewer
+3 Add Event=Add_Event
+3 Event Text=Event_Text
+3 Logic Block Event
+4 Logic Block Overview=Logic_Block_Overview
+4 Logic Block Values=Logic_Block_Values
+4 Extending Logic Block=Extending_Logic_Block
+4 Logic Block Gates=Logic_Block_Gates
+4 Logic Block Actions=Logic_Block_Actions
+4 Logic Block Inputs=Logic_Block_Inputs
+4 Attribute Lists
+5 Associated String Lists=Associated_String_Lists
+5 Level Associated String List=Level_Associated_String_List
+2 Magic
+3 Editing Spells=Editing_Spells
+3 Spell Attributes=Spell_Attributes
+3 Spell Scripts=Spell_Scripts
+3 Spell Not Working?=Spell_Not_Working?
+2 Importing
+3 Importing Art=Importing_Art
+3 Importing FRUA Designs
+4 General=General
+4 Getting Started=Getting_Started
+2 Database Utilities
+3 Database Utilities=Database_Utilities
+3 Database Object Names=Database_Object_Names
+3 Editing Items Database=Editing_Items_Database
+3 Editing Spells Database=Editing_Spells_Database
+3 Editing Monsters Database=Editing_Monsters_Database
+3 Importing Binary Database=Importing_Binary_Database
+3 Importing Text Database=Importing_Text_Database
+3 Exporting Text Database=Exporting_Text_Database
+3 Editing Text Database=Editing_Text_Database
+2 Attributes
+3 Attribute Introduction=Attribute_Introduction
+3 Character Attributes=Character_Attributes
+3 Party Attributes=Party_Attributes
+3 Game Attributes=Game_Attributes
+3 Variable Tables=Variable_Tables
+2 Sound
+3 Playing Sounds=Playing_Sounds
+1 Tutorial
+2 Introduction=Introduction
+2 General
+3 The Work Space=The_Work_Space
+3 Designing an Adventure=Designing_an_Adventure
+3 Finding your Way around=Finding_your_Way_around
+3 Fixing Mistakes=Fixing_Mistakes
+3 Constructing Places=Constructing_Places
+3 Modes=Modes
+2 Step by Step
+3 Creating a new Design=Creating_a_new_Design
+3 Adding some Walls=Adding_some_Walls
+3 Placing Backdrops=Placing_Backdrops
+3 Zone Placement=Zone_Placement
+3 The Event Mode=The_Event_Mode
+3 Designing an Event=Designing_an_Event
+3 Testing a Design=Testing_a_Design
+3 Building an Event Chain=Building_an_Event_Chain
+3 Step Events=Step_Events
+3 Global Settings=Global_Settings
+3 Connecting Rooms=Connecting_Rooms
+3 Transfer Modules=Transfer_Modules
+3 Game Settings=Game_Settings
+:Base GPDL.hlp
+:Title GPDL
+1 GPDL
+2 GPDL Overview=GPDL_Overview
+2 Compiling a GPDL Program=Compiling_a_GPDL_Program
+2 Invoking a GPDL Program=Invoking_a_GPDL_Program
+2 Writing a GPDL Program
+3 GPDL Data
+4 GPDL DataTypes=GPDL_DataTypes
+4 GPDL Expressions=GPDL_Expressions
+4 GPDL Literals=GPDL_Literals
+4 GPDL Variables=GPDL_Variables
+4 Associated String Lists=Associated_String_Lists
+3 GPDL System Functions
+4 List of all functions=List_of_all_functions
+4 Regular Expressions=Regular_Expressions
+4 More Regular Expressions=More_Regular_Expressions
+4 $DEBUG=$DEBUG
+4 $EQUAL=$EQUAL
+4 $GET CHAR ASL=$GET_CHAR_ASL
+4 $GET LEVEL STATS ASL=$GET_LEVEL_STATS_ASL
+4 $GET GLOBAL ASL=$GET_GLOBAL_ASL
+4 $GET PARTY ASL=$GET_PARTY_ASL
+4 $GREP=$GREP
+4 $WIGGLE=$WIGGLE
+4 $LISTEN=$LISTEN
+4 $LISTENTEXT=$LISTENTEXT
+4 $LOGIC BLOCK VALUE=$LOGIC_BLOCK_VALUE
+4 $MIDDLE=$MIDDLE
+4 $RANDOM=$RANDOM
+4 $SAY=$SAY
+4 $SMALL PICTURE=$SMALL_PICTURE
+4 Character Variables=Character_Variables
+4 Game Variables=Game_Variables
+4 Money Variables=Money_Variables
+4 Party Variables=Party_Variables
+4 $SET QUEST=$SET_QUEST
+3 GPDL Programs
+4 GPDL Program structure=GPDL_Program_structure
+4 GPDL Assignment Statements=GPDL_Assignment_Statements
+4 GPDL Pragma Directives=GPDL_Pragma_Directives
+4 GPDL Functions=GPDL_Functions
+4 GPDL Nested Functions=GPDL_Nested_Functions
+4 GPDL Function Calls=GPDL_Function_Calls
+4 GPDL comments=GPDL_comments
+4 GPDL Structure keywords
+5 GPDL $IF keyword=GPDL_$IF_keyword
+5 GPDL $SWITCH keyword=GPDL_$SWITCH_keyword
+5 GPDL $WHILE keyword=GPDL_$WHILE_keyword
+

@@ -1,0 +1,3367 @@
+>>>> UAF Version 0.9.1.4 <<<<
+
+Sept 01, 2007
+
+**** New Features ****
+
+Editor:
+- Added design name and version to the Open Design window
+
+Engine:
+- textbox output window is defined by a boundary rectangle
+  instead of a starting x,y (fixed width).
+- removed the blank spacing between money types for which
+  the character had a zero amount of
+- character combat icons facing in one direction needed 2 key presses to move the icon in 
+  the opposite direction by 1 square. Now you only need a single key press.
+
+Both:
+- This time, the winners from the DC art contest were *really* added
+- Updated sound files
+- Updated art to include 2nd DC Art conctest winners, plus other improvements
+
+**** Bug Fixes ****
+
+Editor:
+- Range check race/class definitions to prevent engine crashes
+
+Engine:
+- display error if character creation fails
+- fixed error display for case where error happens during character creation
+- prevent divide by zero error if new character is multiclass, with zero classes
+- events along map edge that forced party backup did not wrap party to opposite map side
+- Adjusted Paladin/Ranger spell displays
+- Fixed bug where if the 1st PC went down, no PCs could be bandanged
+
+Both:
+- Corrected Paladin, Ranger, Druid XP tables to be more consistent /w 1st. Ed.
+- Fixed monster types for server undead monsters
+- Corrected some minor errors in items.txt and spells.txt
+
+**** Script Changes ****
+- none
+
+>>>> UAF Version 0.9.1.3 <<<<
+
+April 02, 2006
+
+Welcome Tarlanon! 
+
+Thank you Tarlanon for helping out with DC development.
+This release mostly contains fixes that Tarlanon has made.
+
+**** New Features ****
+
+Editor:
+Engine:
+
+Both:
+- Converted all art to .png format (saved well over 1 MB in the download size)
+- Added the winners from the 1st DC art contest (Names available for credits of DC) to the default art set.
+
+**** Bug Fixes ****
+
+Editor:
+- Fixed NPC editor to allow the designer the ability to set XP reward for PC
+
+Engine:
+- Fixed design search when starting UAFWin without specifying a design
+- Fixed unconscious characters not waking up after resting
+- Fixed bandage so it only bandages the most hurt PC, instead of all PCs at once.
+
+Both:
+
+**** Script Changes ****
+
+None
+
+>>>> UAF Version 0.9.1.2 <<<<
+
+July 04, 2005
+
+**** New Features ****
+
+Editor:
+- Added menu options to display error logs for both 
+  editor and engine. Engine error log is the one that 
+  comes from testing design within editor. 
+
+Engine:
+
+Both:
+- Added money type to WhoPays event
+- Added flag to character editor to allow/disallow 
+  presence in combat
+
+**** Bug Fixes ****
+
+Editor:
+
+Engine:
+- Fixed engine crash caused by having no monsters in
+  combat event in combo with option PickOneRandomly enabled
+- Fixed title screen not displaying if fade-in turned off
+- Fixed THACO adjustment for strenght and weapon bonuses
+
+Both:
+
+>>>> UAF Version 0.9.1.1 <<<<
+
+November 27, 2004
+
+**** New Features ****
+
+Editor:
+- Changes to the event editor
+	- input focus defaults to event type list
+	- default event type is TextEvent
+	- event editor remembers last event type used
+- changed combat treasure dialog to allow more than
+  eight items to be given
+
+Engine:
+- added new event triggers
+	- party has spell memorized
+	- party is located at map x,y
+- party member trade disabled during combat if both
+  characters are not adjacent to each other
+
+**** Bug Fixes ****
+
+Editor:
+- config.txt file only copied to design folder if it is
+  missing, or if the design's config.txt is from an older
+  version of DC
+- removed 'No Event' from list of event type choices
+- small pic settings could be lost for encounter event
+- Adding large quantity (ie: 50000) of gems/jewelry to
+  treasure event stalled editor
+- Teleport event did not allow pics if AskYesNo disabled
+
+Engine:
+- added checks to make sure max combatant limit is not
+  exceeded (current limit is 100)
+- constant value configured for gem/jewelry appraisal now works
+- querying party variables returned an empty string
+- REST appeared in MAGIC menu even if resting disabled for zone
+- icon selection for new characters skipped icons
+  every other loop through available list
+- custom background not displayed properly when event using
+  small pic was used
+- TakePartyItems event, take money from entire party didnt work
+- Added menu shortcuts to dynamic menu items
+- multiple Ctrl+Enter's in sequence in text event are no longer
+  combined into a single blank line
+- Characters now age as game time passes
+- AutoMap data for area view was not maintained properly for
+  each level
+- encounter event didn't adjust monster distance when
+  party was up against a wall
+- Two rings could not be readied at the same time
+- GiveTreasure event: taking more gems/jewelry than allowed
+  by encumbrance limit made the gems/jewelry disappear
+- loading a saved character didn't recompute encumbrance
+  based on settings of current design (coin weight)
+- characters that are dying when combat ends (-10 < hp < 0)
+  are auto bandaged to 0 hp and unconscious status
+- selected item in vertical menus switched to first item on
+  page when using NEXT/PREV to change pages
+- ALT+TAB could hang the game if showing an alternate
+  backdrop that uses alpha+transparency
+- AutoDarken viewport displayed parts of background
+  over walls
+- default art was used even if different art specified
+  for zone
+
+Both:
+- updated both default door pics with replacements from Manikus
+
+>>>> UAF Version 0.9.1.0 <<<<
+
+March 28, 2004
+
+**** New Features ****
+Editor:
+- added ability to search events by matching event id
+
+- added copy/paste to spell editor
+
+Engine:
+- width of combat stats box is configurable
+	added COMBAT_STAT_BOX_WIDTH = 240 to config.txt
+
+- position of char portrait frame is configurable
+	added VIEWPORT_FRAME_OFFSET = 417,-19 to config.txt
+
+Both:
+- script compiler would not successfully compile if the 
+  script name contained the '|' character (as some 
+  objects do to keep the name unique)
+
+- For each combat monster, the quantity can be configured
+  to be random (specify dice roll used)
+
+- Added list of music to play while encamped,
+  which will override any background music that
+  might be playing
+
+- Increased number of tavern tales to 20
+
+- Added option to tavern event that will allow
+  each tale to be told only once per tavern visit.
+
+- Added 15 vaults. TakePartyItems and Vault events
+  must specify which vault to use.
+
+- added option to shops which makes them able to buy
+  back only the items that they also sell.
+
+- added spell script that is executed when the spell
+  target's saving throw fails, another script for when
+  the target makes a successful saving throw.
+
+- added class flags to spells. The flags let you 
+  specify which particular classes can cast each
+  spell. 
+
+  For instance:
+  Rangers can cast clerical spells at 8th level,
+  but they don't pick from the usual list of
+  cleric spells. So you create a clerical spell
+  called Farire Fire, then specify that only
+  Rangers can cast it (maybe Druids too).
+
+  For spells like CUre Light Wounds, you can
+  specify that Clerics+Rangers+Druids can cast
+  it, as long as it's ok that they all cast the
+  same spell. If you need the CLW spell to 
+  behave differently when a Ranger casts it, then
+  you need to create a different CLW spell (and
+  call it 'Cure Light Wounds|Ranger' to keep the
+  spell name unique)
+
+- added flag to MagicUser spells, and changed the way
+  one of the current flags works:
+	- Can Scribe (at level change)
+	- Auto Scribe (at level change)
+
+  Can Scribe - if enabled, MU will be allowed to choose
+               to add this spell to the spell book
+  Auto Scribe - if enabled, MU will automatically
+                get this spell added to spell book
+
+  These flags come into play whenever the MU changes
+  character level. Each new MU will be automatically
+  given all first level spells with AutoScribe=TRUE.
+  This same new MU will then be given a chance to select
+  to add additional first level spells that have 
+  CanScribe=TRUE. Normal spell limits always apply.
+
+  In this manner, the designer can force certain
+  spells into the spell book, and let the player
+  choose the desired additional spells.
+
+**** Bug Fixes ****
+
+Editor:
+
+- fixes for spell book handling while generating NPC's
+
+Engine:
+
+- Cleric CureLightWounds spell didn't reset char status
+  to Okay after adjusting hitpoints.
+
+- tavern drinks didn't display a 'you drink' message
+  if the drunk trigger level wasn't set.
+
+- more fixes related to color tags in event text
+
+- lots more bug fixes for spells, especially for 
+  multiclass, but including letting non-clerics
+  memorize cleric spells at the correct level.
+
+- Loading a saved game could crash in some situations
+
+- removed duplicates from screen that displays the
+  current spell effects for a given character.
+  (ie: Bless spell, and Bless special ability)
+
+- fixed area view map so that it fills the entire 
+  viewport when using 800 and 1024 modes
+
+- players can now flee the map (exit is 
+  confirmed before being allowed)
+
+- fixed combat to allow characters to occupy
+  same square as dead/dying character.
+
+- made some tweaks to enemy intelligence
+  to improve target acquisition
+
+- fixed a problem with bandaging dying characters
+
+Both:
+- fixed problem with configuring and using a test party
+  when testing your design
+
+>>>> UAF Version 0.9.0.9.1 <<<<
+
+January 17, 2004
+
+**** Bug Fixes ****
+
+Editor:
+- event text searches converted the event text
+  to lower case.
+- temple event didn't remember the max spell
+  level allowed if the designer changed it.
+Engine:
+- TakePartyItems event didn't work when 'TakeAll' option used
+
+>>>> UAF Version 0.9.0.9 <<<<
+
+January 13, 2004
+
+**** New Features ****
+
+Editor:
+- added ability to specify which spells will be used
+  when the party uses the 'FIX' menu to heal
+- all spell scripts are now edited using same screen
+- added search dialog that lets you search the event
+  tree and highlight matching events. You search
+  the tree labels, and optionally include all event
+  text + event pic filenames.
+
+Engine:
+- confirmation requested before 'DROP'-ing char from party
+- FIX menu command invokes spells specified by designer
+- color-coded spell names in the memorized list
+     white - this spell not selected for memorizing
+     green - num selected equals num memorized
+     yellow - num selected greater than num memorized
+              (need to rest to restore spell count)
+
+Both:
+- added third level spells for clerics
+- added several new scripts to support new cleric spells
+- added a couple of special abilities 
+
+**** Bug Fixes ****
+
+Editor:
+n/a
+
+Engine:
+- fixed combat wall display glitch for 4-way intersects
+- fixed location of camp rest text in 800 and 1024 res
+- menu text disappeared if COLOR_WHITE was changed from default
+- fixed location of question list event text in 800/1024 res
+- numerous misc spell-related fixes
+- fixed problem where some spells didn't get memorized while
+  resting
+
+Both:
+n/a
+
+>>>> UAF Version 0.9.0.8 <<<<
+
+November 04, 2003
+
+**** New Features ****
+
+Editor:
+- allow double-clicking to copy script function from function 
+  list to script edit window
+- put copy of script in function list in clipboard, which allows
+  use of copy/paste when editing scripts
+Engine:
+Both:
+- added distance option to Text events (affects sprite display)
+- added ability to choose party members when testing design
+
+**** Bug Fixes ****
+
+Editor:
+- selecting a new overland map has been fixed
+- fixed some screwy behavior in the small pic animation style dialog
+Engine:
+- spell display screen for multiclass characters improved
+- enabled DETECT and POOL/SHARE options for treasure received after combat
+- 6 chars + 2 NPC's again
+- fixed distance option for sprite display in Combat events
+- quests/items/keys in saved game would remove new objects 
+  that were added to design since saved game file was created.
+Both:
+- fixed some memory leaks in the stack trace code
+- fixed some uninitialized memory errors in the character code
+
+>>>> UAF Version 0.9.0.7 <<<<
+
+August 03, 2003
+
+This release fixes the problem with loading
+and playing MP3 and MIDI files.
+
+
+>>>> UAF Version 0.9.0.6 <<<<
+
+July 15, 2003
+
+**** New Features ****
+
+Editor:
+Engine:
+- DISPLAY menu is available when viewing 
+  character so that the currently active
+  spells on a character can be viewed
+  during combat.
+- GiveDamage event displays damage given
+  to each character and plays 'hit' sound
+- button labels use first character as
+  keyboard shortcut if all of them
+  are unique.
+
+Both:
+
+- added new wall config designed by
+  Marc Smith
+- added more Cleric and MagicUser spells
+- added (or enabled) more special abilities
+	Mirror Image
+	Invisible
+	InvisibleToAnimals
+	InvisibleToUndead
+	Enfeebled
+	Charm Person
+- two more spell duration types are working
+	By Damage Taken
+	By Nbr Attacks Taken
+- started using monster magic resistance
+- added spell linger animation - this is the
+  animation used for spells which hang around
+  on the combat map (ex: Stinking Cloud). All
+  who walk into the linger area can be
+  affected by the spell.
+- added new/updated monsters from Marc Smith,
+  Manikus, Steve McDonald, Nol Drek, and Ziroc
+	Vampire
+	Earth Elemental
+	Fire Elemental
+	Green Dragon
+	Black Dragon
+	Lizard Man
+	Lizard Man King
+	Minotaur
+	Troll	
+	Displacer Beast
+	Enormous Spider
+	Gnoll
+	Iron Golem
+	Rakshasa
+	Rakshasa Rukh
+	Giant Rat
+	Fire Giant
+	Ettin
+	Hill Giant
+	Frost Giant
+
+- added updated wilderness art from
+  Steve McDonald
+- added alpha-blend option for combat sprites
+  (recommended for linger animations so that
+   combatants moving into animation can be seen)
+
+**** Bug Fixes ****
+
+Editor:
+Engine:
+- fixed 'Force Party Exit' handling for the
+  WhoPays and TrainingHall events if party
+  chooses not to pay, or not to train.
+- fixed some problems present when using
+  a custom screen background image.
+- Bandage menu option should work now.
+- Friendly monsters were placed with enemy
+  instead of party when combat started.
+Both:
+- fixed drawing of blocked walls in area
+  view.
+
+>>>> UAF Version 0.9.0.4 <<<<
+
+January 05, 2003
+
+**** New Features ****
+
+Editor:
+
+- all available script functions are listed in window
+  where spell scripts are entered.
+
+- NPC editor now uses race/class names from text
+  config files
+
+Engine:
+
+- when leaving Shop,Temple, and Vault, the party's
+  pooled money will be automatically converted to
+  coins of greater value when shared. ie: 1000 
+  copper will be converted to 1 platinum.
+
+- monster options are more fully utilized, such as
+  the form flags (snake, mammal, etc), penalty flags,
+  and option flags.
+
+Both:
+
+- added more default spells for Clerics and
+  Magic Users.
+
+- updated the help file to include more help for 
+  spell editing and GPDL script syntax/usage.
+
+- added second script to spell's affected attributes
+  that can optionally modify the delta value applied
+  to the attribute being changed based on current
+  game/party/character values.
+
+- added third script to spell's affected attributes
+  that can optionally apply a +/- bonus to the 
+  spell targets saving throw.
+
+- New monster icons from Manikus
+	Kobold
+	Bugbear
+	Hobgoblin
+	Hobgoblin Chief
+	Wraith
+
+- added $GET_VAULT_MONEYAVAILABLE to GPDL scripts to
+  allow query of current vault funds.
+
+- added several new GPDL script functions
+
+- added support for poisoned characters.
+  Such characters will:
+	- lose hitpoints per minute advance
+	  if not in combat
+	- lose hitpoints per round advance
+ 	  if in combat
+  Also added support for cleric spells
+	Slow Poison, Neutralize Poison
+
+- added special attacks to monsters so that
+  they can have magical attacks. Each attack
+  can invoke a spell which does the work of
+  affecting character values, executing 
+  scripts, saving throws, etc. Spells used
+  for this purpose can be made invisible to
+  the player. An example spell called
+  'MonsterPoison' is included and can be
+  used for such things as a Wyvern's tail
+  attack.
+
+- Added support for wizard-locked doors. Designer
+  can choose which spell unlocks each door that has
+  wizard-lock obstruction. If highlighted party
+  member has that spell memorized, the option to 
+  use it for opening locked door is presented. 
+  Bashing is also still an option. A 'Knock'
+  spell is provided by default for MagicUsers
+  to use for this purpose, but any spell can
+  be chosen by the designer.
+
+- Added more special abilities for spells and items
+	Hold Person
+	Silenced
+	Poisoned
+	Slow Poison
+
+**** Bug Fixes ****
+
+Editor:
+
+- gave the GiveDamage event better default
+  values.
+
+Engine:
+
+- fixed spell memorization time when party
+  has spell casters and non-casters together.
+  Also, don't include memorization time
+  for characters unable to memorize (dead, 
+  etc).
+
+- fixed elapsed time calculations for daily
+  hit point gain after loading saved game.
+
+- fixed spells that affect hit points so that
+  they don't set hit points greater than
+  character maximum.
+
+- Temple event spell casting didn't always
+  work right.
+
+- GiveTreasure event became disoriented after
+  asking party if they wanted to leave treasure
+  behind.
+
+- Enable SHARE menu in GiveTreasure event to
+  automatically distribute the given money
+  amongst party members.
+
+Both:
+
+- fixed problem in GPDL compiler that prevented
+  compiling of functions which require more than
+  one parameter and where first param is of 
+  type 'Actor'
+
+>>>> UAF Version 0.9.0.2 <<<<
+
+November 04, 2002
+
+**** New Features ****
+
+Editor:
+Engine:
+- Magic Users can choose from a list of
+  spells when eligible for a new spell
+  level (new characters, after training).
+
+Both:
+- added spell targeting option for
+  spells that travel in a line from
+  caster to target, affecting all
+  targets in between. The line can
+  start at the caster, or at a 
+  specified map location.
+
+**** Bug Fixes ****
+
+Editor:
+Engine:
+- another fix for the combat death animation
+  being displayed in the wrong location
+- restore NPCs to full health when
+  starting a new game
+- fixed mixup involving identifying
+  NPCs vs PCs in the party
+- fixed 'party have item' event
+  trigger checking
+- some multiclass names were triggering
+  font colors (Cleric/Ranger=/r=red)
+- smoothed the screen transitions when
+  missiles move into corner of screen
+Both:
+
+
+>>>> UAF Version 0.9.0.0 <<<<
+
+September 29, 2002
+
+**** New Features ****
+
+Editor: None
+
+Engine:
+- added Paladin ability of 'Laying on Hands' 
+  to heal 2HP per character level
+- automatically give 'Protection From Evil'
+  ability to Paladins
+- added tracing to help monitor recorded 
+  game playback.
+
+Both:
+- added 'Cone' spell targeting type
+
+**** Bug Fixes ****
+
+Editor:
+- viewing GlobalData could possible delete or
+  corrupt NPC/Item events.
+- Copy/Paste of NPC/Item data could corrupt
+  events associated with them.
+- quests could not be set as event triggers
+
+Engine:
+- put party members on manual combat control
+  after loading from saved game.
+
+Both:
+- trait keys were not used properly
+- event management code was occassionally
+  not properly copying event data as it
+  was moved around between lists.
+- some general fixes pointed out by
+  using the Lint tool.
+- disable sound if using BASS DLL 
+  version 1.4 or less.
+
+>>>> UAF Version 0.8.9.0 <<<<
+
+August 5, 2002
+
+Notes:
+
+FRUA importing works much better now. All events
+should import just fine. There is a new option
+that allows you to import FRUA art before 
+importing the design. Unzip the FRUA walls
+and backdrops that have been converted for DC
+into a single folder, then import them all. This
+will make the imported design look just like
+the original.
+
+**** New Features ****
+
+Editor:
+- FRUA Design importing is really working now,
+  minus spells and some other magical stuff.
+
+- Allow changing of design screen resolution
+  setting without using external utility
+
+- Allow changing editor screen resolution
+  setting independently of design res setting
+
+- Increased the event text output so that more
+  text is logged to a file (button text, etc).
+
+- Text from NPC and Item events is logged to
+  a separate file.
+
+Engine:
+
+- TempleEvent can now cast spells on the party
+
+Both:
+
+- For compatibility with UA, added option for
+  event buttons - 'Display only when up close'
+
+- Added option to GiveTreasure event to silently
+  give all treasure to active party member.
+
+**** Bug Fixes ****
+
+Editor:
+
+- Under certain circumstances, the editor would
+  delete NPC and Item events without notice.
+
+- Events and blockages are prevented from being
+  placed in the same spot on overland maps
+
+Engine:
+
+- Fixed computation of spell memorization time
+
+- Combat borders were not displayed properly
+  when using 800x600 and 1024x768 modes
+
+- Fixed engine crash when attempting to use
+  TempleEvent to cast a spell 
+
+- For compatibility with UA event triggers, 
+  the quests can be used with the PartyHasItem
+  trigger.
+
+- Event text colors did not wrap around to the
+  next line properly when using 1024 display mode.
+
+- Fixed display of negative AC values when
+  viewing character stats
+
+Both:
+
+
+>>>> UAF Version 0.8.8.0 <<<<
+July 07, 2002
+
+Note: Some of the text config files have
+      changed again for this release. The
+      editor will force a reload of these
+      files the first time an older design
+      is loaded. This is simply to ensure
+      that your design is using the correct
+      configuration data for race/class.
+  
+**** New Features ****
+
+Editor:
+Engine:
+Both:
+
+- Heal Party event has more options for
+  healing hit points
+
+- Added GPDL functions that
+  allow access to character money,
+  gems, and jewelry.
+
+- Added GPDL function that queries
+  total party funds.
+
+- Allow GPDL scripts as event triggers
+
+- Allow GPDL functions as LogicBlock inputs
+
+- Allow event text to access results from
+  LogicBlock execution via temporary
+  attributes.
+
+- special abilities can display certain
+  messages when used or activated.
+
+- added option to item editor to disallow
+  halve/join menu on inventory screen
+
+- Diceplus expressions are now fully 
+  implemented. You can use any combination
+  of race, class, ability, and dice values.
+  You can also use parentheses. 
+
+  Examples: 
+  3 * (level>2) - Elf + (strength>=15)
+  female + 6d10 * Cleric
+
+- updated the help file with regards
+  to above new features
+
+**** Bug Fixes ****
+
+Editor:
+Engine:
+- monster experience points were doubled
+  after winning a combat event
+- large icon size not accounted for when
+  placing/moving them on combat map.
+- combat animations center over large icons
+- combat map moves more fluidly as it follows
+  missile icons
+- GPDL scripts affecting party members could
+  sometimes access the wrong character
+Both:
+
+
+>>>> UAF Version 0.8.7.0 <<<<
+June 16, 2002
+
+**** New Features ****
+
+Editor:
+- more of the race/class abilities are used
+  in the text config files, including age,
+  skill dice, and skill dice modifiers.
+
+- added 'Import All' button to load all text
+  config files together in the proper sequence
+
+- Wall placement by dragging mouse can be locked
+  to vertical or horizontal placement. Press
+  'v' key to place vertical walls. Press
+  'h' key to place horizontal walls.
+
+- you can erase walls by holding down the
+  right mouse button and dragging the mouse
+  cursor over the walls you want to remove.
+
+Engine:
+- the 'ESC' key is now mapped to the 'EXIT' 
+  menu item for most all menus. You can press
+  'ESC' to back up to the previous menu, just
+  as if you selected 'EXIT'. To perform an
+  immediate exit from the game engine (which 
+  is what ESC previously did) press function
+  key 11 (F11).
+
+Both:
+- Talk event for NPC's can be disabled if
+  NPC is Dead/Unconscious
+
+- Bass sound lib is updated to version 1.6
+
+**** Bug Fixes ****
+
+Editor:
+- the level info table was not updated if a
+  level file was deleted outside of the editor
+
+- got rid of the beeping sound that happens
+  when you press one of the keyboard
+  shortcuts for placing walls. (I really
+  didn't notice it until now, my speaker
+  is always muted)
+
+Engine:
+- display number of moves remaining while a
+  monster is moving in combat
+
+- decreasing skill scores below race/class
+  minimums for new characters could sometimes
+  continue to increase AVAIL points even after
+  allowed skill minimum was reached
+
+- responding 'No' to exiting game menu and then
+  returning to previous menu could occasionally
+  make the previous menu behave erratically
+
+- The game could not be loaded or saved from
+  the Training Hall.
+
+>>>> UAF Version 0.8.6.0 <<<<
+
+May 26, 2002
+
+**** New Features ****
+
+Editor: N/A
+
+Engine:
+- the Give Experience event can remove
+  experience points too, but current
+  character level limits are enforced.
+- the GPDL Event can accept a function
+  parameter.
+
+Both:
+- Added 'Party gets no experience' option
+  to combat event.
+- Added atack message to items that is
+  substituted when item is used to attack
+  a target in combat.
+- LogicBlock event can add/delete/query
+  party attributes.
+- LogicBlock/GPDL can query a character's
+  type (PC, NPC, Monster).
+- Implemented Shillelagh and Displacement
+  special abilities.
+
+**** Bug Fixes ****
+
+Editor:
+- Fixed a problem in the event viewer that
+  could possibly replace an existing root
+  event with an event just created that
+  should have gone into an unused position.
+  This could effectively erase a chain of
+  events. Can only happen when messing with
+  root events, not possible for chained events.
+- Deleting LogicBlock events removed them 
+  from the event viewer, but did not delete
+  the True/False event data.
+
+Engine:
+- fixed problem with inventory where incorrect
+  items were being displayed when multiple pages
+  were needed to display all items.
+
+Both: N/A
+
+>>>> UAF Version 0.8.5.2 <<<<
+
+May 19, 2002
+
+**** New Features ****
+
+Editor:
+- confirmation is required before changes in
+  current design are discarded due to loading
+  another design or exiting editor.
+
+Engine: N/A
+
+Both:
+- Special Abilities are enabled for spells, items,
+  and monsters, but only the following are currently
+  able to modify engine behavior:
+  DetectMagic,
+  Enlarge/Reduce, 
+  Bless/Curse, 
+  ProtFromEvil/Good,
+  Shield,
+  Entangle,
+  InvisToAnimals,
+  InvisToUndead,
+  Sanctuary
+
+- when using SetTime option in PassTime event,
+  if any of Days/Hours/Minutes are zero then
+  that field will default to current party
+  clock time.
+
+- updated the help file
+
+**** Bug Fixes ****
+
+Editor:
+- changed DetectMagic spell to 'absolute' (was 'delta')
+
+- deleting the current level and changing it to
+  an overland level didn't work
+
+- changing default overland map image sometimes
+  needed to be performed twice to make it stick.
+
+- Fixed file browse dialog that imported binary object 
+  databases, it said 'Save' instead of 'Open'.
+
+Engine:
+- spell saving throws were not used correctly in combat
+
+- encumbrance for magical items was not used
+
+- provided more text space for weapon damage on char stats
+  screen
+
+Both: N/A
+
+>>>> UAF Version 0.8.4.2 <<<<
+
+April 22, 2002
+
+For the first time in DC history, you
+can cast a spell in combat. Spells still
+have problems though, but they will be
+worked out.
+
+Most of the available spell options
+in the editor should work, except for
+the duration 'By HP of Damage'.
+
+Some limitations:
+
+- No way to target a path, as a
+  lightening bolt would need.
+- No way to target a cone-shaped
+  area, as a cone of cold would need.
+- animations that linger, such as for a
+  Stinky Cloud, aren't supported yet.
+- casting multiple spells that affect
+  the same character attribute, where
+  one spell is permanent and one has
+  duration, won't work right. 
+
+  Example: Cast spell that reduces
+  hit points by one point for two
+  rounds. Then cast spell that restores
+  hit points permanently (Cure Lt Wnds).
+  The character will still show the 
+  reduced hp total from the first spell
+  until the duration expires.
+  
+**** New Features ****
+
+Editor:
+- transfer dialog shows level name along
+  with level number
+- Special Keys can be assigned as the key
+  which unlocks wall blockages of 
+  type 'Locked, Special Key' 1-8.
+
+Engine:
+- You can record a game session and then
+  play it back later. 
+- Changed internal game timer to use a virtual
+  tick count. This should keep everything
+  moving at about the same speed for
+  different CPU speeds.
+- combat uses much less cpu cycles
+  
+
+Both:
+- Includes a new version of the BASS
+  sound lib which is supposed to decode
+  MP3 files faster.
+- Updated the ZLib library to latest
+  version.
+- Added a configurable limit to the 
+  number of times an animation will loop.
+- Added more spell sounds.
+- Added ability to set/get character
+  attributes using Logic Block event.
+- Updated the help file for recent Logic
+  Block changes.
+
+**** Bug Fixes ****
+
+Editor:
+- There was no button to edit the Thief 
+  starting equipment.
+- Fixed overland map scroll problem
+
+Engine:
+- only show memorized spells for
+  cast spell menu
+Both:
+
+>>>> UAF Version 0.8.3.1 <<<<
+
+**** New Features ****
+
+Editor:
+Engine:
+Both:
+
+**** Bug Fixes ****
+
+Editor:
+Engine:
+- changing party direction after an
+  event that forced party backup
+  would move the party.
+- party facing was displayed when
+  using an overland map
+- force shop items to be
+  identified
+- journal entry color tags were
+  not working properly when they
+  were paired. "/b abc /b"
+Both:
+- fixed new pass time event options
+
+>>>> UAF Version 0.8.3.0 <<<<
+
+**** New Features ****
+
+Editor:
+- added all configured money types to
+  the Take Party Items event
+- added option to PassTime event which
+  lets designers allow players to stop
+  the passage of time. Default is to 
+  not allow time to stop passing.
+- added option to PassTime event which
+  lets designers set the game clock to
+  a specific time
+- added option to PassTime event which
+  lets designers choose to instantly
+  pass the time with no countdown
+  displayed
+- starting equipment for new characters
+  now has base items, plus items given
+  based on character class.  
+- Context help in the LogicBlock event
+  dialog.
+
+Engine:
+- properly formatted the inventory, spell,
+  treasure, and shop screens. Fixed
+  the problem with aligning the columns
+  containing variable-width fonts.
+- Allow Exit menu to halt passage of time
+  when resting
+- Ask confirmation before exiting game
+  from encamp menu. Changed Leave Game
+  to just Quit.
+- CPU usage is greatly reduced
+- Use TAB key to switch between party
+  members listed in the party window
+- ask confirmation before exiting
+  game from main/training menu.
+
+Both:
+- Added 'Must Press Return' option to
+  special item/key event. default=yes
+- Added 'Allow party to drop' option
+  for special items and keys.
+- Finished updates to experience
+  point tables. All values are from
+  AD&D 2E rules, and all range from
+  level 1 to 30.
+- Step/Bump sounds can be disabled
+  for a level.
+
+**** Bug Fixes ****
+
+Editor:
+- CTRL-L displayed the level list as it
+  should, but it also placed a left wall
+  on the map.
+- fixed problem with search paths in
+  1024 and 800 modes.
+- Adding an item and then canceling the
+  operation would delete an existing item.
+
+Engine:
+- Made it easier to take party member
+  out of Quick mode. Press any key
+  while quickened character has focus.
+- Fixed multiclass spell handling.
+- Fixed HealParty event for case where
+  random party member is used.
+- modifying stats for characters with
+  racial modifiers applied the
+  modifiers more than once.
+- if multiple step events were configured
+  to trigger in same zone, only first one
+  triggered
+- encounter event wasn't displaying the
+  button options
+- character's didn't age during rest or
+  pass time events.
+- added more room for large encumbrance
+  values on char stats screen
+- sharing money didn't check the
+  encumbrance limits for each
+  character and shared all money
+  even if too much to carry.  
+- since sharing pooled funds now has a
+  chance of leaving money in the pool due
+  to exceeding encumbrance limits, when
+  leaving an area with pooled funds and 
+  receiving the question about leaving the
+  funds behind a negative response will
+  return the party to the previous screen
+  rather than automatically sharing the
+  funds and then leaving the event.
+- Adding temps to the party wasn't tracking
+  the characters that were already in
+  the party very well.  
+- subraction involving money didn't round
+  properly
+- TakePartyItems event didn't handle the
+  item or money quantity properly
+- Days portion of game clock will now start
+  at 1 rather than 0
+- can no longer Modify dead characters
+- chaining multiple events with party
+  backup enabled would do backup for
+  each event instead of only once.
+- events chained to training hall never
+  executed.
+- the money list in a shop was not
+  displayed properly if nobody had
+  any platinum.
+- WhoPays/WhoTries events didn't chain to
+  the next event when using Backup Party
+  option
+- WhoPays event displayed failure text
+  even when no party member was selected
+  (the EXIT menu was chosen)
+Both:
+- items such as potions,elixirs,necklaces
+  can have multiple instances 'Ready' at
+  the same time, but DC didn't allow it.
+  To do it now, make the item require
+  0 (zero) hands, put it in the AmmoQuiver
+  location, and set the weapon type to
+  'Not Weapon'. Any number of such items
+  can be readied at the same time.
+- DirectX surface cleanup wasn't deleting
+  sprite and font data, so the surface
+  limit could be reached which leads to
+  graphics failures.
+
+>>>> UAF Version 0.8.2.0 <<<<
+
+**** New Features ****
+
+Editor:
+- NPC experience points are editable
+- removed menu option for deleting
+  design files and made it a suboption
+  when clearing a design.
+
+Engine:
+- the journal display has two new menu
+  options, Last and First, to jump to
+  the last and first pages. The most
+  recent entries (last page) will be
+  displayed first when initially
+  viewing the journal.
+- allow 0-9 number keys to adjust volume
+- character creation can be aborted
+- player is asked before saving created character
+- Gender,Class,Alignment selection screens show
+  previous selections for current character.
+- joining items merges all similar items into
+  single inventory slot
+- magical items can be joined 
+- For Shop, Temple, and GiveTreaure events 
+  the party will be asked if they want to leave 
+  the pooled money behind (lose it) or share it 
+  again before leaving
+- Keyboard shortcuts for menu options now appear
+  in highlighted text too
+
+Both:
+- updated exp point tables and class
+  restrictions to follow AD&D 2e rules.
+- Added NPCInParty event trigger. Yes, I know
+  the LogicBlock can handle this but after 
+  getting numerous requests for this trigger
+  I decided to stop explaining the LogicBlock
+  and just add it.
+- updated classes.txt to provide full
+  multi-class names, such as
+  Cleric/Fighter instead of 'C_F'.
+
+**** Bug Fixes ****
+
+Editor:
+- spelling correction in transfer event dialog
+- changing to a different overland background
+  image using the level properties dialog did
+  not take effect, the level continued to use
+  the original image.
+- clearing an overland level did not load the
+  default overland map, causing display errors
+  to be reported, and leading to a hard crash
+  when the editor was next started.
+- the settings for the previous editing session
+  were loaded and used, but not checked for
+  validity, and bogus values could cause a
+  hard crash
+- In GiveTreasure event, trying to give more
+  than one of an item type that bundles did
+  not work (such as giving 2 bundles of 20
+  arrows).
+
+Engine:
+- when testing a design and displaying area
+  view with auto-mapping enabled, only show 
+  event locations for visited squares.
+- party start location was not initially
+  registered as a visited location for the
+  auto-mapping area view
+- the Deposit menu option is now disabled in shops
+- Modifying an existing character messed up it's
+  stats (this is the Modify menu option).
+- widened char stat number display, it was
+  chopping some numbers
+- For Vault menu, both Deposit and Prev used
+  same keyboard shortcut
+- after setting volume to 0, it could not
+  be raised again
+- Max party size could be exceeded if all
+  available characters selected at once. The
+  party couldn't adventure that way, but the
+  party size was still temporarily overloaded.
+- journal text had some trouble with
+  unterminated color tags, event text colors
+  still had some problems with color tags being
+  in effect across multiple boxes of text
+- disable Drop menu if item is readied
+- disable Drop menu if item is a special
+  item or key
+- stopped using transparency for highlighted
+  text, it will now always be a black font on
+  a white background (+keyboard shortcut color)
+- Special items and keys will no longer display
+  a quantity value in the inventory list. If you
+  want to continue displaying the quantity, then
+  modify the global attribute for the value
+  'SpecialItemKeyQtyVersion' to be 0.810.
+
+Both:
+- Paladins and Rangers didn't get a strength
+  bonus for strength of 18.
+
+>>>> UAF Version 0.8.1.0 <<<<
+
+**** New Features ****
+
+Editor:
+Engine:
+Both:
+- Added support for 'Examine' event to 
+  special items and keys.
+- Added screen capture option. Use F1
+  for the engine and Help->Screen Capture
+  for the editor.
+
+**** Bug Fixes ****
+
+Editor:
+- only backup design files during save if they
+  have previously been successfully saved,
+  otherwise the existing design files may be
+  invalid and backing them up could overwrite
+  a working backup.
+- item editor wasn't enabling the in-route sprite
+  animation properly for ammo types
+Engine:
+- experience gained in combat is now actually
+  distributed to party members after combat
+  is over (it was before, but was later removed
+  by mistake)
+- if background midi playing, then enter combat
+  that also has background midi, the first few
+  seconds of combat operate very slowly until
+  midi starts playing
+- an unterminated font color tag would cause 
+  menu text to use the wrong color after a text
+  event that didn't require the user to press
+  enter to continue.
+- color tags that spanned multiple text boxes
+  were not working properly
+- the mouse cursor was blanking out some of
+  the formatted event text if it was
+  hovering over the text box area when
+  the event started
+- items were using custom examine label
+  from npc carrying the item (cut-n-paste error)
+- detect magic and identify spell menus were
+  displayed in GiveTreasure event even if
+  current character didn't have them
+  memorized
+- combat could hang if party member was first
+  to move on a round after monster was last
+  to move (introduced with 0.790 changes)
+
+>>>> UAF Version 0.8.0.0 <<<<
+
+**** New Features ****
+
+Editor:
+Engine:
+Both:
+- title screen sequence can be edited, allowing
+  multiple images are AVI movies
+- added Examine event to items and NPC's. The
+  event and it's menu option can be edited.
+
+**** Bug Fixes ****
+
+Editor:
+- fixed error message about graphics errors while
+  playtesting the design
+- reset player x,y when loading design if
+  global start position is out of range for
+  starting level
+- fixed problem of wiping out design files
+  if attempt to save design is made while
+  design files are opened by the engine
+Engine:
+- fixed combat bug where monsters stop moving
+Both:
+
+
+>>>> UAF Version 0.7.9.0 <<<<
+
+**** New Features ****
+
+Editor:
+- the editor will no longer suspend itself while
+  testing a design.
+
+Engine:
+- added support for a custom text color in
+  the config.txt file, using the 
+  COLOR_CUSTOM_1 var.
+
+Both:
+- AVI movies can now be played in small pic
+  or big pic windows
+- animated small pics have an option to hold the
+  animation at the last frame until a key is
+  pressed, and then the animations starts from
+  the beginning again.
+- added support for more music formats: MO3, MOD,
+  MTM, XM, S3M, IT, and UMX.
+- added support for background music in combat
+
+**** Bug Fixes ****
+
+Editor:
+- Ammo type field was not always enabled for Ammo
+  items or items that use ammo.
+- Dungeon background art sometimes used for
+  overland map background after viewing properties
+  of level different than current level.
+- Clear image cache after using menu option to
+  force reload of config.txt file.
+- zone background sounds were not being copied to
+  the design folder
+- modifying the trigger settings of a pasted
+  event also modified the parent trigger settings.
+- clearing a level didn't remove all events
+
+Engine:
+- if Party Never Dies option used, all party members
+  were given 1 hp after combat instead of just the
+  ones with less than 1 hp.
+- party won't get exp pts for killing party member
+  in combat
+- if title screen was smaller than game resolution,
+  it would stretch to fill screen for a short time 
+  and then shrink to it's normal size.
+- if custom combat death icon used, but cannot be
+  loaded and default is used instead, it was not
+  using transparency color. This is the icon used
+  for characters that die.
+- if the flashing skull of death icon is displayed
+  for monster icons larger than 1x1, the skull
+  covers only one square instead of the whole thing.
+- background sounds were sometimes stopped from
+  playing prematurely after a combat event.
+- if testing design, the test char (SuperSpud)
+  could enter combat without a combat icon. It will
+  now pick one from the NPC list if available.
+- fixed problem with getting exp points from
+  dead monsters
+
+Both:
+- DC was changing the volume to 100% on startup 
+  and restoring to normal on exit. The editor
+  was also writing the volume config file that
+  the engine uses (sound.ini). The editor should
+  now leave the volume unchanged, but the engine
+  will still use the volume setting in sound.ini.
+
+>>>> UAF Version 0.7.8.0 <<<<
+
+Notes:
+
+I have removed the UA monster icons and
+replaced them with 19 original icons from
+Ziroc and Manikus. As they, or others,
+create additional icons I'll add them.
+You can still download and use the full
+collection of UA icons converted for DC
+use from the Magic Mirror.
+
+**** New Features ****
+
+Editor:
+
+- Added more available wall slots. Total is
+  now 96 walls. The reason is to allow
+  loading of all 80 FRUA walls at once.
+- Added entry to config.txt file that lets
+  you configure how many default art slots
+  you want to populate during startup. The
+  more you load, the longer it takes to
+  start the editor. The default is 16 slots,
+  but it needs to be 80 if you want to load
+  all of the FRUA walls. The editor does not
+  actually load all 80 images, but it does
+  search for filenames that can be used to
+  populate each slot. Only the first 16 
+  slots are actually loaded, and the other
+  slots are loaded as needed.
+- Starting with the collection of all FRUA
+  walls that Sigrid Elias provided for DC,
+  I renamed them so that they will be loaded
+  as default walls when the editor starts. You
+  can download the zip from the Magic Mirror.
+- level selection dialog now asks for
+  confirmation before clearing or deleting
+  a level.
+- added a menu option that will display
+  stats for the loaded design (num quests,
+  items, events, npcs, size on disk, etc)
+- monster edit window now displays the monster
+  icon picture
+- added button to clear icon data in icon
+  selection window
+
+Engine: n/a
+
+Both:
+
+- added new text modifiers to allow any text
+  to have the current game day, hour, or 
+  minute added to it. 
+	^D  =  day
+	^H  =  hour
+	^M  =  minute
+
+  example: 
+    'Day ^D, ^H:^M' will become 
+    'Day 1, 08:05' if the current game clock
+    is set to Day 1, 08:05.
+ 
+- Added a journal system. There is a global list
+  of journal entries that the designer adds to,
+  and a new event 'Add Journal Entry' that will
+  add a specific journal entry to the party's
+  journal, and on the Encamp menu the party
+  can view the current journal. Any available
+  text modifiers can be embedded in the journal
+  entry, and they will be processed once just
+  before the entry is added to the party's journal. 
+
+**** Bug Fixes ****
+
+Editor:
+
+- first slot of wall slot editor was sometimes not
+  being erased properly when moving from slots 17-32
+  down to slots 1-16
+- Menu option to clear design data did not load
+  default item/spell/monster databases in correct 
+  order
+- Fixed graphic errors after changing custom zone
+  area view art
+- importing UA transfer event was reversing the
+  'Activate before entry' flag
+- if start level is overland map, switch to overland
+  display mode after loading design
+- setting global start position was disabled for
+  overland maps, now overland can be start level
+- disable menu options that start UAFConfig and
+  DCConfig if those programs are not installed
+- fixed item editor restrictions on missile/hit
+  animations
+
+Engine:
+
+- overland map with blocked square did not display
+  zone message from blocked square when party tries
+  to enter it
+- fixed item attack restrictions to use only the
+  item type and configured range during combat
+- set unarmed hit dice to 1d2, it was 1d4 before
+
+Both:
+
+- fixed spell limit calculations
+
+>>>> UAF Version 0.7.7.1 <<<<
+
+- minor patch for engine and editor
+  to fix problem with merge of latest
+  CDX lib into DC.
+
+>>>> UAF Version 0.7.7.0 <<<<
+
+**** New Features ****
+
+Editor:
+- current design is highlighted in design list
+  when loading a design.
+- walls/backdrops/zones/blockage can be placed by
+  dragging the mouse cursor. Just left-click and
+  drag the mouse where you want to place these items.
+- added a Clear button to the small pic editor so
+  that the current pic data can be removed and left
+  empty
+Engine:
+- character stats that are currently being
+  modified by spells are displayed in red on the
+  char status screen
+Both:
+- New version of BASS sound library included
+- Add full-screen AVI playback event. Supports
+  video and sound.
+
+**** Bug Fixes ****
+
+Engine:
+- fixed the early termination of second midi which
+  can happen when second interrupts the first midi
+- don't backup party one step if party has moved from
+  event starting location
+- display "party looks around" message before
+  an event in current location is triggered (for the
+  'Look' menu option)
+- don't display mouse cursor while slow text is being
+  displayed, it leaves artifacts behind.
+- don't use monster attack msgs if the monster is
+  using a weapon, only for natural attacks
+- don't auto-kill friendly monsters when 'Win'
+  menu option is used during design testing
+- update monster available attacks when weapon readied
+- add default attack if monster has none defined
+- editor will warn user when monster has zero attacks defined
+- editor will warn user when weapon item has zero range
+- no really, this time I truly fixed the problem of
+  resting not healing hitpoints
+Both:
+- disable sound if using BASS DLL version 1.0, since
+  new BASS lib incompatible.
+
+>>>> UAF Version 0.7.6.0 <<<<
+
+**** New Features ****
+Editor:
+- added copy/paste for events. Whole chains or a single
+  event can be pasted to a location in any level.
+- highlighting of current event in event viewer follows
+  mouse selection to keep selected event fully visible.
+
+**** Bug Fixes ****
+Editor:
+- deleting event in event viewer could reference data
+  from the deleted event
+Engine:
+- if engine starts with no design path, and search for
+  available designs finds none, display proper warning
+  message
+- make passage of time able to heal character hitpoints
+- fixed area view display problem after a combat happens
+- don't return to question event if party has moved from
+  event location
+
+Both:
+- fixed installer so that it will update program paths
+  in config.txt files used for high-res settings if
+  they are already present
+- updated DCConfig and DCHardwareCheck utilities
+	http://uaf.sourceforge.net/bin/DCHwCheck.zip
+	http://uaf.sourceforge.net/bin/DCConfig.zip
+- updated UAFConfig installer
+	http://uaf.sourceforge.net/bin/UAFConfig.exe
+
+>>>> UAF Version 0.7.5.0 <<<<
+
+Notes:
+
+This release of DC uses DirectX 7. It was using DirectX 3
+in all previous releases. You must have DirectX 7 already
+installed prior to using DC. The DC install will not
+add DirectX 7 to your computer. You can download the
+latest version of DirectX from Microsoft. The current
+link to that is
+
+http://www.microsoft.com/directx/homeuser/downloads/default.asp
+
+As of this release the current DirectX version is 8a. DC
+will work with DirectX 7 or higher.
+
+**** New Features ****
+
+Engine:
+- clerics can turn undead
+
+Both:
+- monsters can be given multiple attacks, with each
+  attack having it's own dice and attack message.
+- monsters can be given an undead type
+- font colors can be specified inline with the text,
+  just like highlighting (/h) is done. The available
+  color tags are:
+
+  white  /w
+  yellow /y
+  red    /r
+  green  /g
+  blue   /b
+
+  you can toggle colors on/off, or else specify a
+  new color by just using a new tag. The colors
+  return to defaults with every new event text.
+
+**** Bug Fixes ****
+
+Editor:
+- generating an NPC did not initialize the experience
+  points to something appropriate for the level
+- importing UA transfer data had the dest x,y 
+  reversed, applies to all events that teleport
+  the party.
+- importing UA transfer module event used the
+  wrong destination level
+- importing UA quest events had the wrong
+  quest variable
+- importing UA events with party facing trigger
+  had the wrong facing direction
+- allow setting NPC stats from 3-25 rather than 3-18
+
+Engine:
+- wait for return if display text provided even if no
+  question asked. Such as for Transfer event on auto,
+  and Quest stage with auto accept.
+- forced backup in temple didn't work
+- no pic displayed by the password event
+- after alt-tab, engine could not be restored
+  and sound continued playing even when app not active.
+- Delay action in combat updated initiative to 10,
+  but still forced you to use End Turn or Guard to
+  go to next combatant
+- Using Guard in combat could prevent giving orders
+  to that character in subsequent rounds. The char
+  stayed in guarding state unless an attack was
+  made automatically when an enemy approached.
+- viewing character data during combat would sometimes
+  display data for the wrong character
+
+
+>>>> UAF Version 0.7.4.0 <<<<
+
+**** New Features ****
+
+Editor:
+- allow mouse cursor art to be specified in the
+  global settings.
+- added money/gems/jewelry to treasure list for combat monster data
+- allow all money types in treasure event
+- importing UA monster/npc DAT files will display separate
+  totals for monsters and npcs
+
+Engine:
+- design name/version text on main menu can be relocated using
+  new coords in config.txt file
+
+Both:
+- for shop events, can enable/disable item id, gem
+  appraise, jewelry appraise
+
+**** Bug Fixes ****
+
+Editor:
+
+- UA import for quest events always connected accept chain
+  events to the reject chain
+- UA import of chained events in general was a little screwy,
+  probably not perfected yet but it should work better. After
+  working with the design "Keep On The Borderlands" (Game02.zip)
+  I can see there are several problems left with events and
+  getting them in the proper position and chain order.
+
+Engine:
+
+- the Win menu command in combat was somehow removed, but is
+  now added back
+- default monster items were not readied in combat
+- update char stats after each manual modify of
+  skill rolls
+- place non-pregen NPC's in party on automatic
+  in combat
+- bandaged character displayed wrong icon
+- combat 'Delay' was delaying only one
+  initiative instead of to end of round
+- store/recall percentile mod for str=18 during 
+  manual char creation
+- allow party member to trade items with self (form
+  of inventory re-arrangement)
+- pass time faster for longer waits (pass time event)
+- fixed playing of midi in text event when it interrupts
+  a midi that is already playing
+- in combat with multiple party members, monsters on
+  automatic would not attack remaining party members
+  after their initial target was killed
+- when moving in combat, icons will now turn towards
+  destination
+
+Both:
+- updated help file with some new art credits
+- updated help file with 'Status' script function
+
+>>>> UAF Version 0.7.3.1 <<<<
+
+**** New Features ****
+
+Editor:
+
+- Added option to auto reload last successfully saved/loaded
+  design at next program startup
+
+- Started saving editor options to restore at next startup.
+
+Both:
+
+- Added zone backgrounds for area view art to zone config
+
+**** Bug Fixes ****
+
+Editor:
+
+- clear design folder name after failed design load
+
+Engine:
+
+- speed of combat map generation increased greatly,
+  sometimes it took over 30 seconds.
+
+- Combat map provides more map per dungeon map square. It was
+  around 2 or 3 times expansion and is now 4 to 5 times.
+
+- initial party/monster combat positioning improved
+
+Both:
+
+- loading design containing NPCs with spells could
+  fail if spell databases different
+
+- the test version of the area view art image was
+  mistakenly included in the install
+
+- the test version of the default spell file was also
+  mistakenly included in the install
+
+- corrected backward compatibility checks for older
+  area view art that prevented using newer area
+  view art.
+
+- made sure installer will update engine/editor
+  executables regardless of local file timestamp
+
+>>>> UAF Version 0.7.3.0 <<<<
+
+**** New Features ****
+
+Editor:
+
+- When testing designs, combat events have a 'Win' 
+  command that kills all non-party members. You 
+  still need to use 'End' turn until combat quits.
+
+- When testing designs, area view map shows white 
+  dots in squares that contain an event.
+
+Both:
+
+- each zone can selectively disable the auto-darkening 
+  of the viewport
+
+- each zone can display it's own art for each square 
+   in the area view map.
+
+- Sigrid Elias has written a tutorial about getting
+  started with design editing in DC. It is included in
+  an updated DC help file.
+
+**** Bug Fixes ****
+
+Editor:
+
+- cursed option for items wasn't updated properly
+
+- UA item import didn't set damage bonus correctly
+
+- default items for DC didn't have correct damage 
+  bonuses
+
+Engine:
+
+- mouse cursor was showing up as a black square 
+  initially after title screen fade-in
+
+- made main menu text conform to UA
+
+- load fonts even if other required art won't load 
+  so that errors can be displayed
+
+- strength bonus not used for damage rolls in combat
+
+- strength bonus not used when displaying item damage 
+  in character item screen.
+
+- Remove NPC event wouldn't work after a combat event 
+  that included the NPC
+
+- testing design from editor could fail warp to test 
+  location if title screen not present
+
+- while testing design, displaying long quest names 
+  in item inventory could cause engine crash
+
+- Auto accepting a quest could fail to chain to normal 
+  chain if accept chain absent
+
+Both:
+
+- try to load default art for required files if configured 
+  file not present.
+
+- playing a midi file will always interrupt any midi that 
+  is currently playing
+
+>>>> UAF Version 0.7.2.0 <<<<
+
+**** New Features ****
+
+Editor:
+
+- Spell script syntax auto validated before leaving edit window
+- Added background music config to each zone, which will
+  over-ride the level music.
+- Added option to view any image using transparency
+
+Both:
+
+- Added 'Status' script function to check current char status
+
+**** Bug Fixes ****
+
+Editor:
+
+- UA import wasn't using new naming convention for default
+  art and left the slots blank after import.
+
+Engine:
+
+- fixed background music not playing after level change
+
+>>>> UAF Version 0.7.1.0 <<<<
+
+**** New Features ****
+
+Both:
+
+- added support for multiple MP3 playback. Now, many WAV and
+  MP3 files can be played at once. MIDI files are still 
+  limited to one at a time.
+
+- Added support for background music. Each level has a list of
+  music to play. There is also support for daytime/nighttime
+  music.
+
+- the intro music now accepts a list of files to play
+
+- the 'Talk' event menu label can be changed to any 10 chars
+
+**** Bug Fixes ****
+
+Editor:
+
+- Fixed major bug with event editing which could cause event
+  chain to be deleted.
+
+- Fixed some error message popups that didn't force user input.
+
+- Pressing 'Edit' in Sound event window before selecting a 
+  file caused an error.
+
+Both:
+
+- Fixed engine crash when launched from editor when no design
+  files present in design folder.
+
+>>>> UAF Version 0.7.0.0 <<<<
+
+**** New Features ****
+
+Editor:
+
+- added three default spells that utilize new spell features
+- updated load/save routines for item/monster/spell text files to 
+  get them caught up with recent additions.
+- added icons for all monsters, image conversion from UA is courtesy Dirk-Kun.
+  D.Huling has improved many monster icons, but I didn't have time to 
+  download and use them.
+- updated DC default items and monsters to include more UA default data
+
+Both:
+
+- added support for additional operators in Diceplus expressions
+- included another new release of the BASS sound DLL file.
+- sound playback rate is configurable in the config.txt file, 44100 or 22050.
+- added new cursor, arrow, treasure art (courtesy D.Huling and Manikus)
+
+**** Bug Fixes ****
+
+Editor:
+
+- Fixed monster class mask and monster item import from UA dat files.
+- Corrected handling of hands needed to hold item
+- Changes to spell duration rate were not saved
+
+Engine:
+
+- Fixed problem with incorrect sound effect playback after level load.
+- Fixed problem with viewing party member inventory during combat
+- Fixed inability to ready non-weapon items in shield hand
+- Fixed cost factor in shops, display price was correct but 
+  original cost was deducted from character money.
+
+Both:
+
+- Paul fixed a problem that affects load/save for saved games
+
+>>>> UAF Version 0.6.9.9.2 <<<<
+
+** Magic Update **
+
+- Only non-combat spells supported
+- Only Cleric and Magic User spells supported
+- Not everything is implemented yet, check the help
+
+This is almost certainly the most unstable
+release of DC ever. Why you ask? Because of
+this magic stuff. I have tested and re-tested
+the code but I know I didn't think of all
+possibilities that need testing. Be sure
+to make backups of your files before trying
+a magic spell.
+
+This is just the start of support for magic.
+Some spell types are still not creatable. For
+instance, a spell such as Prot From Evil. It
+is cast on a target, but actually affects the
+THACO of another character trying to hit the
+spell target. I have something in mind to
+handle this sort of thing but didn't get it
+done for this release.
+
+The properties of the monster/item/spell objects
+has changed quite a bit lately and the import/export
+code has not been updated. If you export one
+of these databases to text, then import the same
+file, some properties will be lost and they will
+revert to defaults. Since these files are used
+to determine new design defaults, the default
+spells start off being just about useless. I will
+try to update the text file support for the
+next release.
+
+I need feedback on the magic. In addition to
+bugs and desired features, don't forget ADnD 2E 
+rule conformance. I will try to convert magic
+questions I receive into additional info in
+the help file.
+
+** Sound Playback Update **
+
+After digging through the sound code and writing some
+special test code to hammer it with multiple samples,
+I found and fixed a few more problems. There is only
+support for playing a single MIDI or MP3 and this
+was not enforced. Playing a second one would work but
+leave the first one without any way to get it's buffers
+cleaned up. The sound lib supports multiple MP3 playback
+but DC doesn't just yet. It will eventually. Other misc
+problems were causing sound buffers to not get cleaned
+up.
+
+I also noticed that on at least one computer, playing
+MP3 files at 22050 sample rate caused BASS to fail.
+Sometimes followed by a DC abort. Playing files at
+44100 worked ok. I am working with the BASS
+lib creator to try to resolve this. Until it fixed
+I must use the 44100 playback rate. If this is
+not fixed by the next release I will make the
+playback rate configurable so those who prefer
+the lower sample rate can use it.
+
+**** New Features ****
+
+- Check out that help file! Many things added and updated.
+- Cleric/MU spells have minimal non-combat capability
+- New version of BASS sound lib included
+
+**** Bug Fixes ****
+
+Editor:
+
+- NPC money was not converted properly when editing
+  available funds.
+
+- NPC spells didn't get automatically added to
+  chosen spell list.
+
+- Item spells were not remembered after leaving
+  selection dialog.
+
+Engine:
+
+- long tavern tales didn't auto-scroll through text
+- special key event trigger didn't work
+- browsing for art with image preview on sometimes gave error msg
+
+Both:
+
+- Event checks for special keys didn't work
+- Tweaked easytex wall coords in config.txt
+- Fixed more sound bugs
+
+>>>> UAF Version 0.6.9.8 <<<<
+
+**** New Features ****
+
+Editor:
+
+- Added button to scrolling pic dialog to
+  allow 'Clear' for those times when you
+  want to remove the current pic and leave
+  it empty (such as for custom wallslot 
+  area view art).
+
+Both:
+
+- New flag added to NPC's to prevent them
+  from being saved and then added to the
+  party. Default is to allow saving.
+
+- Each wall slot can provide it's own 
+  custom area view art.
+
+**** Bug Fixes ****
+
+Editor:
+
+- Fixed 'About' dialog to show current
+  DC version (without crashing).
+
+Engine:
+
+- Fixed the GiveTreasure/Vault menu to display
+  'Exit' when no items present rather
+  than 'Join'.
+
+- deleting a character from the party
+  should now delete char icon and small
+  pic also.
+
+>>>> UAF Version 0.6.9.7.1 <<<<
+
+Notes:
+
+The behavior of Guided Tour events is different
+from previous releases. It should now function
+properly. If you have existing Guided Tour events
+and wish to preserve the old behavior, go to
+Global->Global Settings->Global Attributes and
+change 'GuidedTourVersion' to '0.6970'.
+
+**** New Features ****
+
+Both:
+
+- Game play difficulty can be configured.
+- Global attributes can be edited.
+- New global attributes added to alter runtime
+  behavior of engine.
+
+**** Bug Fixes ****
+
+Editor:
+
+- Guided Tour editor starts with step 1, not step 0.
+
+Engine:
+
+- Sound event deadlock fixed.
+
+- Playing a sound event while another sound
+  event was in progress caused incorrect
+  termination of first sound event.
+
+- Image caching sometimes used wrong
+  image format type.
+
+- Engine could crash when view inventory
+  with no items (not even money).
+
+- First step of Guided Tour event should now
+  function.
+
+>>>> UAF Version 0.6.9.7 <<<<
+
+**** New Features ****
+
+Engine:
+
+- sound volume can be changed during the game
+
+**** Bug Fixes ****
+
+Both:
+
+- fixed some version checks for item loading
+
+>>>> UAF Version 0.6.9.6 <<<<
+
+**** New Features ****
+
+Engine:
+
+- Shops let you sell items, buy back percentage
+  is configurable
+
+- Shops will identify items, id price is
+  configurable
+
+- secret doors need to be located by party
+  before they are visible
+
+- locked doors can be bashed by a party
+  member.
+
+**** Bug Fixes ****
+
+Editor:
+
+- Shop items are identified by default
+
+- Backgrounds above 16 behaved a little flaky
+  when selecting via the pushbuttons
+
+>>>> UAF Version 0.6.9.5 <<<<
+
+**** New Features ****
+
+Editor:
+
+- import of UA chained events is working, plus several
+  other misc import problems were fixed.
+
+Engine:
+
+- The config.txt file has a new entry that points to
+  a common character folder that will be searched for
+  available 'CHR' files when adding to the party. Once
+  loaded from the common folder, they will still be
+  saved in the design's 'Save' folder. NPC's will
+  not be searched for in the common folder, only PC's.
+
+Both:
+
+- NPC state is saved between RemoveNPC and AddNPC events. 
+  The original NPC data can be used always if needed
+  by setting flag in AddNPC event editor.
+
+- Don't want players to take items from your NPC's? Set
+  a new option in the character editor and the 'Trade'
+  menu option won't be available for that NPC.
+
+- There is a new option that affects distant background
+  rendering. The default will still draw them in full
+  width bands across the viewport. The new way is to
+  draw them in a centered square that gets smaller
+  as the distance increases. Bad explanation, just
+  try it and see. 
+
+>>>> UAF Version 0.6.9.3 <<<<
+
+**** New Features ****
+
+Engine:
+
+- confirmation is requested before removing a party
+  member.
+
+- non-pregenerated NPCs are saved when removed from
+  the party and can be added later.
+
+
+Both:
+
+- Paul added support for Party and Game variables to
+  the GPDL scripts.
+
+- The drawing order for doors and overlays can be
+  switched for each wall slot.
+
+**** Bug Fixes ****
+
+Editor:
+
+- the zone list in the step event dialog only
+  included 8 zones instead of 16.
+
+Engine:
+
+- I think I fixed the sound problem where 
+  the wrong sounds were sometimes played
+  after a combat event.
+
+Both:
+
+- the editor/engine would not load a design
+  if the spell/item/monster database contained
+  zero entries.
+
+
+>>>> UAF Version 0.6.9.2 <<<<
+
+**** New Features ****
+
+Engine:
+
+- Created characters are automatically saved, and saved
+  characters are available to be added to the party when
+  the engine begins.
+
+Both:
+
+- All character values can be accessed using GPDL scripts. Things
+  such as $CHAR_THACO and $CHAR_READLANG can be queried for any
+  party member. Several of them can also be set. Paul also
+  updated the help file so check it for details on available
+  variable names and usage.
+
+- Image caching is fully implemented. 
+
+**** Bug Fixes ****
+
+Both:
+
+- Wall formats were not always determined correctly since
+  adding the image caching code.
+
+
+>>>> UAF Version 0.6.9.0 <<<<
+
+**** New Features ****
+
+Editor:
+
+- Items/Monsters now have copy/paste operations
+
+Engine:
+
+- item 'Use' charges are monitored/decremented with each 'Use'.
+
+Both:
+
+- item 'Use' charges can be restored on a daily basis
+
+- Ammo categories are added. The ammo category for a weapon
+  and ammunition must match before they can be used together
+  in combat.
+
+- items can have non-lethal status, which means party members
+  that are given damage by such an item in combat will not
+  be killed by it. Any damage given will not take hitpoints
+  below 0.
+
+- items have a Hit animation. If a target is hit, the
+  animation will play over the target. The animation is
+  a series of 48x48 pics, and you pick the delay time
+  between each frame display.
+
+- A new event type called Random Event was added. It
+  provides 13 event chains (plus 1 normal chain). Each
+  chain can be weighted from 0-100 for likelyhood of
+  happening, and one of the 13 will be picked at random.
+
+- The monster select for combat events was improved to
+  allow any number of monsters to be added rather than
+  only 6.
+
+- The Pick One Combat event in UA was basically a regular
+  combat event, except just one of the 6 monsters was
+  chosen to show up in combat. A flag has been added to
+  the combat event that allows the same thing. If selected,
+  only one of the monsters in the list will be added to the
+  combat.
+
+**** Bug Fixes ****
+
+Engine:
+ 
+- Some of the spell changes from the previous release caused
+  combatants to have zero movement rate.
+
+- The WhoPays event worked even when the character did not
+  have enough money.
+
+- The AddNPC event was not correctly validating the NPC data
+  and could accidentally disallow adding the NPC to the party.
+
+- the GPDL event sometimes would not display the initial text.
+
+>>>> UAF Version 0.6.8.2 <<<<
+
+Notes: 
+
+The spell code is being tested for non-combat situations. In support
+of this nearly all character attributes have been added to the 
+runtime interface and can be accessed using Logic Block events. Each
+spell will be able to access these same attributes and modify most 
+of them. 
+
+A lot of code was changed that relates to setting/getting these 
+character attributes. There shouldn't be any serious problems
+since spells cannot modify them yet.
+
+**** New Features ****
+
+Editor:
+
+- confirmation can be enabled for level autosave in the level selection dialog.
+
+Both:
+
+- font size can be changed
+
+- there are now 71 character attributes that can be queried using
+  Logic Block events. Nearly every variable that defines a character is
+  included.
+
+**** Bug Fixes ****
+
+Engine:
+
+- changing a 640 design to a 1024 design didn't update all of the
+  default pic sizes that are stored in the design data files. The
+  data files are still not modified, but the engine can realize
+  that the source image is big enough to fit the larger viewport
+  and adjust the dimensions at run time if they are too small.
+
+Both:
+
+- The NPC and item events were not being handled properly. They are
+  now global events that are maintained separately from the level,
+  rest, and step events.
+
+
+>>>> UAF Version 0.6.8.0 <<<<
+
+**** New Features ****
+
+Engine:
+
+- if the engine is not told to play a specific design, it
+  will search the install drive for available designs and let
+  the player choose which one to play.
+
+  The engine will still play the design mentioned on the command
+  line, and it will still play a design that is present in
+  the same folder as the engine. When none of those apply,
+  a search is initiated.
+
+- the 3 horizontal frame images are separated in the source file
+  to allow each to be unique. The older, single, image will still
+  work as well.
+
+**** Bug Fixes ****
+
+Engine:
+- fixed the text highlighting so that the engine will not abort
+  when the text message ends with '\h'
+
+Both:
+- a new version of the BASS sound library is included in this
+  release. Not sure that it fixes anything used by DC.
+
+- fixed the design loading code for design version 0.661
+
+
+>>>> UAF Version 0.6.7.0 <<<<
+
+**** New Features ****
+
+Editor:
+- Monsters can have a default item list, which they will use if added to combat events
+
+Engine:
+- character deletion is confirmed
+
+Both:
+- GiveTreasure/CombatTreasure events allow coin type to be configured
+- Coin weight can be configured (affects encumbrance)
+- Items have an event that is triggered when they are 'Use'd
+- NPCs have a 'talk' event that can be triggered if the NPC is in the party
+
+**** Bug Fixes ****
+
+Editor:
+- Protection/Attack bonus for items didn't allow negative numbers
+
+Engine:
+- Intro music stopped playing after version number was displayed on title screen
+- monster hit points for combat didn't use half hitdice values
+- taking combat treasure didn't add item to character's inventory
+
+
+>>>> UAF Version 0.6.6.1 <<<<
+
+**** New Features ****
+
+Both:
+- Gems/Jewelry can be renamed, can be given range of random 
+  appraisal values, and can be appraised in shops.
+- All 10 money types can be used and renamed
+
+**** Bug Fixes ****
+
+Editor:
+- Several dialogs that accept money/gems/jewelry were
+  not displaying proper labels after they were changed
+  in the money editor.
+
+Engine:
+- Several bugs were introduced with editable money types that
+  should be fixed now.
+- encumbrance is updated after inventory changes
+- vault data is stored in save game files
+  
+>>>> UAF Version 0.6.6.0 <<<<
+
+**** New Features ****
+
+Editor:
+- increased backdrop limit to 48 backdrops per level
+- Title screen can be specified (just one still)
+- icon backdrop can be specified
+
+Engine:
+- combat result is added to global attributes, updated after each combat
+	'Combat Result' = 'Win', 'Lose', or 'Flee'
+- increased save game limit to A-J
+- added 'Load' command to encamp menu
+
+Both:
+- a backdrop that fills the entire screen can be specified (uses transparency)
+- each zone can deny magic usage
+ 
+**** Bug Fixes ****
+
+Editor:
+- added strength bonus to character dialog
+- update character stats after editing completed
+- maintain Logic Block data after editing RunTime Var box
+
+Engine:
+- don't stop music if transferring within same level
+
+
+>>>> UAF Version 0.6.5.3 <<<<
+
+Notes: 
+
+Still working on spells/magic mostly, but these
+few changes made it in this release. 
+
+**** New Features ****
+
+Engine:
+- The mouse is now drawn separately from the screen updates. It
+  should now be responsive even when loading files.
+- Added the Rest menu option, and resting restores hitpoints.
+- Resting can be interrupted by the zone's rest event
+
+**** Bug Fixes ****
+
+Editor:
+- Changing the design name did not update the title bar
+
+Engine:
+- There was a memory leak after a saved game was loaded
+- There were a couple of places that did not use the edited money names
+- The Pass Time event wasn't always updating the game clock correctly.
+
+>>>> UAF Version 0.6.4.0 <<<<
+
+**** New Features ****
+
+- Multi-frame icons in conjuction with enhanced Logic Block event allow
+  character combat icon to be altered while playing game.
+- Backdrop slots can have their own sound
+- Global step/bump sounds can be overridden by each level
+- Combat cursor is now translucent
+
+**** Bug Fixes ****
+
+Engine:
+
+- Utility event multi-item check only checked for completed quests
+
+>>>> UAF Version 0.6.3.0 <<<<
+
+**** New Features ****
+
+- Added backdrop transparency
+- Added level copy to editor
+- Allow directional map fill of backdrops (fill just N,S,E,W, or all sides of square)
+
+**** Bug Fixes ****
+
+Engine:
+
+- 'Look' command didn't trigger 'if party searching' events
+
+
+>>>> UAF Version 0.6.2.0 <<<<
+
+**** New Features ****
+
+- Alpha-blending is working for walls/backdrops
+   1. Wall overlays can be specified to be a blended image.
+
+   2. Alternate backdrops can be specified to be a blended image
+    - if only blend is turned on it happens always
+    - if blend and start/stop time is used, blend happens during that time
+    - if only start/stop time is used, alt backdrop is used without blend
+      during that time
+    - if neither are used, only regular backdrop is used
+
+   3. An automatic darkening can be turned on that will darken all
+      walls/doors/overlays and backdrops in the viewport. The start/stop time is
+      configurable.
+
+   For all blending, the amount of blend is configurable between 0-256. The
+   alpha-blend code provided by CDX doesn't support stretching/shrinking of the
+   source image, so the source alpha-blend image should be the same size as the
+   destination image.
+
+**** Bug Fixes ****
+
+- the editor wasn't tracking blockage after the extra wallslots were added
+- the editor wasn't copying files to the design directory if file with same name already existed there.
+
+>>>> UAF Version 0.6.1.0 <<<<
+
+**** New Features ****
+
+- More improvements to UAFConfig and EasyTex. DCConfig added to change screen res quickly.
+- The editor supports higher screen resolutions, displaying the larger images and more map area.
+
+**** Bug Fixes ****
+
+- the editor wasn't keeping track of wall slot formats after added more slots.
+
+>>>> UAF Version 0.6.0.0 <<<<
+
+**** New Features ****
+
+This release adds initial support for 800x600 and 1024x768 screen resolutions. It has not been thoroughly tested.
+
+3 new utilities were added to this release.
+
+- Updated EasyTex: Creates wall templates using your texture, and provides a 3D walk-through using your texture so
+you can see how it looks. The perspective problem in the earlier version has been fixed. The saved BMP image files
+appear totally white when viewed with Microsoft Paint, but are ok when viewed with Paint Shop Pro and other image
+editors. Not sure about the source of this problem yet.
+
+
+- UAFConfig: A GUI editor for the DC config file. Allows you to switch between supported screen resolutions,
+and graphically specify screen layouts for each display area, for each resolution. Don't like where the
+small pic is displayed, you can drag it somewhere else and the DC engine will adjust.
+
+- Launch: Displays the available designs and will automatically start the DC engine with the proper
+command line parameters needed to play the design you select.
+
+Both:
+- Each wall slot can be given a sound that will be played it the party passes through it
+- Backgrounds in a map square can be specified for each party facing
+- Distant backgrounds in front of the party can be rendered
+
+Engine:
+- In addition to the pool icons/pics that the designer makes available in a design, a player can add
+his own. Just put them in the design folder using the same naming conventions used by the editor. That is,
+SPic01-SPic50 and Icon01-Icon50. Any valid image format extension will be found.
+
+
+**** Bug Fixes ****
+Editor:
+- Chained events imported from UA were not chained properly in DC, creating orphaned events. The
+chained events still aren't imported, just ignored for the moment.
+
+Engine:
+- Transfer events could crash under certain circumstances.
+
+
+>>>> UAF Version 0.5.7.6 <<<<
+
+**** New Features ****
+Editor:
+- Can edit dimensions/name/ViewSettings for existing levels
+
+Both:
+- The Logic Block event inputs/gates now work as documented
+- Added ability to query Character info to Logic Block event
+- Added Global View Restrictions to each level to force 3d/Area, or Large/Small, view in dungeon/wilderness. This overrides zone settings.
+
+**** Bug Fixes ****
+Editor:
+- Place Left/Front/Right now place on one side only
+
+Engine:
+- "Give Treasure" event did not chain
+
+>>>> UAF Version 0.5.7.5.1 <<<<
+
+**** Bug Fixes ****
+
+Editor:
+- Logic Block dialog Gate L wasn't clear about inputs
+
+Engine:
+- QuestionYesNo event used Yes chain when No was chosen
+
+>>>> UAF Version 0.5.7.5 <<<<
+
+**** New Features ****
+
+Editor:
+- All event text for a level can be exported to a text file
+
+Engine:
+- Overland maps can be toggled between small/large view
+- A message is displayed when levels are being loaded
+- Party can move in 8 directions on overland maps
+- Cursor now supports custom art
+- Cursor can be used to move party around maps
+
+Both:
+- Each monster has a 'Move' and 'Death' sound
+- Global settings allow party min/max size to be specified
+- Global settings allow disabling of 'Create Character' menu
+- Global settings support starting character equipment
+
+**** Bug Fixes ****
+
+Editor:
+- Improved item/monster/spell/NPC/event validation
+- Allow duplicate items to be added to NPC inventory
+- Corrected some DX surface validations that prevented image display
+- Reloading config.txt automatically updates displayed walls
+
+Engine:
+- Event text displayed for Transfer/Quest events even when no question asked
+- Up/Down arrows navigate menus if only 1 character in party
+- Fixed compatibility issue between old and new AreaViewArt.pcx files
+- Track party previous position, important now that party can move sideways
+- Invoke chained event after Pass Time event
+- Invoke event in design's starting location when game starts
+- Don't allow quest variable math to exceed limits
+- Remove combat treasure money/gems from list when taken by party
+- Stop adding start experience to new characters with each re-roll
+- Don't adjust pre-gen NPC scores using racial adjustments
+- Monsters will equip weapons given them
+- Enforce clipping on the viewport to prevent wall overdraw
+
+Both:
+- Save special items and keys in a saved game file
+
+Notes:
+A couple of backward's compatibility issues need mentioning:
+
+1. The overland maps use a white circle to represent the party's position. This image requires transparency, but the older version
+of the source image file (AreaViewArt.pcx) is not setup to support this. The engine detects the older file and turns off transparency, which turns a white circle into a white square. You can copy the latest version of the image file into your design folder if it bugs you, or just load/save the design using the editor.
+
+2. This version supports custom cursors. If the engine can't find the source image file specified by the design, it will turn off the custom cursor and revert back to a standard Windows cursor.
+
+>>>> UAF Version 0.5.7.4 <<<<
+
+**** New Features ****
+
+Overland maps are now fully supported in the engine and editor, including outdoor combat. The time delta for party movement can be specified in the editor for Dungeon/Wilderness and Normal/Search modes.
+
+Multiple image formats can be configured for wall slots. All formats can be displayed at the same time. The wall/door/overlay in a slot must each conform to the same format. The door cannot be a different format from the wall in the same slot.
+
+Added a new event trigger based on party facing. The old facing trigger works only when the party enters a square with the proper facing. The new one triggers every time a party turns to face the proper direction, such as if they spin in the same square.
+
+The editor/engine perform a recursive search for needed files in the DefaultArt folder. You can now organize the DefaultArt folder with as many different sub-folders as you like and the needed file will be located.
+
+The party can move while displaying the 'Area Encamp Look' menu. No more need to hit 'Exit' to bring up that menu. Since the arrow keys are used for party movement, they will not navigate that particular menu. The menu options must be selected by mouse or keyboard shortcut.
+
+**** Bug Fixes ****
+
+Engine:
+- Fixed debug-build-only line of code that prevented party movement in release build
+- Fixed backspace key error when used on first box of mult-page text after all text displayed at least once.
+- Fixed a post-teleport bug that was crashing the engine
+
+>>>> UAF Version 0.5.7.3 <<<<
+
+This version is a total re-write of event processing in the engine.
+There were some limitations and maintenance problems with the old
+code that have been solved. 
+
+We have maintained backwards compatibility with older designs, but
+saved game positions (A-F) from previous designs cannot be loaded with
+this version. The saved game file stores information about the
+state of events and that type of information is totally changed
+from previous builds.
+
+**** New Features ****
+- Maximum levels increased to 255
+- Maximum level width,height increased to 100x100
+- Level data stored in a more compact manner
+- GPDL is now a separate event, but still need editor dialog for it
+
+**** Bug Fixes ****
+Editor:
+- added keyboard shortcuts to several common menu options
+- turned on 'Walk thru walls' by default
+- added design file name to title bar
+- NPC items should not duplicate themselves after design load
+
+Engine:
+- removed restriction on chained events requiring 'Press Return'
+- fixed 'Trade', should work in walk and combat modes
+- if NPC is in party after load game, you can't add it as a pre-gen
+- P_OFFSET for wall section P is now loaded from config.txt
+- text that spans multiple pages can be navigated backwards and forwards, and 'Space' jumps to last page.
+
+>>>> UAF Version 0.5.7.1 <<<<
+
+**** Bug Fixes ****
+Editor:
+- added OverArt.pcx to the release
+- use combat mode byte to help distinguish between NPC and monster when importing UA monst* files
+- account for friendly monsters when determining if combat is over
+
+>>>> UAF Version 0.5.7.0 <<<<
+
+**** New Features ****
+
+Editor:
+- new test mode allows starting design using current x,y,level in editor
+- added some basic support for overland maps to the editor. Still a work in progress, and the engine has no support for them yet. The largest possible overland map is 800x800 (max level 50x50 @ 16 pixels per square).
+
+Engine:
+- allow use of ^1 - ^8 to substitute party member name into event text
+- item/key/quest stages are added to party inventory during design testing
+
+**** Bug Fixes ****
+
+Editor:
+- adjusted layout of event dialog buttons
+- fix SaveAs to handle saving into current folder (rather than a new one)
+- refresh map after menu option 'Undo'
+- fixed problem of setting item animations to wrong pic type, this should fix lack of transparency.
+- teleport dialog allows scrolling through all levels, not just existing levels.
+- fixed reversed entry point x,y when importing UA designs, and fixed check for entry point facing.
+- assign root step event when importing UA designs, still have problems with events that are chained from root.
+
+Engine:
+- Fixed changes made to quest variables via utility events.
+- set max character name to 16, which is the widest possible string that will fit in the party list (using a name of all 'WWWW...').
+
+>>>> UAF Version 0.5.6.9.1 <<<<
+
+**** New Features ****
+
+Engine:
+- allow use of very large icons, up to 8x8 tested
+
+Both:
+- Added Launch sound to items. Now arrows (and all items) can play
+	a sound as the attack begins
+
+**** Bug Fixes ****
+
+Editor:
+- Fixed 'Save As' to save copy of entire design, not just current level
+
+Engine:
+- Fixed problem that caused events to appear as do-once events when the 	player switched to another level and came back.
+- GPDLexec had a built-in limit for size of code segment.  It now
+	grows to whatever size is needed.
+- After displaying BigPic in event, party names didn't get displayed.
+- Prevent combatants on AI from shooting missiles at unconscious targets
+- Remove combat icon before displaying dying icon when combatant goes 	unconscious
+- Fixed endless loop when AI tries to ready best ammo
+- Fixed monster item masks in monsters.txt
+- Added default launch sounds to items.txt
+- Fixed AI to stop and shoot missiles if available
+- use directional search when placing monsters around party
+- improve clipping of all objects drawn inside combat frames,
+  including partial clipping of large icons
+- fix looping step/rest events
+
+Both:
+- Zero-length string caused decompression error.  Fixed
+	CAR:: operator >> (CString &).
+- Do not save levelData.eventData in game save file.
+
+>>>> UAF Version 0.5.6.8 <<<<
+
+**** New Features ****
+
+Editor:
+- PNG images can be loaded. They must be at least 256 color.
+- The event viewer can expand/collapse event trees.
+- The game exec is no longer copied to the design folder. Instead, a shortcut is put there that will invoke the game exec with the proper command line params needed to play the design. Just click on the shortcut called 'Start'.
+
+Engine:
+- combat roll results are now displayed
+
+Both:
+- Added a new event type called Logic Block. It allows for multiple inputs to be checked to determine if an event should trigger.
+- Added run-time compression for some of the data files
+- Allow GPDL to display small pics
+
+**** Bug Fixes ****
+
+Editor:
+- force editor screens to update after moving formview scrollbars
+- lowered minimum animation interval to 30ms
+- perform better DirectX cleanup when system menu 'X' is used to exit app
+- Item/Key/Quest dialog was modifying current design data, cancel wouldn't actually discard changes.
+
+Engine:
+- Force player to hit return for post-teleport message
+- Replace illegal characters in event text with spaces
+- Treat quest stage 65000 as quest completed, 65001 as quest failed
+- Boost error checking for array indexes when drawing viewport data
+- Fixed drunk chain for tavern event
+
+Both:
+- release DirectX surfaces for wall slots when new level is loaded
+
+>>>> UAF Version 0.5.6.7 <<<<
+
+**** New Features ****
+
+Editor:
+- You can now delete just a single event from an event chain
+
+**** Bug Fixes ****
+
+Editor:
+- fixed some problems with inserting/deleting Rest and Step events
+
+Engine:
+- combat maps should generate properly for any area of a level
+- large icons should work now
+- the time delay for combat messages was reduced to about 0.6 seconds
+- the most distant walls and doors are drawn with better fake perspective, at least they work just as UA appears to.
+- monsters removed from combat (won't fit, can't path) are cleaned up better.
+- missile attacks obey line-of-sight
+- chain event should work now
+- NPC Says event won't trigger if NPC not in party (same sort of fix for Add NPC and Remove NPC)
+- Special Item/Key event triggers should work now
+- teleporting within level can trigger event at destination
+
+>>>> UAF Version 0.5.6.6.3 <<<<
+
+This release was made to correct a sound problem, but
+some bug fixes and a new feature sneaked in there too.
+
+**** New Features ****
+
+Engine:
+- Combat missile graphics are finally in
+
+**** Bug Fixes ****
+
+Editor:
+- restore overlays in wall slots when loading levels
+- search for any supported image format extension when loading defaults (pic pools, wall slots).
+  this means the image used for wall slot 1 can be called wall1.pcx, tga, jpg, etc and still 
+  be found by the editor.
+
+Engine:
+- fixed an bug that spewed errors indefinitely during combat map creation
+- fixed events that don't trigger at teleport destination
+- 'Create Character' works even when entire party is dead
+- sound effects for items should work again in combat
+
+Both:
+- some fixes were made in race config loading
+- sound is turned off if there is a major problem with the lib
+- the error log file is now limited to 1MB in size, then logging is turned off
+
+>>>> UAF Version 0.5.6.6 <<<<
+
+**** New Features ****
+
+Editor:
+- importing UA events is partially functional after finally figuring out the event text layout
+- added more small pics to the install
+
+Engine:
+- added "Look" message
+
+Both:
+- added support for MP3 and JPG files
+- added event trigger based on gender
+- added event trigger based on presence of quest variable
+- added 8 more zones for a total of 16
+- added Heal Party event
+- (developers only) rearranged headers to greatly reduce compile times
+
+**** Bug Fixes ****
+
+Editor:
+- fixed design save problem when saving temple spells
+- updated file dialog masks for newly supported file types
+- turn on image preview by default in file dialog
+- update level display after editing zone coords
+- sort monster/item/spell/npc lists by name when dialog first displayed
+
+Engine:
+- use entry point of destination level
+- ignore player moves during guided tour event
+- fixed button chain events for encounter/question list/question button events
+- draw distant doors in proper location
+- fixed pool gold, take gold bug in vaults
+- reset combat state after party death, so party doesn't automatically lose again
+- fixed step count triggers in zone events
+- fixed event trigger that is based on party facing
+
+***** Unresolved Issues ******
+
+- still missing the level copy command in the editor
+- party movement may become erratic after teleporting in imported UA designs
+
+>>>> UAF Version 0.5.6.5 <<<<
+
+**** Notes ****
+
+In order to reduce the disk storage needed for the default artwork,
+I converted all images to PCX format. I also changed some aspects of
+UAF that were defaulting to BMP images so that a PCX file is now used.
+I cannot blindly delete BMP files from your installation, so I recommend
+that if you want to save some space then delete the BMP files from the
+DefaultArt folder. Otherwise you will have two of every image, one in
+BMP format and the other in PCX.
+
+Paul is working on scriptable races/classes/rules and although you
+will see numerous text files in the installation that would appear to
+configure such things, I would not recommend editing them yet. This part
+of UAF is in a very early stage and is not ready to be toyed with.
+
+I thought I had worked out the problems with importing FRUA events, but
+after I got it working with a test design I created with FRUA it failed
+miserably on one of the built-in designs (Heirs to Skull Crag). So I have
+disabled event importing until I can work out the bugs.
+
+**** New Features ****
+
+Editor:
+- Partial import of FRUA Monsters/NPCs. Items, Spells, Special Abilities are not.
+- New artwork added courtesy of D.Huling (http://www.tgeweb.com/ironworks/)
+- Design files are backed up before saving
+- More context help added
+- NPC age can be edited
+- Events listed alphabetically
+- Design name can be edited after initial creation
+
+Engine:
+- Menus use keyboard shortcuts
+- Input accepts upper and lower case letters (was only upper before)
+- Input accepts spaces in passwords and character names
+- Added version stamping to game save and character save files
+
+Both:
+- Better reporting of version mismatch errors
+- Added params to Password event to ignore case and accept specified subsets
+- Added the Take Items from party event, items taken can be stored in vault
+- Editor and Engine have unique error filenames now
+- Added option to Text event that kills sound when event ends (else it plays to end of tune)
+
+**** Bug Fixes ****
+
+Engine:
+- Timer gets cleaned up after animation display
+- Items in Give Treasure event get removed as party partakes
+- Party can move properly after an event that forces party to backup one step
+- Error msgs are displayed more promptly
+- Can't target yourself with weapons
+- A few events were not displaying the proper menu
+- Encounter event buttons will be displayed, and the advancing sprite does so in the proper sequence
+- Font surfaces are cleaned up properly
+
+Both:
+- Update to BMP loader fixes some errors that caused scrambled image after loading
+
+
+>>>> UAF Version 0.5.6.3 <<<<
+
+**** New Features ****
+
+The big new feature for this release is a new way to download and install UAForever. You now have 
+two choices for installing UAF. You can download a small executable that will automatically download 
+and install only the needed components. This means if you don't choose to install source code it 
+won't be downloaded. Some AOL users may have trouble with this method, so I've also provided the 
+all-inclusive download used in previous releases.
+
+There will also be a new menu option added to the UAForever group on your Start menu. It's called
+'Check for UAF Updates Online', and it will automatically look for a newer version of UAF. If a
+newer version is available, it will download and install the updated components. If you downloaded 
+the all-inclusive installer, the update will once again download the newer all-inclusive installer. 
+If you used the smaller installer, only the changed components will be downloaded.
+
+Engine:
+ - the minimum starting random age for new characters can be configured in config.txt
+
+**** Bug Fixes ****
+
+Editor:
+ - Adjusted mouse click coords on wall placement
+ - Fixed control focus problems in event viewer dialog
+
+Engine:
+ - Transfer events that don't ask before transporting work now
+ - viewing items after a teleport to a new level works now.
+
+**** Known Bugs Not Fixed Yet ****
+
+ - Events which give treasure/items to party do not adjust the available loot properly after a 
+   character partakes of it. Didn't have time to fix this one before the release.
+
+>>>> UAF Version 0.5.6.2 <<<<
+
+**** New Features ****
+
+Editor:
+ - Dynamic map cell info. Informs you of cell contents as mouse cursor passes over each cell
+ - Mouse can now add walls wherever the map is clicked
+ - Map access can be displayed, color coding is configurable
+
+Engine:
+ - all displayed event text can have highlighting toggled on/off using inline "/h"
+   example: "This text is normal, /hthis text is highlighted/h, now back to normal."
+ - character stats can be individually edited after being rolled
+
+**** Bug Fixes ****
+
+Editor:
+ - Validation of events with user-specified art/sound files is fixed
+ - changing to a smaller map will not have leftovers from previous map
+ - loading item files that were previously exported works better
+ - entry points are no longer written to data files for unused levels
+ - read-only item/spell/monster files are handled better
+ - scrollbars that scroll editor dialog within window frame are fixed
+ - scrollbars that scroll the current map should not accept input focus anymore (shouldn't blink either)
+ - FRUA import now has dialog that allows separate import of items/monsters/spells/design
+ - FRUA item import set proper defaults for item spell effects
+ - proper zone names appear on main editor window
+
+Engine:
+ - MIDI files play now
+ - events that don't require the user to 'Press Enter', are fixed (don't blow up, and chain properly)
+   this includes the Text and NPC Says events
+ - missing monster icons won't blow up the engine
+ - combat pathfinding fixed (won't blow up the engine)
+ - Add NPC event fixed
+
+>>>> UAFWin Beta Version 0.5.6.1 <<<<
+
+Notes:
+
+I wanted to release this mostly to make the new installer available. It makes things much easier for new users. The new file format for the items/spells/monsters config files is complete, and UAF can read/write all of them. I think you will find the format much easier to read and edit.
+
+**** New Features ****
+
+ - Windows Help files have been added (not yet complete)
+ - UAF is now a single file install, with the option to install source and FRUA replacement art files (for importing FRUA designs)
+
+**** Bug Fixes ****
+
+- teleport event was fixed
+- sound should now work in engine when testing design from editor
+- design data files can now be moved to new folders with different folder names.
+
+>>>> UAFWin Beta Version 0.5.6 <<<<
+
+Notes:
+Some file formats have changed: Items.txt, Items.dat, Spells.dat, Monsters.txt
+Backward compatability was maintained for loading dat files, but the new format will be used when saving these files. The old text file formats for items and monsters cannot be read. Until all text file formats are stable again, the editor will not export data to a text file.
+
+**** New Features ****
+
+Engine:
+- added the ability to script changes to the current map
+- the limit on combatants was removed (was set to 10, including monsters/characters)
+- the mouse can change the combat selection when manually aiming
+- the mouse can move a character in combat, moving 1 square towards a clicked square
+- an attempt is made to put monsters in the same room as the party when combat begins, even when the distance is set to far.
+- monsters that get put in an inaccessible area of the combat map are removed
+- combat ends automatically if no attacks are made for enough rounds
+
+Editor:
+- FRUA items.dat/item.dat files can now be imported
+- Importation of FRUA designs was begun, but is not complete. For this release, the global design data, and non-overland map data is imported. The map data will include walls,obstructions,backdrops,zones,special items/special keys/quests. This feature still needs improvement. Please read the seperate file ImportInfo.txt file for further info.
+- the items.txt and monsters.txt files are now much easier to read and manually edit.
+- Added a blank template for walls/overlays/doors called BlankWall.bmp. The letter designations match up with the same in the config.txt file for source rectangle coordinates.
+- Changed the color scheme to match the colors used in FRUA
+
+Editor/Engine:
+- item animations can be specified in the editor, but didn't have enough time to implement in the engine. Old files can be loaded, but will be saved in new format that includes animation data.
+
+**** Bug Fixes ****
+
+- the flicker evident when editing a map is fixed, at least it is no longer noticable to me on an Intel P233.
+- weapon damage displayed on character summary was corrected for bows/crossbows
+- ready items are carried over into combat
+- attack range limits are checked properly for bows/crossbows
+- fixed the LineOfSight algorithm
+- item weapon types as defined were not getting set correctly by the editor, and not labeled correctly in the items.txt file header.
+- taking treasure from a Give Treasure event was fixed to remove taken items from available list, and to utilize bundle qty
+- item id name is now displayed when selecting items to add to Give Treasure event
+
+>>>> UAFWin Beta Version 0.5.5.2 <<<<
+
+Note: This release makes changes only to UAFWin.exe
+
+**** Bug Fixes ****
+
+- More coding errors were located and corrected.
+
+>>>> UAF Beta Version 0.5.5.1 <<<<
+
+Note: This version was released to correct a compiler optimization error that prevented the UAWin.exe program from working correctly. Apologies to those who downloaded the latest version and were frustrated in their attempts to get it working.
+
+**** New Features ****
+
+- any length text that is entered into the design editor can now be saved and viewed when the design is played.
+- the game engine will now replace the '^' character in event text with the currently active party member's name.
+
+**** Bug Fixes ****
+- determining affected party members randomly, such as for the 'Give Damage' event was corrected.
+
+>>>> UAF Beta Version 0.5.5 <<<<
+
+**** New Features ****
+
+- Some basic mouse processing added. It can select menu items, inventory type items, and party member names. It does not 'double-click' anything yet, and will not select combatants or terrain during combat yet.
+- Combat Guarding
+- Scriptable conversations, Ultima style, have been added by P Stevens. It is more though, it also allows user-defined variables to be created and checked. An external tool is required, but the resultant file can be shipped with a design without needing the tool to have it operate.
+
+**** Bug Fixes ****
+
+- Combat pathing
+- many combat state handling errors
+- selecting 'Look' will trigger events that are conditional on searching
+- selecting 'Look' will re-trigger events in the current map square
+- numbers can now be used in character names and in the password for the 'Enter Password' event.
+- the editor's event viewer got some dialog fixes
+
+>>>> UAF Beta Version 0.5.4 <<<<
+
+**** New Features ****
+
+- The editor can validate events (only affects combat event for now)
+- The editor provides a default monster combat icon if none specified
+
+**** Bug Fixes ****
+
+General:
+- PCX true color and TGA 256 color images now load! There still seems to be a problem loading small images. Try loading a 33x33 image to see what I mean. There were also some stray pointers in some of the image loading code that was fixed.
+- some CString code that was not compatible with MSVC ver 5 was replaced with standard CRT functions
+- defined STRICT in cdx lib
+- fixed lib folder creation in project workspace
+- merged UAF with latest CDX code
+
+Editor:
+- config.txt is re-read when design is cleared
+- current window position is saved on exit, even when 'x' is clicked
+- negative AC and fractional hit dice can now be entered for monsters
+- item bundle qty field widened to improve visibility
+- default spell sound was using hit.wav instead of cast.wav
+
+Engine:
+- a placeholder monster combat icon is used if none specifed, or file can't be found
+- menu spacing improved
+- encumbrance calculations fixed
+- rest/step events will trigger now.
+- combatants will face each other during attack
+- centering on combat cursor fixed for when cursor approaches right side edge of map
+
+Suport Files:
+- added DefMI.bmp to use as default monster combat icon
+
+>>>> UAF Beta Version 0.5.3 <<<<
+
+New Features:
+- Can now launch the engine from within the editor.
+- Engine accepts design name on command line.
+- Folder hierarchy simplified a bit.
+- Positional arrow on map will wrap to opposite map edge.
+
+Many bug fixes, including:
+Editor:
+- Focus gained by toolbar prevented keyboard input.
+- Small pic data uses defaults for num frames and frame size if not provided.
+Engine:
+- area map now displays
+- save/load game functions again
+- some menus were getting chopped off
+- some events that tried to display small pics failed
+- images/background in combat map were bleeding over the border frames
+- MIDI files with long file names that included a space wouldn't play
+- once the party started adventuring, there was no menu option for exiting the game
+- the arrow keys used to navigate menu options and party member selections have been made more intuitive to use (I hope)
+- the camp and treasure events would not happen again even though not a once-only event.
+- monsters won't continue moving towards dead party members.
+
+**** Known issues still remaining ****
+
+- combat morale calculation seems to trigger flight too often
+- some menu items that are displayed will not do anything, including all menu items related to magic/spells.
+- when using wall obstructions that require lock picking, or spell casting, the engine does not let the party do anything about it, and the party cannot pass through.
+- the editor blinks the map area after each update

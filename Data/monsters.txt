@@ -1,0 +1,2249 @@
+// Monster database file
+// The line above **must** be the first line of the monsters file!!!
+\(BEGIN)
+name = template
+icon file = DEFAULT
+miss sound = DEFAULT
+hit sound = DEFAULT
+move sound = DEFAULT
+death sound = DEFAULT
+intelligence = 0
+armor class = 0
+movement rate = 0
+hit dice = 0.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 20
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 0
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = none
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Kobold
+icon file = icon_Kobold.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 10
+movement rate = 6
+hit dice = 0.250000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 20
+magic resistance = 0
+size = small
+morale = 25
+experience point value = 7
+classes = fighter
+form = none
+penalty = GnomeTHAC0 + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Dagger
+item = Shield
+attack = 4,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Goblin
+icon file = icon_Goblin.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 7
+armor class = 6
+movement rate = 6
+hit dice = 0.900000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 20
+magic resistance = 0
+size = medium
+morale = 25
+experience point value = 15
+classes = fighter
+form = none
+penalty = DwarfTHAC0 + GnomeTHAC0 + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Club
+attack = 6,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Orc
+icon file = icon_Orc.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 10
+movement rate = 12
+hit dice = 1.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 19
+magic resistance = 0
+size = medium
+morale = 30
+experience point value = 15
+classes = fighter
+form = mammal + none
+penalty = DwarfTHAC0 + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Spear
+item = Ring Mail
+item = Helm
+attack = 8,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Orc Chieftain
+icon file = icon_OrcChieftain.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 10
+armor class = 10
+movement rate = 9
+hit dice = 1.500000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 16
+magic resistance = 0
+size = medium
+morale = 30
+experience point value = 65
+classes = fighter
+form = mammal + none
+penalty = DwarfTHAC0 + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Scale Mail
+item = Broad Sword
+item = Short Bow
+item = Arrow
+attack = 8,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Ogre
+icon file = icon_Ogre.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 8
+armor class = 5
+movement rate = 9
+hit dice = 4.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 17
+magic resistance = 0
+size = large
+morale = 50
+experience point value = 270
+classes = fighter
+form = giant + large + none
+penalty = DwarfAC + GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 10,1,2,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Skeleton
+icon file = icon_Skeleton.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 7
+movement rate = 12
+hit dice = 1.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 19
+magic resistance = 0
+size = medium
+morale = 50
+experience point value = 65
+classes = fighter
+form = none
+penalty = none
+immunity = poison + death magic + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+Undead = Skeleton
+\(END)
+
+\(BEGIN)
+name = Mummy
+icon file = icon_Mummy.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 3
+movement rate = 6
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 3
+THAC0 = 13
+magic resistance = 0
+size = medium
+morale = 37
+experience point value = 3000
+classes = fighter
+form = none
+penalty = none
+immunity = poison + death magic + none
+Misc Options = none
+item = none
+attack = 12,1,0,attacks
+Undead = Mummy
+\(END)
+
+\(BEGIN)
+name = Boring Beetle
+icon file = icon_BoringBeetle.png,0,2,96,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 1
+armor class = 3
+movement rate = 6
+hit dice = 5.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 15
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 175
+classes = fighter
+form = animal + large + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 4,5,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Blue Dragon
+icon file = icon_BlueDragon.png,0,2,384,192,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 12
+armor class = -2
+movement rate = 12
+hit dice = 16.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 5
+magic resistance = 25
+size = large
+morale = 40
+experience point value = 16000
+classes = fighter
+form = large + none
+penalty = none
+immunity = vorpal weapon + none
+Misc Options = none
+item = none
+attack = 8,1,0,attacks
+attack = 8,1,0,attacks
+attack = 8,3,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Beholder
+icon file = icon_Beholder.png,0,2,96,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 16
+armor class = 0
+movement rate = 3
+hit dice = 65.000000
+treat HD as hit points = no
+hit dice bonus = 0
+THAC0 = 7
+magic resistance = 100
+size = large
+morale = 50
+experience point value = 14000
+classes = fighter
+form = none
+penalty = none
+immunity = confusion + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Bulette
+icon file = icon_Bulette.png,0,2,96,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 1
+armor class = -2
+movement rate = 14
+hit dice = 9.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 11
+magic resistance = 0
+size = large
+morale = 27
+experience point value = 2792
+classes = fighter
+form = large + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 12,4,0,bites
+attack = 6,3,0,attacks
+attack = 6,3,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Black Pudding
+icon file = icon_BlackPudding.png,0,2,96,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 6
+movement rate = 6
+hit dice = 10.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 11
+magic resistance = 0
+size = medium
+morale = 50
+experience point value = 2000
+classes = fighter
+form = none
+penalty = none
+immunity = vorpal weapon + none
+Misc Options = none
+item = none
+attack = 8,3,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Ettin
+icon file = icon_Ettin.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 3
+movement rate = 12
+hit dice = 10.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 11
+magic resistance = 0
+size = medium
+morale = 35
+experience point value = 3000
+classes = fighter
+form = giant + none
+penalty = DwarfAC + GnomeAC + RangerDmg + none
+immunity = vorpal weapon + none
+Misc Options = can be held/charmed + none
+item = none
+attack = 10,1,0,attacks
+attack = 10,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Purple Worm
+icon file = icon_PurpleWorm.png,0,2,96,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 6
+movement rate = 9
+hit dice = 15.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 5
+magic resistance = 0
+size = large
+morale = 30
+experience point value = 13000
+classes = fighter
+form = large + none
+penalty = none
+immunity = vorpal weapon + none
+Misc Options = can be held/charmed + none
+item = none
+attack = 12,2,0,attacks
+attack = 10,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Hill Giant
+icon file = icon_HillGiant.png,0,2,96,144,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 10
+armor class = 4
+movement rate = 12
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 12
+magic resistance = 0
+size = medium
+morale = 50
+experience point value = 2256
+classes = fighter
+form = giant + none
+penalty = DwarfAC + GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 8,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Bugbear
+icon file = icon_BugBear.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 10
+movement rate = 9
+hit dice = 3.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 17
+magic resistance = 0
+size = large
+morale = 30
+experience point value = 120
+classes = fighter
+form = large + none
+penalty = GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Battle Axe
+item = Short Sword
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Hobgoblin
+icon file = icon_Hobgoblin.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 10
+armor class = 10
+movement rate = 9
+hit dice = 1.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 19
+magic resistance = 0
+size = medium
+morale = 30
+experience point value = 35
+classes = fighter
+form = mammal + none
+penalty = DwarfTHAC0 + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Helm
+item = Short Sword
+attack = 8,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Hobgoblin Leader
+icon file = icon_HobgoblinChief.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 10
+armor class = 10
+movement rate = 9
+hit dice = 1.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 18
+magic resistance = 0
+size = medium
+morale = 30
+experience point value = 120
+classes = fighter
+form = mammal + none
+penalty = DwarfTHAC0 + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Arrow
+item = Short Bow
+item = Broad Sword
+item = Chain Mail
+item = Shield
+attack = 8,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Wraith
+icon file = icon_Wraith.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 12
+armor class = 4
+movement rate = 12
+hit dice = 5.000000
+treat HD as hit points = yes
+hit dice bonus = 3
+THAC0 = 15
+magic resistance = 0
+size = medium
+morale = 37
+experience point value = 2000
+classes = fighter
+form = none
+penalty = none
+immunity = poison + death magic + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+Undead = Wraith
+\(END)
+
+\(BEGIN)
+name = Lizard Man
+icon file = icon_LizardMan.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 5
+movement rate = 6
+hit dice = 2.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 19
+magic resistance = 0
+size = medium
+morale = 35
+experience point value = 65
+classes = fighter
+form = none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Javelin
+item = Shield
+item = Trident
+attack = 2,1,0,attacks
+attack = 2,1,0,attacks
+attack = 6,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Lizard Man King
+icon file = icon_LizardManKing.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 10
+armor class = 3
+movement rate = 9
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 40
+experience point value = 975
+classes = fighter
+form = large + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 6,3,2,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Vampire
+icon file = icon_Vampire.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 16
+armor class = 1
+movement rate = 12
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 3
+THAC0 = 11
+magic resistance = 0
+size = medium
+morale = 40
+experience point value = 8000
+classes = fighter
+form = none
+penalty = none
+immunity = poison + death magic + confusion + none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+Undead = Vampire
+\(END)
+
+\(BEGIN)
+name = Fire Elemental
+icon file = icon_FireElemental.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 2
+movement rate = 12
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 2000
+classes = fighter
+form = large + none
+penalty = none
+immunity = poison + death magic + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 8,3,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Minotaur
+icon file = icon_Minotaur.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 6
+movement rate = 12
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 3
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 32
+experience point value = 1400
+classes = fighter
+form = mammal + large + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Chain Mail
+item = Bastard Sword
+attack = 4,2,0,attacks
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Troll
+icon file = icon_Troll.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 4
+movement rate = 12
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 6
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 1400
+classes = fighter
+form = large + none
+penalty = DwarfAC + GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 4,1,4,attacks
+attack = 4,1,4,attacks
+attack = 8,1,4,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Earth Elemental
+icon file = icon_EarthElemental.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 2
+movement rate = 6
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 7
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 2000
+classes = fighter
+form = large + none
+penalty = none
+immunity = poison + death magic + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 8,4,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Displacer Beast
+icon file = icon_DisplacerBeast.png,0,2,96,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 3
+armor class = 4
+movement rate = 15
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 15
+magic resistance = 0
+size = large
+morale = 50
+experience point value = 975
+Special ability = Displacement
+classes = fighter
+form = animal + large + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 4,2,0,attacks
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Giant Spider
+icon file = icon_GiantSpider.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 4
+movement rate = 3
+hit dice = 4.000000
+treat HD as hit points = yes
+hit dice bonus = 4
+THAC0 = 15
+magic resistance = 0
+size = large
+morale = 32
+experience point value = 650
+classes = fighter
+form = animal + large + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 4,1,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Enormous Spider
+icon file = icon_EnormousSpider.png,0,2,96,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 4
+movement rate = 3
+hit dice = 9.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 11
+magic resistance = 0
+size = large
+morale = 40
+experience point value = 3000
+classes = fighter
+form = animal + large + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 6,2,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Iron Golem
+icon file = icon_IronGolem.png,0,2,96,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 3
+movement rate = 6
+hit dice = 80.000000
+treat HD as hit points = no
+hit dice bonus = 0
+THAC0 = 3
+magic resistance = 0
+size = medium
+morale = 50
+experience point value = 13000
+classes = fighter
+form = none
+penalty = none
+immunity = poison + death magic + confusion + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 10,4,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Gnoll
+icon file = icon_Gnoll.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 10
+movement rate = 9
+hit dice = 2.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 19
+magic resistance = 0
+size = large
+morale = 27
+experience point value = 35
+classes = fighter
+form = mammal + large + none
+penalty = GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = Halberd
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Giant Rat
+icon file = icon_GiantRat.png,0,2,48,48,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 3
+armor class = 7
+movement rate = 12
+hit dice = 0.500000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 20
+magic resistance = 0
+size = small
+morale = 15
+experience point value = 15
+classes = fighter
+form = mammal + animal + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 3,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Fire Giant
+icon file = icon_FireGiant.png,0,2,96,144,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 5
+movement rate = 12
+hit dice = 15.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 5
+magic resistance = 0
+size = large
+morale = 40
+experience point value = 8000
+classes = fighter
+form = giant + large + none
+penalty = DwarfAC + GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 8,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Frost Giant
+icon file = icon_FrostGiant.png,0,2,96,192,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 5
+movement rate = 12
+hit dice = 14.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 7
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 7000
+classes = fighter
+form = giant + large + none
+penalty = DwarfAC + GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 8,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Air Elemental
+icon file = icon_AirElemental.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 2
+movement rate = 36
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 3000
+classes = fighter
+form = large + none
+penalty = none
+immunity = poison + death magic + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 10,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Water Elemental
+icon file = icon_WaterElemental.png,0,2,48,96,0,1,2
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 2
+movement rate = 6
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 2000
+classes = fighter
+form = large + none
+penalty = none
+immunity = poison + death magic + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 6,5,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = White Dragon
+icon file = icon_WhiteDragon.png,0,2,288,144,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 7
+armor class = -1
+movement rate = 12
+hit dice = 12.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 8
+magic resistance = 10
+size = large
+morale = 40
+experience point value = 12000
+classes = any
+form = large + none
+penalty = none
+immunity = vorpal weapon + none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+attack = 6,1,0,attacks
+attack = 8,2,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Cloud Giant
+icon file = icon_CloudGiant.png,0,2,96,192,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 10
+armor class = 0
+movement rate = 15
+hit dice = 16.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 5
+magic resistance = 0
+size = large
+morale = 45
+experience point value = 10000
+classes = any
+form = giant + large + none
+penalty = DwarfAC + GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 10,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Gelatinous Cube
+icon file = icon_GelatinousCube.png,0,2,96,96,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 8
+movement rate = 6
+hit dice = 4.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 17
+magic resistance = 0
+size = large
+morale = 25
+experience point value = 650
+classes = any
+form = large + none
+penalty = none
+immunity = vorpal weapon + none
+Misc Options = none
+item = none
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Mobat
+icon file = icon_Mobat.png,0,2,48,96,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 7
+movement rate = 15
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 15
+magic resistance = 0
+size = large
+morale = 30
+experience point value = 975
+classes = any
+form = mammal + animal + large + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 4,2,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Stone Giant
+icon file = icon_StoneGiant.png,0,2,96,144,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 10
+armor class = 0
+movement rate = 12
+hit dice = 14.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 7
+magic resistance = 0
+size = large
+morale = 40
+experience point value = 7000
+classes = any
+form = giant + large + none
+penalty = DwarfAC + GnomeAC + RangerDmg + none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 8,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Worg
+icon file = icon_Worg.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 7
+armor class = 6
+movement rate = 18
+hit dice = 3.000000
+treat HD as hit points = yes
+hit dice bonus = 3
+THAC0 = 17
+magic resistance = 0
+size = medium
+morale = 27
+experience point value = 120
+classes = any
+form = mammal + animal + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 4,2,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Zombie
+icon file = icon_Zombie.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 8
+movement rate = 6
+hit dice = 2.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 19
+magic resistance = 0
+size = medium
+morale = 50
+experience point value = 65
+classes = any
+form = none
+penalty = none
+immunity = poison + death magic + confusion + none
+Misc Options = none
+item = none
+attack = 8,1,0,attacks
+Undead = Zombie
+\(END)
+
+\(BEGIN)
+name = Basilisk
+icon file = icon_Basilisk.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 1
+armor class = 4
+movement rate = 6
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 13
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 1250
+classes = any
+form = animal + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 10,1,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Black Dragon
+icon file = icon_BlackDragon.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 0
+movement rate = 0
+hit dice = 0.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 20
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 0
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Centaur
+icon file = icon_Centaur.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 5
+movement rate = 18
+hit dice = 4.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 15
+magic resistance = 0
+size = large
+morale = 0
+experience point value = 165
+classes = any
+form = mammal + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 6,1,0,attacks
+attack = 6,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Cockatrice
+icon file = icon_Cockatrice.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 1
+armor class = 6
+movement rate = 6
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 15
+magic resistance = 0
+size = small
+morale = 0
+experience point value = 500
+classes = any
+form = animal + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 3,1,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Dracolich
+icon file = icon_Dracolich.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 0
+movement rate = 0
+hit dice = 0.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 20
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 0
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Gargoyle
+icon file = icon_Gargoyle.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 5
+movement rate = 9
+hit dice = 4.000000
+treat HD as hit points = yes
+hit dice bonus = 4
+THAC0 = 15
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 365
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+attack = 4,1,0,attacks
+attack = 3,1,0,attacks
+attack = 3,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Ghoul
+icon file = icon_Ghoul.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 6
+movement rate = 9
+hit dice = 2.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 16
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 75
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+attack = 3,1,0,attacks
+attack = 3,1,0,attacks
+Undead = Ghoul
+\(END)
+
+\(BEGIN)
+name = Giant Crocodile
+icon file = icon_GiantCrocodile.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 1
+armor class = 4
+movement rate = 6
+hit dice = 7.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 680
+classes = any
+form = animal + large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,3,0,attacks
+attack = 10,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Giant Snake
+icon file = icon_GiantSnake.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 1
+armor class = 5
+movement rate = 9
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 1
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 465
+classes = any
+form = animal + snake + large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,1,0,attacks
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Gold Dragon
+icon file = icon_GoldDragon.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 16
+armor class = -2
+movement rate = 12
+hit dice = 12.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 9
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 18000
+classes = any
+form = large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 8,1,0,attacks
+attack = 8,1,0,attacks
+attack = 6,6,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Green Dragon
+icon file = icon_GreenDragon.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 12
+armor class = 2
+movement rate = 9
+hit dice = 9.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 12
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 14000
+classes = any
+form = large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+attack = 6,1,0,attacks
+attack = 10,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Green Slime
+icon file = icon_GreenSlime.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 9
+movement rate = 0
+hit dice = 2.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 16
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 630
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Griffon
+icon file = icon_Griffon.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 3
+armor class = 3
+movement rate = 21
+hit dice = 7.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 13
+magic resistance = 0
+size = large
+morale = 0
+experience point value = 725
+classes = any
+form = animal + large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,1,0,attacks
+attack = 4,1,0,attacks
+attack = 8,2,0,bites
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Hell Hound
+icon file = icon_HellHound.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 0
+movement rate = 0
+hit dice = 0.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 20
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 0
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Hill Giant Shaman
+icon file = icon_HillGiantShaman.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 12
+armor class = 4
+movement rate = 12
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 12
+magic resistance = 0
+size = large
+morale = 30
+experience point value = 2650
+classes = any
+form = giant + large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 8,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Imp
+icon file = icon_Imp.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 2
+movement rate = 18
+hit dice = 2.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 16
+magic resistance = 0
+size = small
+morale = 35
+experience point value = 305
+classes = any
+form = none
+penalty = none
+immunity = confusion + none
+Misc Options = none
+item = none
+attack = 4,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Intellect Devourer
+icon file = icon_IntellectDevourer.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 13
+armor class = 4
+movement rate = 15
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 6
+THAC0 = 13
+magic resistance = 0
+size = medium
+morale = 35
+experience point value = 390
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,1,0,attacks
+attack = 4,1,0,attacks
+attack = 4,1,0,attacks
+attack = 4,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Medusa
+icon file = icon_Medusa.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 13
+armor class = 5
+movement rate = 9
+hit dice = 6.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 13
+magic resistance = 0
+size = medium
+morale = 35
+experience point value = 905
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Mind Flayer
+icon file = icon_MindFlayer.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 18
+armor class = 5
+movement rate = 12
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 4
+THAC0 = 12
+magic resistance = 0
+size = medium
+morale = 45
+experience point value = 1680
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 1,2,0,attacks
+attack = 1,2,0,attacks
+attack = 1,2,0,attacks
+attack = 1,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Myconid
+icon file = icon_Myconid.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 10
+movement rate = 9
+hit dice = 3.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 18
+magic resistance = 0
+size = medium
+morale = 35
+experience point value = 95
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,3,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Neo-Otyugh
+icon file = icon_NeoOtyugh.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 12
+armor class = 0
+movement rate = 6
+hit dice = 10.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 10
+magic resistance = 0
+size = large
+morale = 45
+experience point value = 1725
+classes = any
+form = large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 3,1,0,attacks
+attack = 6,2,0,attacks
+attack = 6,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Remorhaz
+icon file = icon_Remorhaz.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 1
+armor class = 0
+movement rate = 12
+hit dice = 11.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 10
+magic resistance = 75
+size = large
+morale = 35
+experience point value = 2580
+classes = any
+form = large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,6,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Red Dragon
+icon file = icon_RedDragon.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 15
+armor class = -1
+movement rate = 9
+hit dice = 10.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 11
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 15000
+classes = any
+form = large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 8,1,0,attacks
+attack = 8,1,0,attacks
+attack = 10,3,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Satyr
+icon file = icon_Satyr.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 13
+armor class = 5
+movement rate = 18
+hit dice = 5.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 15
+magic resistance = 50
+size = medium
+morale = 35
+experience point value = 375
+classes = any
+form = mammal + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Shambling Mound
+icon file = icon_ShamblingMound.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 3
+armor class = 0
+movement rate = 6
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 12
+magic resistance = 0
+size = large
+morale = 45
+experience point value = 2200
+classes = any
+form = large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,2,0,attacks
+attack = 4,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Stirge
+icon file = icon_Stirge.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 1
+armor class = 8
+movement rate = 18
+hit dice = 1.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 18
+magic resistance = 0
+size = small
+morale = 35
+experience point value = 50
+classes = any
+form = animal + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 3,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Stone Golem
+icon file = icon_StoneGolem.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 0
+armor class = 5
+movement rate = 6
+hit dice = 60.000000
+treat HD as hit points = no
+hit dice bonus = 0
+THAC0 = 9
+magic resistance = 0
+size = large
+morale = 50
+experience point value = 8950
+classes = any
+form = large + none
+penalty = none
+immunity = poison + death magic + confusion + vorpal weapon + none
+Misc Options = none
+item = none
+attack = 8,3,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Umber Hulk
+icon file = icon_UmberHulk.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 2
+movement rate = 6
+hit dice = 8.000000
+treat HD as hit points = yes
+hit dice bonus = 8
+THAC0 = 12
+magic resistance = 0
+size = large
+morale = 35
+experience point value = 2500
+classes = any
+form = large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,3,0,attacks
+attack = 4,3,0,attacks
+attack = 5,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Wight
+icon file = icon_Wight.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 5
+movement rate = 12
+hit dice = 4.000000
+treat HD as hit points = yes
+hit dice bonus = 3
+THAC0 = 15
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 800
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 4,1,0,attacks
+Undead = Wight
+\(END)
+
+\(BEGIN)
+name = Wyvern
+icon file = icon_Wyvern.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 6
+armor class = 3
+movement rate = 6
+hit dice = 7.000000
+treat HD as hit points = yes
+hit dice bonus = 7
+THAC0 = 20
+magic resistance = 0
+size = large
+morale = 0
+experience point value = 1775
+classes = any
+form = animal + large + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,attacks
+attack = 8,2,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Yeti
+icon file = icon_Yeti.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 6
+movement rate = 15
+hit dice = 4.000000
+treat HD as hit points = yes
+hit dice bonus = 4
+THAC0 = 15
+magic resistance = 0
+size = large
+morale = 0
+experience point value = 615
+classes = any
+form = mammal + animal + none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,1,0,claws
+attack = 6,1,0,claws
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Xorn
+icon file = icon_Xorn.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = -2
+movement rate = 9
+hit dice = 7.000000
+treat HD as hit points = yes
+hit dice bonus = 7
+THAC0 = 12
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 2975
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = none
+item = none
+attack = 6,4,0,attacks
+attack = 3,1,0,attacks
+attack = 3,1,0,attacks
+attack = 3,1,0,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Xvart
+icon file = icon_Xvart.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 9
+armor class = 7
+movement rate = 6
+hit dice = 0.900000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 20
+magic resistance = 0
+size = small
+morale = 0
+experience point value = 10
+classes = any
+form = none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 4,1,1,attacks
+Undead = none
+\(END)
+
+\(BEGIN)
+name = Yuan Ti
+icon file = icon_YuanTi.png,0,2,48,48,0,1,0
+miss sound = Miss.wav
+hit sound = Hit.wav
+move sound = CharMove.wav
+death sound = CharDeath.wav
+intelligence = 17
+armor class = 0
+movement rate = 9
+hit dice = 9.000000
+treat HD as hit points = yes
+hit dice bonus = 0
+THAC0 = 11
+magic resistance = 0
+size = medium
+morale = 0
+experience point value = 0
+classes = any
+form = snake + none
+penalty = none
+immunity = none
+Misc Options = can be held/charmed + none
+item = none
+attack = 6,1,0,attacks
+attack = 6,1,0,attacks
+Undead = none
+\(END)
+

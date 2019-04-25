@@ -1,0 +1,337 @@
+// BaseClass database file
+// The above line must appear exactly as shown.
+//   "// BaseClass database file"
+//
+// The names should not conflict with any of the names
+// in the class database, the items database, the spells
+// database, races database, or abilities database.
+// What I did was to start all base classes with a lower
+// case letter and classes with an upper case letter.
+//
+// Minimum experience points for each character level
+// Starting with level 1, for all levels up to level 30
+// Eg:   ExpLevel = 65420
+//
+// Allowed Alignment is one of:
+//
+//    any
+//    Lawful Good
+//    Neutral Good
+//    Chaotic Good
+//    Lawful Neutral
+//    True Neutral
+//    Chaotic Neutral
+//    Lawful Evil
+//    Neutral Evil
+//    Chaotic Evil
+//
+// example, which only allows two alignments for a class
+//   Allowed Alignment = Lawful Good
+//   Allowed Alignment = Lawful Evil
+//
+//
+\(BEGIN)
+name = Fighter
+Prime Requisite = Strength
+AbilityRequirement = Strength 9/18
+Allowed race = Human
+Allowed race = Halfling
+Allowed race = Half-Elf
+Allowed race = Gnome
+Allowed race = Elf
+Allowed race = Dwarf
+Allowed Alignment = any
+ExpLevel = 0
+ExpLevel = 2000
+ExpLevel = 4000
+ExpLevel = 8000
+ExpLevel = 16000
+ExpLevel = 32000
+ExpLevel = 64000
+ExpLevel = 125000
+ExpLevel = 250000
+ExpLevel = 500000
+ExpLevel = 750000
+ExpLevel = 1000000
+ExpLevel = 1250000
+ExpLevel = 1500000
+ExpLevel = 1750000
+ExpLevel = 2000000
+ExpLevel = 2250000
+ExpLevel = 2500000
+ExpLevel = 2750000
+ExpLevel = 3000000
+ExpLevel = 3250000
+ExpLevel = 3500000
+ExpLevel = 3750000
+ExpLevel = 4000000
+ExpLevel = 4250000
+ExpLevel = 4500000
+ExpLevel = 4750000
+ExpLevel = 5000000
+ExpLevel = 5250000
+ExpLevel = 5500000
+\(END)
+
+\(BEGIN)
+name = Cleric
+Prime Requisite = Wisdom
+AbilityRequirement = Wisdom 9/18
+Allowed Alignment = any
+Allowed race = Human
+Allowed race = Halfling
+Allowed race = Half-Elf
+Allowed race = Gnome
+Allowed race = Elf
+Allowed race = Dwarf
+ExpLevel = 0
+ExpLevel = 1500
+ExpLevel = 3000
+ExpLevel = 6000
+ExpLevel = 13000
+ExpLevel = 27500
+ExpLevel = 55000
+ExpLevel = 110000
+ExpLevel = 225000
+ExpLevel = 450000
+ExpLevel = 675000
+ExpLevel = 900000
+ExpLevel = 1125000
+ExpLevel = 1350000
+ExpLevel = 1575000
+ExpLevel = 1800000
+ExpLevel = 2025000
+ExpLevel = 2250000
+ExpLevel = 2475000
+ExpLevel = 2700000
+ExpLevel = 2925000
+ExpLevel = 3150000
+ExpLevel = 3375000
+ExpLevel = 3600000
+ExpLevel = 3825000
+ExpLevel = 4050000
+ExpLevel = 4275000
+ExpLevel = 4500000
+ExpLevel = 4725000
+ExpLevel = 4950000
+\(END)
+
+\(BEGIN)
+name = Ranger
+Prime Requisite = Strength
+Prime Requisite = Dexterity
+Prime Requisite = Wisdom
+AbilityRequirement = Strength 13/18
+AbilityRequirement = Dexterity 13/18
+AbilityRequirement = Constitution 14/18
+AbilityRequirement = Wisdom 14/18
+Allowed Alignment = Lawful Good
+Allowed Alignment = Neutral Good
+Allowed Alignment = Chaotic Good
+Allowed race = Human
+Allowed race = Elf
+Allowed race = Half-Elf
+ExpLevel = 0
+ExpLevel = 2251
+ExpLevel = 4501
+ExpLevel = 10001
+ExpLevel = 20001
+ExpLevel = 40001
+ExpLevel = 90001
+ExpLevel = 150001
+ExpLevel = 225001
+ExpLevel = 325001
+ExpLevel = 650001
+ExpLevel = 975001
+ExpLevel = 1300001
+ExpLevel = 1625001
+ExpLevel = 1950001
+ExpLevel = 2275001
+ExpLevel = 2600001
+ExpLevel = 2925001
+ExpLevel = 3350001
+ExpLevel = 3675001
+ExpLevel = 4000001
+ExpLevel = 4325001
+ExpLevel = 4650001
+ExpLevel = 4975001
+ExpLevel = 5300001
+ExpLevel = 5625001
+ExpLevel = 5975001
+ExpLevel = 6300001
+ExpLevel = 6625001
+ExpLevel = 6950001
+\(END)
+
+\(BEGIN)
+name = Paladin
+Prime Requisite = Strength
+Prime Requisite = Charisma
+AbilityRequirement = Strength 12/18
+AbilityRequirement = Constitution 9/18
+AbilityRequirement = Wisdom 13/18
+AbilityRequirement = Charisma 17/18
+Allowed race = Human
+Allowed Alignment = Lawful Good
+ExpLevel = 0
+ExpLevel = 2751
+ExpLevel = 5501
+ExpLevel = 12001
+ExpLevel = 24001
+ExpLevel = 48001
+ExpLevel = 95001
+ExpLevel = 175001
+ExpLevel = 350001
+ExpLevel = 700001
+ExpLevel = 1050001
+ExpLevel = 1400001
+ExpLevel = 1750001
+ExpLevel = 2100001
+ExpLevel = 2450001
+ExpLevel = 2800001
+ExpLevel = 3150001
+ExpLevel = 3500001
+ExpLevel = 3850001
+ExpLevel = 4300001
+ExpLevel = 4650001
+ExpLevel = 5000001
+ExpLevel = 5350001
+ExpLevel = 5700001
+ExpLevel = 6050001
+ExpLevel = 6400001
+ExpLevel = 6750001
+ExpLevel = 7100001
+ExpLevel = 7450001
+ExpLevel = 7800001
+\(END)
+
+\(BEGIN)
+name = MagicUser
+Prime Requisite = Intelligence
+AbilityRequirement = Intelligence 9/18
+Allowed race = Human
+Allowed race = Elf
+Allowed race = Half-Elf
+Allowed Alignment = any
+ExpLevel = 0
+ExpLevel = 2500
+ExpLevel = 5000
+ExpLevel = 10000
+ExpLevel = 20000
+ExpLevel = 40000
+ExpLevel = 60000
+ExpLevel = 90000
+ExpLevel = 135000
+ExpLevel = 250000
+ExpLevel = 375000
+ExpLevel = 750000
+ExpLevel = 1125000
+ExpLevel = 1500000
+ExpLevel = 1875000
+ExpLevel = 2250000
+ExpLevel = 2625000
+ExpLevel = 3000000
+ExpLevel = 3375000
+ExpLevel = 3750000
+ExpLevel = 4125000
+ExpLevel = 4500000
+ExpLevel = 4875000
+ExpLevel = 5250000
+ExpLevel = 5625000
+ExpLevel = 6000000
+ExpLevel = 6375000
+ExpLevel = 6750000
+ExpLevel = 7125000
+ExpLevel = 7500000
+\(END)
+
+\(BEGIN)
+name = Thief
+Prime Requisite = Dexterity
+AbilityRequirement = Dexterity 9/18
+Allowed race = Human
+Allowed race = Halfling
+Allowed race = Half-Elf
+Allowed race = Gnome
+Allowed race = Elf
+Allowed race = Dwarf
+Allowed Alignment = Lawful Neutral
+Allowed Alignment = Lawful Evil
+Allowed Alignment = Neutral Good
+Allowed Alignment = True Neutral
+Allowed Alignment = Neutral Evil
+Allowed Alignment = Chaotic Good
+Allowed Alignment = Chaotic Neutral
+Allowed Alignment = Chaotic Evil
+ExpLevel = 0
+ExpLevel = 1250
+ExpLevel = 2500
+ExpLevel = 5000
+ExpLevel = 10000
+ExpLevel = 20000
+ExpLevel = 40000
+ExpLevel = 70000
+ExpLevel = 110000
+ExpLevel = 160000
+ExpLevel = 220000
+ExpLevel = 440000
+ExpLevel = 660000
+ExpLevel = 880000
+ExpLevel = 1100000
+ExpLevel = 1320000
+ExpLevel = 1540000
+ExpLevel = 1760000
+ExpLevel = 1980000
+ExpLevel = 2200000
+ExpLevel = 2420000
+ExpLevel = 2640000
+ExpLevel = 2860000
+ExpLevel = 3080000
+ExpLevel = 3300000
+ExpLevel = 3520000
+ExpLevel = 3740000
+ExpLevel = 3960000
+ExpLevel = 4180000
+ExpLevel = 4400000
+\(END)
+
+\(BEGIN)
+name = Druid
+Prime Requisite = Wisdom
+Prime Requisite = Charisma
+AbilityRequirement = Wisdom 12/18
+AbilityRequirement = Charisma 15/18
+Allowed race = Human
+Allowed race = Half-Elf
+Allowed Alignment = any
+ExpLevel = 0
+ExpLevel = 2001
+ExpLevel = 4001
+ExpLevel = 7501
+ExpLevel = 12501
+ExpLevel = 20001
+ExpLevel = 35001
+ExpLevel = 60001
+ExpLevel = 90001
+ExpLevel = 125001
+ExpLevel = 200001
+ExpLevel = 300001
+ExpLevel = 750001
+ExpLevel = 1500001
+ExpLevel = 3000001
+ExpLevel = 3500001
+ExpLevel = 4000001
+ExpLevel = 4500001
+ExpLevel = 5000001
+ExpLevel = 5500001
+ExpLevel = 6000001
+ExpLevel = 6500001
+ExpLevel = 7000001
+ExpLevel = 7500001
+ExpLevel = 8000001
+ExpLevel = 8500001
+ExpLevel = 9000001
+ExpLevel = 9500001
+ExpLevel = 10000001
+ExpLevel = 10500001
+\(END)

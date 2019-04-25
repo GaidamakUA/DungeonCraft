@@ -1,0 +1,213 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,3,0,0
+ PRODUCTVERSION 1,3,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x21L
+#else
+ FILEFLAGS 0x20L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Long Live Gold Box Style Gaming\0"
+            VALUE "CompanyName", " \0"
+            VALUE "FileDescription", "Dungeon Craft Engine\0"
+            VALUE "FileVersion", "1.03\0"
+            VALUE "InternalName", "Dungeon Craft Engine\0"
+            VALUE "LegalCopyright", "Copyright © 2000-2014, DC Development Team\0"
+            VALUE "LegalTrademarks", "Released under Gnu Public License\0"
+            VALUE "OriginalFilename", "UAFWin.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Dungeon Craft Engine\0"
+            VALUE "ProductVersion", "1.03\0"
+            VALUE "SpecialBuild", "CocoaSpud@hotmail.com\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON2               ICON    DISCARDABLE     "UAFWin.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR1             CURSOR  DISCARDABLE     "cursor1.cur"
+IDC_CURSOR2             CURSOR  DISCARDABLE     "cursor2.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GPDL DIALOG DISCARDABLE  0, 0, 387, 209
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,330,188,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,330,170,50,14
+    CONTROL         "Check0",IDC_GPDLCHECK0,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,101,70,10
+    CONTROL         "Check1",IDC_GPDLCHECK1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,111,65,10
+    CONTROL         "Check2",IDC_GPDLCHECK2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,121,70,10
+    CONTROL         "Check3",IDC_GPDLCHECK3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,131,70,10
+    CONTROL         "Check4",IDC_GPDLCHECK4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,141,70,10
+    CONTROL         "Check5",IDC_GPDLCHECK5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,151,70,10
+    CONTROL         "Radio6",IDC_GPDLRADIO6,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,77,101,65,10
+    CONTROL         "Radio7",IDC_GPDLRADIO7,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,77,111,65,10
+    CONTROL         "Radio8",IDC_GPDLRADIO8,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,77,121,65,10
+    CONTROL         "Radio9",IDC_GPDLRADIO9,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,77,131,65,10
+    CONTROL         "Radio10",IDC_GPDLRADIO10,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,77,141,65,10
+    CONTROL         "Radio11",IDC_GPDLRADIO11,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,77,151,65,10
+    PUSHBUTTON      "Button12",IDC_GPDLBUTTON12,143,101,70,14,WS_GROUP
+    PUSHBUTTON      "Button13",IDC_GPDLBUTTON13,225,101,70,14
+    PUSHBUTTON      "Button14",IDC_GPDLBUTTON14,307,101,70,14
+    PUSHBUTTON      "Button15",IDC_GPDLBUTTON15,143,121,70,14
+    PUSHBUTTON      "Button16",IDC_GPDLBUTTON16,225,121,70,14
+    PUSHBUTTON      "Button17",IDC_GPDLBUTTON17,307,121,70,14
+    EDITTEXT        IDC_GPDLEDIT19,7,162,311,40,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_HSCROLL
+    EDITTEXT        IDC_GPDLEDIT18,5,5,375,91,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+END
+
+IDD_LoggingDialog DIALOG DISCARDABLE  0, 0, 300, 150
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Active Logging Control"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,243,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,243,24,50,14
+    CONTROL         "All Special Ability Script Executions",IDC_AllSAScripts,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,14,125,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_GPDL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 380
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+    END
+
+    IDD_LoggingDialog, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 143
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

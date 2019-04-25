@@ -1,0 +1,17 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+COMPRESS=12 Hall Zeck
+LCID=0x409 0x0 0x0 ; English (United States)
+REPORT=Yes
+HLP=UAForever.hlp
+
+[FILES]
+UAF.rtf
+GPDL.rtf
+
+[MAP]
+Wall_Editing=1400
+
+[WINDOWS]
+UAF="UAForever",(100,77,600,429),21252,(r14876671),(r12632256)

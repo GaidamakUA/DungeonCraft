@@ -1,0 +1,48 @@
+// Ability database file
+// The line above **must** be the first line of the abilitiess file!!! 
+// The first line should always be --> "// Ability database file"
+//
+\(BEGIN)
+name = Strength
+abbreviation = STR
+roll = 3 |< 3d6 >| 18 
+modify = 100
+adjust = Halfling * -1
+\(END)
+
+\(BEGIN)
+name = Intelligence
+abbreviation = INT
+roll = 3 |< 3d6 >| 19
+adjust = Gnome * 1
+\(END)
+
+\(BEGIN)
+name = Wisdom
+abbreviation = WIS
+roll = 3 |< 3d6 >| 18
+adjust = Gnome * -1
+\(END)
+
+\(BEGIN)
+name = Dexterity
+abbreviation = DEX
+roll = 3 |< 3d6 >| 19
+adjust = Elf * 1
+adjust = Halfling * 1
+\(END)
+
+\(BEGIN)
+name = Constitution
+abbreviation = CON
+roll = 3 |< 3d6 >| 19
+adjust = Dwarf * 1
+adjust = Elf * -1
+\(END)
+
+\(BEGIN)
+name = Charisma
+abbreviation = CHA
+roll = 3 |< 3d6 >| 18
+adjust = Dwarf * -1
+\(END)
