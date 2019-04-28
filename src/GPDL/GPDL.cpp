@@ -1,8 +1,8 @@
 
 #include <afx.h>
 #include <afxtempl.h>
-#include "..\Shared\GPDLOpCodes.h"
-#include "..\Shared\GPDLcomp.h"
+#include "../Shared/GPDLOpCodes.h"
+#include "../Shared/GPDLcomp.h"
 
 
 
