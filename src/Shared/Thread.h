@@ -1,8 +1,8 @@
 #ifndef __THREAD_H__
 #define __THREAD_H__
-#include <afx.h>
-#include <afxmt.h>
-#include <process.h>
+//#include <afx.h>
+//#include <afxmt.h>
+//#include <process.h>
 
 
 class CThread
