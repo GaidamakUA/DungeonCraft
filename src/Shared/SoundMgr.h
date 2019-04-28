@@ -36,8 +36,8 @@ class CAR;
 //#endif
 
 #define CDXINCLUDEALL
-#include "CDX.h"
-#include "CDXSound.h"
+#include "cdx.h"
+#include "cdxsound.h"
 //#include "CDXMusic.h"
 
 #define SOUNDLIB  CDXSound

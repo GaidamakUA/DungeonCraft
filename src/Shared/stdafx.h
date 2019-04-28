@@ -51,7 +51,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <direct.h>
-#include <Process.h>
+#include <process.h>
 // for AVI video playback
 #include <mmstream.h>
 #include <amstream.h>
@@ -63,10 +63,10 @@
 #pragma warning (disable : 4201) // non-standard extension used
 #pragma warning (disable : 4786) // var name too long (it's those STL templates)
 
-#include "..\Shared\externs.h"
-#include "..\Shared\ASL.h"
-#include "..\UAFWinEd\UAFWinEd.h"
-#include "..\Shared\SharedQueue.h"
+#include "../Shared/Externs.h"
+#include "../Shared/ASL.h"
+#include "../UAFWinEd/UAFWinEd.h"
+#include "../Shared/SharedQueue.h"
 
 
 #else // Engine versus editor
@@ -106,7 +106,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <direct.h>
-#include <Process.h>
+#include <process.h>
 // for AVI video playback
 #include <mmstream.h>
 #include <amstream.h>

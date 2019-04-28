@@ -17,20 +17,20 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "PicData.h"
+#include "picdata.h"
 //#include "attrib.h"
 #include "spell.h"
-#include "SpellDlg.h"
-#include "GlobalData.h"
+#include "Spelldlg.h"
+#include "globaldata.h"
 #include "ChooseSpeclAbDlg.h"
-#include "GameEvent.h"
+#include "gameevent.h"
 #include "EventViewer.h"
 
-#include "MagicalItemProp.h"
+#include "magicalitemprop.h"
 #include "EditAttributes.h"
 
 #ifdef _DEBUG

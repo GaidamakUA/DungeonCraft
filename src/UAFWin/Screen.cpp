@@ -17,24 +17,24 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 
-#include "GlobalData.h"
-#include "SoundMgr.h"
-#include "Graphics.h"
-#include "Viewport.h"
-#include "GameEvent.h"
+#include "globaldata.h"
+#include "soundmgr.h"
+#include "graphics.h"
+#include "viewport.h"
+#include "gameevent.h"
 #include "Disptext.h"
 #include "CharStatsForm.h"
 #include "GameMenu.h"
-#include "path.h"
-#include "DrawTile.h"
+#include "Path.h"
+#include "Drawtile.h"
 #include "party.h"
 #include "FormattedText.h"
-#include "..\Shared\GPDLopCodes.h"
-#include "GPDLexec.h"
-#include "combatants.h"
+#include "../Shared/GPDLOpCodes.h"
+#include "gpdlexec.h"
+#include "Combatants.h"
 #include "MouseThread.h"
 
 #include "Screen.h" 

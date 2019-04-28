@@ -27,7 +27,7 @@
 ********************************************************************/
 
 /*** Include files **************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #include "cdx.h"
 #include "Movie.h"

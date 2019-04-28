@@ -19,7 +19,7 @@
 #ifndef __EditBGSlot_H__
 #define __EditBGSlot_H__
 
-#include "ColorBox.h"
+#include "Colorbox.h"
 #include "DlgPicture.h"
 
 /////////////////////////////////////////////////////////////////////////////

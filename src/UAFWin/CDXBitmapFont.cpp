@@ -3,7 +3,7 @@
 // Date:           [ 7.4.1999 ]
 // Revision:       [ 1.00 ]
 //////////////////////////////////////////////////////////////////////////////////
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "externs.h"
 #include "CDXBitmapFont.h"
 #include <math.h>

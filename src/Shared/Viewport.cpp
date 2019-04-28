@@ -16,22 +16,22 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #ifdef UAFEDITOR
 //#include "..\UAFWinEd\UAFWinEd.h"
-#include "..\UAFWinEd\DlgPicture.h" // to allow config of mapping coords
+#include "../UAFWinEd/DlgPicture.h" // to allow config of mapping coords
 #else
 //#include "externs.h"
-#include "..\UAFWin\Dungeon.h"
-#include "..\UAFWin\Path.h"
+#include "../UAFWin/Dungeon.h"
+#include "../UAFWin/Path.h"
 #endif
 
 #include "GlobalData.h"
-#include "level.h"
-#include "party.h"
+#include "Level.h"
+#include "Party.h"
 #include "Graphics.h"
-#include "viewport.h"
+#include "Viewport.h"
 #include "FileParse.h"
 
 

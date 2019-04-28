@@ -155,7 +155,7 @@
 static char rcsid[] = "@(#) $Id: cdxsurface.cpp,v 1.13 2013/12/16 01:35:59 cocoaspud Exp $";
 #endif
 
-#include "CDX.h"
+#include "cdx.h"
 #include "cdxsurface.h"
 #include "cdximage.h"
 #include <math.h>

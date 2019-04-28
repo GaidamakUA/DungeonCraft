@@ -23,7 +23,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "GameEvent.h"
+#include "gameevent.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CTakePartyItems dialog

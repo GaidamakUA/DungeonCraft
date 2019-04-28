@@ -8,7 +8,7 @@
 #ifndef CDXIMAGEPNG_H
 #define CDXIMAGEPNG_H
 
-#include "CDXImageBase.h"
+#include "cdximagebase.h"
 
 class CDXImagePNG : public CDXImageBase  
 {

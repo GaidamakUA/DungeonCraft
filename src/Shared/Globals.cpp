@@ -16,25 +16,25 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "externs.h"
 
 #ifdef UAFEDITOR
 // editor specific includes
-#include "..\UAFWinEd\UAFWinEd.h"
-#include "..\UAFWinEd\GlobText.h"
-#include "..\UAFWinEd\PreviewFileDlg.h"
+#include "../UAFWinEd/UAFWinEd.h"
+#include "../UAFWinEd/Globtext.h"
+#include "../UAFWinEd/PreviewFileDlg.h"
 #include <shlobj.h>
 #include "io.h"
 //#include "ASL.h"
 #else
 // engine specific includes
-#include "..\UAFWin\Dungeon.h"
-#include "..\UAFWin\FormattedText.h"
-#include "..\UAFWin\GameMenu.h"
-#include "..\UAFWin\Combatants.h"
-#include "..\UAFWin\GetInput.h"
-#include "..\UAFWin\CProcInp.h"
+#include "../UAFWin/Dungeon.h"
+#include "../UAFWin/FormattedText.h"
+#include "../UAFWin/GameMenu.h"
+#include "../UAFWin/Combatants.h"
+#include "../UAFWin/Getinput.h"
+#include "../UAFWin/CProcinp.h"
 #endif
 
 // shared folder includes
@@ -51,10 +51,10 @@
 #include "FileParse.h"
 #include "Viewport.h"
 #include "SoundMgr.h"
-#include "party.h"
+#include "Party.h"
 #include "StackWalker.h"
-#include "..\UAFWinEd\Resource.h"
-#include "..\UAFWinEd\ImportWarning.h"
+#include "../UAFWinEd/resource.h"
+#include "../UAFWinEd/ImportWarning.h"
 
 extern int setPartyXY_x;
 extern CString errorText;

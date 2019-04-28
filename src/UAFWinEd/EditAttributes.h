@@ -25,7 +25,7 @@
 
 //#include "resource.h"
 #include "SortableListCtrl.h"
-#include "Specab.h"
+#include "specab.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CEditAttributes dialog

@@ -22,7 +22,7 @@
 
 #include "UAFWinEd.h"
 #include "DlgPicture.h"
-#include "ColorBox.h"
+#include "Colorbox.h"
 
 extern int EDITOR_RESOURCE_ID;
 

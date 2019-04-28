@@ -19,12 +19,12 @@
 #ifndef __DNGN_H__
 #define __DNGN_H__
 
-#include "resource.h"       // main symbols
+#include "Resource.h"       // main symbols
 
 #include "items.h"
 #include "char.h"
 #include "spell.h"
-#include "Timer.h"
+#include "timer.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CDungeonApp:

@@ -17,10 +17,10 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #include "UAFWinEd.h"
-#include "ColorBox.h"
+#include "Colorbox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -19,7 +19,7 @@
 
 // SortableListCtrl.cpp : implementation file
 //
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "SortableListCtrl.h"
 //#include "EditCell.h"
 

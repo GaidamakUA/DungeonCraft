@@ -21,7 +21,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CZoneDlg dialog
-#include "Level.h"
+#include "level.h"
 
 class CZoneDlg : public CDialog
 {

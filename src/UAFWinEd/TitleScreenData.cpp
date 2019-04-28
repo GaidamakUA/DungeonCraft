@@ -18,7 +18,7 @@
 ******************************************************************************/
 
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "TitleScreenConfig.h"

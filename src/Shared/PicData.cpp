@@ -16,15 +16,15 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 
-#include "externs.h"
+#include "Externs.h"
 
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\UAFWinEd.h"
+#include "../UAFWinEd/UAFWinEd.h"
 #endif
-#include "sharedqueue.h"
+#include "SharedQueue.h"
 #include "class.h"
 #include "Graphics.h"
 #include "GlobalData.h"
@@ -33,8 +33,8 @@
 #include "Viewport.h"
 
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\resource.h"
-#include "..\UAFWinEd\CrossReference.h"
+#include "../UAFWinEd/resource.h"
+#include "../UAFWinEd/CrossReference.h"
 #endif
 
 #ifdef _DEBUG

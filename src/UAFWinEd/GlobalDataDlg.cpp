@@ -17,16 +17,16 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "GlobalData.h"
+#include "globaldata.h"
 //#include "GlobText.h"
 #include "ItemKeyQuestDlg.h"
 #include "CharacterEditor.h"
 #include "ScrollPicDlg.h"
-#include "PicSlot.h"
+#include "picslot.h"
 #include "GlobalSndChooser.h"
 //#include "ItemDlg.h"
 #include "StartingEquipDlg.h"
@@ -36,7 +36,7 @@
 #include "TitleScreenData.h"
 #include "Spelldlg.h"
 #include "GlobalDataDlg.h"
-#include "ConfigFile.h"
+#include "configfile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

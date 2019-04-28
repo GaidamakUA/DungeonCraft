@@ -17,13 +17,13 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "SurfaceMgr.h"
+#include "surfacemgr.h"
 //#include "PicSlot.h"
-#include "PicData.h"
+#include "picdata.h"
 #include "SmallPicDlg.h"
 #include "SmallPicPoolDlg.h"
 

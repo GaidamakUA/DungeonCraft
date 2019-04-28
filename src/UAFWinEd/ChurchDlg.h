@@ -19,7 +19,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CChurch dialog
-#include "GameEvent.h"
+#include "gameevent.h"
 
 class CChurch : public CDialog
 {

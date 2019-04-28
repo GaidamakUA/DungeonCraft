@@ -19,7 +19,7 @@
 #if !defined(AFX_CHOOSEMONSTER_H__47D96C93_C77B_11D3_88FA_00105AA4563A__INCLUDED_)
 #define AFX_CHOOSEMONSTER_H__47D96C93_C77B_11D3_88FA_00105AA4563A__INCLUDED_
 
-#include "Monster.h"
+#include "monster.h"
 #include "SortableListCtrl.h"
 
 /////////////////////////////////////////////////////////////////////////////

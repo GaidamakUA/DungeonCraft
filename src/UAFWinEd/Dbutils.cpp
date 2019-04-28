@@ -17,7 +17,7 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "resource.h"
 
@@ -27,9 +27,9 @@
 #include "monster.h"
 #include "spell.h"
 #include "class.h"
-#include "itemdb.h"
-#include "DbUtils.h"
-#include "ConfigFile.h"
+#include "ItemDB.h"
+#include "Dbutils.h"
+#include "configfile.h"
 #include "ItemEditor.h"
 #include "MonsterEditor.h"
 #include "SpellEditor.h"

@@ -6,7 +6,7 @@
 #endif // _MSC_VER > 1000
 // ChooseOptions.h : header file
 //
-#include "GameEvent.h"
+#include "gameevent.h"
 #include "SortableListCtrl.h"
 
 /////////////////////////////////////////////////////////////////////////////

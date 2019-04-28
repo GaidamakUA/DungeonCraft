@@ -1,7 +1,7 @@
 // Launch.cpp : Defines the class behaviors for the application.
 //
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include <sys/types.h> 
 #include <sys/stat.h>
 #include "Launch.h"

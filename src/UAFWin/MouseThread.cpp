@@ -16,14 +16,14 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "Dungeon.h"
 //#include "externs.h"
-#include "Graphics.h"
+#include "graphics.h"
 //#include "Screen.h"
-#include "PicSlot.h"
-#include "GetInput.h"
-#include "CProcInp.h"
+#include "picslot.h"
+#include "Getinput.h"
+#include "CProcinp.h"
 
 #include "MouseThread.h"
 

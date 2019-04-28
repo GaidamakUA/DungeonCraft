@@ -24,8 +24,8 @@
 #endif // _MSC_VER > 1000
 
 #include "SortableListCtrl.h"
-#include "GlobalData.h"
-#include "GameEvent.h"
+#include "globaldata.h"
+#include "gameevent.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CJournalAddEventDlg dialog

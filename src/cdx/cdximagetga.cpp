@@ -31,7 +31,7 @@
 // $Revision: 1.4 $
 //////////////////////////////////////////////////////////////////////////////////
 
-#include "CDXImageTGA.h"
+#include "cdximagetga.h"
 
 // helper function to read next two
 // bytes in stream and return them

@@ -45,7 +45,8 @@
 
 #include "cdximagebase.h"
 
-#pragma pack(1)
+/* winemaker: #pragma pack(1) */
+#include <pshpack1.h>
 struct _psdHeader 
 {
 	char	magic[4];	//magic identifier (8BPS)
@@ -58,7 +59,9 @@ struct _psdHeader
 	WORD	colormode;	//colormode.  must be 3
 	DWORD   ModeDataCount;
 };
-#pragma pack()
+/* winemaker: #pragma pack() */
+/* winemaker:warning: Using 4 as the default alignment */
+#include <pshpack4.h>
 
 #define MAX_PSD_CHANNELS	24
 

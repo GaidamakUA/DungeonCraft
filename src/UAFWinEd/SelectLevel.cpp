@@ -17,18 +17,18 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "GlobalData.h"
-#include "Level.h"
-#include "PicSlot.h"
-#include "MapStyle.h"
+#include "globaldata.h"
+#include "level.h"
+#include "picslot.h"
+#include "Mapstyle.h"
 #include "RequestFilename.h"
 #include "DesignList.h"
 #include "SelectLevel.h"
-#include "ConfigFile.h"
+#include "configfile.h"
 #include "class.h"
 
 #ifdef _DEBUG

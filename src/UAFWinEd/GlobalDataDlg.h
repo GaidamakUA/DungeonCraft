@@ -20,7 +20,7 @@
 #define __GLOBAL_DATA_DLG_H__
 
 
-#include "GlobalData.h"
+#include "globaldata.h"
 
 class CGlobalDataDlg : public CDialog
 {

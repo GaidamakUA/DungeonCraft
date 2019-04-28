@@ -6,8 +6,8 @@
 
 
 
-#include "GPDLOpCodes.h"
-#include "GPDLcomp.h"
+#include "gpdlopcodes.h"
+#include "gpdlcomp.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

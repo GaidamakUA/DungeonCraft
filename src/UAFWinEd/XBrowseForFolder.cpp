@@ -38,7 +38,7 @@
 #include "tchar.h"
 #endif
 
-#include "Shlobj.h"
+#include "shlobj.h"
 #include "io.h"
 #include "XBrowseForFolder.h"
 

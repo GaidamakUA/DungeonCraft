@@ -20,8 +20,8 @@
 #define __CLASS_H__
 
 #include "SharedQueue.h"
-#include "specAb.h"
-#include "items.h"
+#include "Specab.h"
+#include "Items.h"
 
 
 #define MAX_RACES 9999

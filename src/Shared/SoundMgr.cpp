@@ -16,12 +16,12 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\UAFWinEd.h"
+#include "../UAFWinEd/UAFWinEd.h"
 #else
-#include "..\UAFWin\Dungeon.h"
+#include "../UAFWin/Dungeon.h"
 #endif
 #include "class.h"
 #include "SoundMgr.h"
@@ -33,9 +33,9 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 #ifdef UAFEDITOR
-#include "..\UAFwinEd\resource.h"
+#include "../UAFWinEd/resource.h"
 #include "class.h"
-#include "..\UAFwinEd\CrossReference.h"
+#include "../UAFWinEd/CrossReference.h"
 #endif
 
 #include "GlobalData.h"
@@ -47,7 +47,7 @@ static char THIS_FILE[] = __FILE__;
 #ifdef USE_BASS
 
 #define BASSDEF(f) (WINAPI *f)	// define the functions as pointers
-#include "Bass.h"
+#include "bass.h"
 SYNCPROC BassSyncCallback;
 SYNCPROC BassSyncBgSoundCallback;
 DWORD ver=0;

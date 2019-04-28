@@ -17,14 +17,14 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "resource.h"
 
 //#include "UAFWinEd.h"
 
 //#include "externs.h"
-#include "SoundMgr.h"
+#include "soundmgr.h"
 #include "items.h"
 #include "spell.h"
 #include "char.h"
@@ -33,10 +33,10 @@
 
 //#include <math.h>
 #include "class.h"
-#include "itemdb.h"
-#include "ConfigFile.h"
+#include "ItemDB.h"
+#include "configfile.h"
 #include "level.h"
-#include "GlobalData.h"
+#include "globaldata.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

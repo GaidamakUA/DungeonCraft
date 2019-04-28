@@ -32,7 +32,7 @@
 #ifndef CDXIMAGEJPG_H
 #define CDXIMAGEJPG_H
 
-#include "CDXImageBase.h"
+#include "cdximagebase.h"
 #include <mmreg.h>
 
 

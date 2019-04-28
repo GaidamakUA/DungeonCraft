@@ -7,7 +7,9 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+/* winemaker: #include "afxres.h" */
+/* winemaker:warning: 'afxres.h' is an MFC specific header. Replacing it with 'winresrc.h' */
+#include "winresrc.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -34,7 +36,7 @@ END
 
 2 TEXTINCLUDE DISCARDABLE 
 BEGIN
-    "#include ""afxres.h""\r\n"
+    "#include ""winresrc.h""\r\n"
     "\0"
 END
 
@@ -66,7 +68,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Launch.ico"
+IDR_MAINFRAME           ICON    DISCARDABLE     "res/Launch.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -212,7 +214,7 @@ END
 LANGUAGE 9, 1
 #pragma code_page(1252)
 #endif //_WIN32
-#include "res\Launch.rc2"  // non-Microsoft Visual C++ edited resources
+#include "res/Launch.rc2"  // non-Microsoft Visual C++ edited resources
 #include "afxres.rc"         // Standard components
 #endif
 

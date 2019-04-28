@@ -19,7 +19,7 @@
 #ifndef __FORMATTED_TEXT_H__
 #define __FORMATTED_TEXT_H__
 
-#include "GlobalData.h"
+#include "globaldata.h"
 
 // num pixels across box where text msgs are displayed
 extern int TEXTBOX_WIDTH;

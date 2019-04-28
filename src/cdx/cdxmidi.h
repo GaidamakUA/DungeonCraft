@@ -66,7 +66,7 @@ typedef struct CDX_MIDI_TYP
 
 #endif
 
-#include "cdxsound.h"
+#include "Cdxsound.h"
 
 #define CDX_NUM_SEGMENTS 64	  // maximum number of midi files that can be loaded
 #define MIDI_NULL        0	  // midi has not been loaded

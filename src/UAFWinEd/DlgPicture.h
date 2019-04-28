@@ -19,12 +19,12 @@
 #ifndef __DLGPIC_H__
 #define __DLGPIC_H__
 
-#include "GlobalData.h"
-#include "Level.h"
-#include "PicSlot.h"
-#include "PicData.h"
-#include "Viewport.h"
-#include "Graphics.h"
+#include "globaldata.h"
+#include "level.h"
+#include "picslot.h"
+#include "picdata.h"
+#include "viewport.h"
+#include "graphics.h"
 
 // These classes provide the functionality to draw DirectX surfaces
 // into a CStatic frame on a dialog. They handle resizing the source

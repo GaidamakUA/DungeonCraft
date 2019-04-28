@@ -16,16 +16,16 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "GPDLOpCodes.h"
-#include "specab.h"
+#include "Specab.h"
 #include "GPDLcomp.h"
 #include "GPDLexec.h"
 
 #ifdef UAFEngine
 #include "Char.h"
-#include "..\UAFWin\Combatant.h"
+#include "../UAFWin/Combatant.h"
 extern A_CStringPAIR_L globalSA_debug;
 extern int globalLoggingFlags;
 #endif

@@ -16,25 +16,25 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #ifdef UAFEDITOR
 //#include "..\UAFWinEd\UAFWinEd.h"
-#include "..\UAFWinEd\resource.h"
+#include "../UAFWinEd/resource.h"
 #include "class.h"
-#include "..\UAFWinEd\CrossReference.h"
+#include "../UAFWinEd/CrossReference.h"
 #else
 #include "Externs.h"
-#include "..\UAFWin\Dungeon.h"
+#include "../UAFWin/Dungeon.h"
 #include "GameEvent.h"
-#include "..\UAFWin\disptext.h"
-#include "..\UAFWin\FormattedText.h"
-#include "..\UAFWin\Combatant.h"
+#include "../UAFWin/Disptext.h"
+#include "../UAFWin/FormattedText.h"
+#include "../UAFWin/Combatant.h"
 #endif
 
-#include "items.h"
-#include "char.h"
-#include "monster.h"
+#include "Items.h"
+#include "Char.h"
+#include "Monster.h"
 #include "class.h"
 
 #include "GlobalData.h"
@@ -43,10 +43,10 @@
 
 #ifdef UAFEngine
 #include "RunTimeIF.h"
-#include "..\UAFWin\FormattedText.h"
+#include "../UAFWin/FormattedText.h"
 #include <math.h>
 #include "GPDLexec.h"
-#include "GPDLComp.h"
+#include "GPDLcomp.h"
 #endif
 
 #include "RunTimeIF.h"

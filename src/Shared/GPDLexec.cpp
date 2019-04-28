@@ -58,22 +58,22 @@
 //  GPDL_READ_ERROR    = Error reading GPDL binary file.
 
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
-#include "externs.h"
+#include "Externs.h"
 #include <malloc.h>
 #include <math.h>
 #include "class.h"
 #include "GameEvent.h"
-#include "..\Shared\GPDLopCodes.h"
+#include "../Shared/GPDLOpCodes.h"
 #include "GPDLcomp.h"
 #include "GPDLexec.h"
 #include "Graphics.h"
 #include "GlobalData.h"
-#include "RuntimeIF.h"
-#include "party.h"
+#include "RunTimeIF.h"
+#include "Party.h"
 #include "Monster.h"
-#include "..\UAFWin\Resource.h"
+#include "../UAFWin/Resource.h"
 
 void *My_malloc(int size);
 void *My_realloc(void *buf, int size);
@@ -95,9 +95,9 @@ extern CHARACTER FakeCharacter;
 
 #ifdef UAFEngine
 
-#include "..\UAFWin\combatants.h"
-#include "..\UAFWin\CharStatsForm.h"
-#include "..\UAFWin\FormattedText.h"
+#include "../UAFWin/Combatants.h"
+#include "../UAFWin/CharStatsForm.h"
+#include "../UAFWin/FormattedText.h"
 
 BOOL HaveLineOfSight(int x0, int y0, int x1, int y1, BOOL *reflects);
 BOOL IsLineOfSight(int x0, int y0, int x1, int y1);

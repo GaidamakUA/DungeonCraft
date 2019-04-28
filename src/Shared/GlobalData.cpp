@@ -16,30 +16,30 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\shared\stdafx.h"
-#include "..\Shared\ProjectVersion.h"
+#include "../Shared/stdafx.h"
+#include "../Shared/ProjectVersion.h"
 
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\UAFWinEd.h"
+#include "../UAFWinEd/UAFWinEd.h"
 #else
 //#include "externs.h"
-#include "..\UAFWin\Dungeon.h"
-#include "..\UAFWin\DgnGame.h"
+#include "../UAFWin/Dungeon.h"
+#include "../UAFWin/Dgngame.h"
 #endif
 
 #include "class.h"
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\resource.h"
-#include "..\UAFWinEd\CrossReference.h"
+#include "../UAFWinEd/resource.h"
+#include "../UAFWinEd/CrossReference.h"
 #include "ConfigFile.h"
 #endif
 #include "Graphics.h"
 #include "PicSlot.h"
-#include "party.h"
+#include "Party.h"
 #include "GlobalData.h"
 #include "Level.h"
 #include "SoundMgr.h"
-#include "monster.h"
+#include "Monster.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

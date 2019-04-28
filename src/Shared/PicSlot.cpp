@@ -16,22 +16,22 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\UAFWinEd.h"
-#include "..\UAFWinEd\resource.h"
+#include "../UAFWinEd/UAFWinEd.h"
+#include "../UAFWinEd/resource.h"
 #include "class.h"
-#include "..\UAFWinEd\CrossReference.h"
+#include "../UAFWinEd/CrossReference.h"
 #else
-#include "externs.h"
-#include "..\UAFWin\Dungeon.h"
+#include "Externs.h"
+#include "../UAFWin/Dungeon.h"
 #endif
 
 #include "class.h"
 #include "SurfaceMgr.h"
-#include "globalData.h"
+#include "GlobalData.h"
 //#include "level.h"
 #include "SoundMgr.h"
 #include "PicData.h"

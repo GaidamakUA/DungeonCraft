@@ -19,7 +19,7 @@
 #if !defined(AFX_ENTRYPOINTDLG_H__62919D02_593F_11D2_AC0D_00C04F8E081C__INCLUDED_)
 #define AFX_ENTRYPOINTDLG_H__62919D02_593F_11D2_AC0D_00C04F8E081C__INCLUDED_
 
-#include "GlobalData.h"
+#include "globaldata.h"
 
 
 /////////////////////////////////////////////////////////////////////////////

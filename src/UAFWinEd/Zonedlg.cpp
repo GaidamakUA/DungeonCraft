@@ -17,7 +17,7 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "resource.h"
 
@@ -25,14 +25,14 @@
 #include "SmallPicDlg.h"
 #include "SelectPicDlg.h"
 #include "ScrollPicDlg.h"
-#include "ColorBox.h"
+#include "Colorbox.h"
 //#include "GlobText.h"
 //#include "GlobalData.h"
-#include "Char.h"
-#include "GameEvent.h"
+#include "char.h"
+#include "gameevent.h"
 #include "monster.h"
 #include "ChooseMonster.h"
-#include "ZoneDlg.h"
+#include "Zonedlg.h"
 #include "SoundEventDlg.h"
 #include "Help.h"
 

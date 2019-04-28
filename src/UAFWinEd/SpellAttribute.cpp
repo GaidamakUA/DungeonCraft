@@ -17,10 +17,10 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
-#include "RunTimeIF.h"
-#include "Char.h"
-#include "GameRules.h"
+#include "../Shared/stdafx.h"
+#include "runtimeif.h"
+#include "char.h"
+#include "gamerules.h"
 #include "EditText.h"
 #include "SpellAttribute.h"
 

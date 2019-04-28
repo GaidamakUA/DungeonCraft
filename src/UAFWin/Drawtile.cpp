@@ -22,7 +22,7 @@
 //
 
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #define diagonalMap
 
@@ -32,17 +32,17 @@
 
 #include "items.h"
 #include "char.h"
-#include "Graphics.h"
-#include "GlobalData.h"
+#include "graphics.h"
+#include "globaldata.h"
 #include "level.h"
-#include "combatants.h"
-#include "PicSlot.h"
-#include "PicData.h"
-#include "drawtile.h"
+#include "Combatants.h"
+#include "picslot.h"
+#include "picdata.h"
+#include "Drawtile.h"
 #include "Path.h"
 #include "party.h"
 #include <math.h>
-#include "Viewport.h"
+#include "viewport.h"
 
 
 void *My_malloc(int size);

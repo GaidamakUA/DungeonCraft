@@ -16,32 +16,32 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\ProjectVersion.h"
 
 
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\UAFWinEd.h"
-#include "..\UAFWinEd\ShellLink.h"
-#include <sys\stat.h>
-#include "specab.h"
-#include "..\UAFWinEd\itemdb.h"
+#include "../UAFWinEd/UAFWinEd.h"
+#include "../UAFWinEd/shelllink.h"
+#include <sys/stat.h>
+#include "Specab.h"
+#include "../UAFWinEd/ItemDB.h"
 #include "class.h"
-#include "..\UAFWinEd\resource.h"
-#include "..\UAFWinEd\CrossReference.h"
-#include "..\UAFWinEd\ImportWarning.h"
+#include "../UAFWinEd/resource.h"
+#include "../UAFWinEd/CrossReference.h"
+#include "../UAFWinEd/ImportWarning.h"
 #else
-#include "externs.h"
-#include "..\UAFWin\Dungeon.h"
+#include "Externs.h"
+#include "../UAFWin/Dungeon.h"
 #include "class.h"
 #endif
 
 #include "Char.h"
-#include "level.h"
+#include "Level.h"
 #include "GameEvent.h"
-#include "spell.h"
+#include "Spell.h"
 #include "Graphics.h"
-#include "party.h"
+#include "Party.h"
 #include "GlobalData.h"
 #include "FileParse.h"
 #include "Viewport.h"

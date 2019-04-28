@@ -19,7 +19,7 @@
 #if !defined(AFX_GLOBALSNDCHOOSER_H__06CAAEF8_8C7C_11D3_88D6_00105AA4563A__INCLUDED_)
 #define AFX_GLOBALSNDCHOOSER_H__06CAAEF8_8C7C_11D3_88D6_00105AA4563A__INCLUDED_
 
-#include "GlobalData.h"
+#include "globaldata.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CGlobalSndChooser dialog

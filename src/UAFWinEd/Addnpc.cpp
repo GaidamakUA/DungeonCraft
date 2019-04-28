@@ -16,16 +16,16 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 //#include "UAFWinEd.h"
-#include "GlobalData.h"
-#include "GameEvent.h"
-#include "globtext.h"
+#include "globaldata.h"
+#include "gameevent.h"
+#include "Globtext.h"
 #include "SelectPicDlg.h"
 #include "ChooseNPC.h"
-#include "AddNPC.h"
+#include "Addnpc.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

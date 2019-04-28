@@ -17,19 +17,19 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 //#include "externs.h"
 #include "UAFWinEd.h"
-#include "itemdlg.h"
+#include "Itemdlg.h"
 #include "SmallPicDlg.h"
 #include "IconPicDlg.h"
-#include "GlobText.h"
-#include "SpellDlg.h"
+#include "Globtext.h"
+#include "Spelldlg.h"
 #include "GetMoney.h"
-#include "GlobalData.h"
+#include "globaldata.h"
 #include "EventViewer.h"
-#include "CharDlg.h"
+#include "Chardlg.h"
 #include "EditAttributes.h"
 
 #ifdef _DEBUG

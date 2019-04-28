@@ -1,7 +1,7 @@
 // LaunchDlg.cpp : implementation file
 //
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "Launch.h"
 #include <shlobj.h>
 

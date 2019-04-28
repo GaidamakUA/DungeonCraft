@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Translate.h"
 
 #define Str details.Fetch_String

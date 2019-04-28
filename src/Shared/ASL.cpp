@@ -17,12 +17,12 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "Externs.h"
 #include "ASL.h"
 #include "class.h"
-#include "specAb.h"
+#include "Specab.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

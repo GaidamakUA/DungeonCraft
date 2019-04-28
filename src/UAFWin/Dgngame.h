@@ -19,8 +19,8 @@
 #ifndef DGNGAME_H_
 #define DGNGAME_H_
 
-#include "dungeon.h"
-#include "Thread.h"
+#include "Dungeon.h"
+#include "thread.h"
 
 BOOL serializeGame(BOOL save, int num);
 BOOL readDatabase(void);

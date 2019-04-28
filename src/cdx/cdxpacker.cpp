@@ -30,8 +30,8 @@ static char rcsid = "@(#) $Id: cdxpacker.cpp,v 1.4 2001/10/13 15:19:59 cocoaspud
 #endif
 
 #include <cdx.h>
-#include <CDXSurface.h>
-#include <CDXPacker.h>
+#include <cdxsurface.h>
+#include <cdxpacker.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Blits an array of Bytes into a Surface over DC. Usefull for many things ;)

@@ -76,7 +76,8 @@
 #define	IDB_4_WAY		0x80	// 4 way interleaving (eg: AT&T PC)  
 
 
-#pragma pack(1)
+/* winemaker: #pragma pack(1) */
+#include <pshpack1.h>
 
 struct _tgaHeader 
 {
@@ -111,7 +112,9 @@ struct _tgaStruct
 	unsigned char *color_map;
 };
 
-#pragma pack()
+/* winemaker: #pragma pack() */
+/* winemaker:warning: Using 4 as the default alignment */
+#include <pshpack4.h>
 
 /////////////////////////////////////////////////////////////////////////
 

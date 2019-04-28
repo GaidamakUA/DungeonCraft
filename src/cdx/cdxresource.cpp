@@ -62,7 +62,7 @@
 static char rcsid[] = "@(#) $Id: cdxresource.cpp,v 1.6 2011/06/21 14:14:29 stevens-madison Exp $";
 #endif
 
-#include "CDX.h"
+#include "cdx.h"
 #include "cdxresource.h"
 #include <fcntl.h>
 #include <io.h>

@@ -19,15 +19,15 @@
 // ImportFRUAData.cpp : implementation file
 //
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "resource.h"
 
-#include "uafwined.h"
-#include "uafwinedview.h"
-#include "Mainfrm.h"
-#include "SoundMgr.h"
-#include  "Party.h"
+#include "UAFWinEd.h"
+#include "UAFWinEdView.h"
+#include "MainFrm.h"
+#include "soundmgr.h"
+#include  "party.h"
 #include "ImportFRUAData.h"
 #include "SelectFolderDialog.h"
 

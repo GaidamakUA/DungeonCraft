@@ -17,12 +17,12 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "GlobText.h"
-#include "ItemDlg.h"
+#include "Globtext.h"
+#include "Itemdlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -3,7 +3,7 @@
 #include <afxtempl.h>
 #include <malloc.h>
 
-#include "..\Shared\GPDLopCodes.h"
+#include "../Shared/GPDLOpCodes.h"
 
 void WriteDebugString(const char *ptext, ... );
 extern int debugSeverity;

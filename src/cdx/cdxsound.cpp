@@ -37,8 +37,8 @@
 static char rcsid[] = "@(#) $Id: cdxsound.cpp,v 1.4 2001/10/13 15:19:59 cocoaspud Exp $";
 #endif
 
-#include "CDX.h"
-#include "cdxsound.h"
+#include "cdx.h"
+#include "Cdxsound.h"
 
 //Makes the mixed LONG value out of the Left and Right channels...
 #define MAKEVOL(right,left) MAKELONG(((right*65535L)/100), ((left*65535L)/100))

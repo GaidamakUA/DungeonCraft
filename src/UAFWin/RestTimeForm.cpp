@@ -17,19 +17,19 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 //#include "externs.h"
 #include "Dungeon.h"
-#include "Graphics.h"
-#include "GlobalData.h"
-#include "GetInput.h"
-#include "Viewport.h"
+#include "graphics.h"
+#include "globaldata.h"
+#include "Getinput.h"
+#include "viewport.h"
 #include "RestTimeForm.h"
 #include "GameMenu.h"
 #include "Screen.h"
 #include "FormattedText.h"
-#include "DispText.h"
+#include "Disptext.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

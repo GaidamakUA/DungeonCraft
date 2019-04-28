@@ -17,10 +17,10 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "externs.h"
 #include "Dungeon.h"
-#include "Graphics.h"
+#include "graphics.h"
 #include "TextForm.h"
 #include "Disptext.h"
 

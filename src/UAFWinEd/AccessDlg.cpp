@@ -18,8 +18,8 @@
 ******************************************************************************/
 // AccessDlg.cpp : implementation file
 //
-#include "..\Shared\stdafx.h"
-#include "Externs.h"
+#include "../Shared/stdafx.h"
+#include "externs.h"
 #include "resource.h"
 
 //#include "UAFWinEd.h"

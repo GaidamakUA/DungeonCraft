@@ -16,17 +16,17 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\ProjectVersion.h"
 //#include "externs.h"
 #include "Dungeon.h"
-#include "DgnGame.h"
-#include "MainFrm.h"
-#include "Graphics.h"
-#include "SoundMgr.h"
-#include "GetInput.h"
-#include "GlobalData.h"
-#include "CProcInp.h"
+#include "Dgngame.h"
+#include "Mainfrm.h"
+#include "graphics.h"
+#include "soundmgr.h"
+#include "Getinput.h"
+#include "globaldata.h"
+#include "CProcinp.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

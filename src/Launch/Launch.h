@@ -13,7 +13,7 @@
 #endif
 
 #include "resource.h"		// main symbols
-#include "..\Shared\FileParse.h"
+#include "../Shared/FileParse.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CLaunchApp:

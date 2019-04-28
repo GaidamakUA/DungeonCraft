@@ -1,11 +1,11 @@
 // SpecAbMsgs.cpp : implementation file
 //
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "GlobText.h"
+#include "Globtext.h"
 #include "SpecAbMsgEnter.h"
 
 #include "SpecAbMsgs.h"

@@ -40,7 +40,7 @@
 #ifndef CDXIMAGEPCX_H
 #define CDXIMAGEPCX_H
 
-#include "CDXImageBase.h"
+#include "cdximagebase.h"
 
 // Structures relating to the PCX format
 typedef struct _PCX_RGB

@@ -17,14 +17,14 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 //#include "externs.h"
 #include "Dungeon.h"
-#include "GetInput.h"
-#include "CProcInp.h"
-#include "MainFrm.h"
-#include "SoundMgr.h"
+#include "Getinput.h"
+#include "CProcinp.h"
+#include "Mainfrm.h"
+#include "soundmgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

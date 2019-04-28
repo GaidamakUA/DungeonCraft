@@ -1,1 +1,1 @@
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"

@@ -19,7 +19,7 @@
 #ifndef __EDITWALLSLOT_H__
 #define __EDITWALLSLOT_H__
 
-#include "ColorBox.h"
+#include "Colorbox.h"
 #include "DlgPicture.h"
 
 /////////////////////////////////////////////////////////////////////////////

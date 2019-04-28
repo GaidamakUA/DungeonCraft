@@ -17,13 +17,13 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
 #include "IconPicDlg.h"
-#include "itemdlg.h"
+#include "Itemdlg.h"
 #include "ChooseSpeclAbDlg.h"
 #include "SoundChooser.h"
 #include "MonsterAttacksDlg.h"

@@ -16,8 +16,8 @@ All rights reserved.
 */
 
 //////////////// Includes ////////////////////////////////////////////
-#include "..\Shared\stdafx.h"
-#include "ShellLink.h"
+#include "../Shared/stdafx.h"
+#include "shelllink.h"
 //#define INITGUID
 //#include <initguid.h>
 #include <shlguid.h>

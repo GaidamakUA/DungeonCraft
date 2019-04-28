@@ -1,10 +1,10 @@
 // GameResChange.cpp : implementation file
 //
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 #include "externs.h"
-#include "uafwined.h"
+#include "UAFWinEd.h"
 #include "GameResChange.h"
 
 #ifdef _DEBUG

@@ -20,8 +20,8 @@
 #define __CHAR_H__
 
 #include "class.h"
-#include "items.h"
-#include "spell.h"
+#include "Items.h"
+#include "Spell.h"
 #include "Property.h"
 #ifdef UAFEngine
 #include "../UAFWin/CombatSummary.h"

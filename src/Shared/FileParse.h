@@ -19,7 +19,7 @@
 #ifndef __FILEPARSE_H__
 #define __FILEPARSE_H__
 
-#include "externs.h" // for MFC standard includes
+#include "Externs.h" // for MFC standard includes
 
 //extern A_CStringPAIR_L ConfigFile_DB;
 

@@ -26,9 +26,9 @@
 #include "class.h"
 #include "resource.h"
 
-#include "..\Shared\GPDLOpCodes.h"
-#include "..\Shared\GPDLcomp.h"
-#include "..\Shared\GPDLexec.h"
+#include "../Shared/GPDLOpCodes.h"
+#include "../Shared/GPDLcomp.h"
+#include "../Shared/GPDLexec.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CSpellAttribute dialog

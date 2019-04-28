@@ -50,14 +50,14 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "..\shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\ProjectVersion.h"
 
 #include "externs.h"
 
-#include "GetInput.h"
+#include "Getinput.h"
 #include "class.h"
-#include "CProcInp.h"
+#include "CProcinp.h"
 #include "party.h"
 #include "globaldata.h"
 #include "MouseThread.h"

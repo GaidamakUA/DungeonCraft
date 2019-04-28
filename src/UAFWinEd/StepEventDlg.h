@@ -18,9 +18,9 @@
 ******************************************************************************/
 #if !defined(AFX_STEPEVENTDLG_H__872F6AD2_78D3_11D2_AC18_00C04F8E081C__INCLUDED_)
 #define AFX_STEPEVENTDLG_H__872F6AD2_78D3_11D2_AC18_00C04F8E081C__INCLUDED_
-#include "GameEvent.h"
-#include "GlobalData.h"
-#include "Level.h"
+#include "gameevent.h"
+#include "globaldata.h"
+#include "level.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CStepEventDlg dialog

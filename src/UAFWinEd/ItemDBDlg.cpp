@@ -17,13 +17,13 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
 #include "items.h"
-#include "MagicalItemProp.h"
-#include "GlobText.h"
+#include "magicalitemprop.h"
+#include "Globtext.h"
 #include "SoundChooser.h"
 #include "SmallPicDlg.h"
 #include "EventViewer.h"

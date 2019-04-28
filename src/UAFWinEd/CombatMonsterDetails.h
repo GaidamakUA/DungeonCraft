@@ -7,7 +7,7 @@
 // CombatMonsterDetails.h : header file
 //
 
-#include "GameEvent.h"
+#include "gameevent.h"
 /////////////////////////////////////////////////////////////////////////////
 // CCombatMonsterDetails dialog
 

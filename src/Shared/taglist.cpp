@@ -14,10 +14,10 @@
 //******************************************
 
 //---------------------------------------------------------------------------
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "memory.h"
 #ifndef __TAG_LIST_H_
-#include "taglist.h"
+#include "Taglist.h"
 #endif
 
 #ifdef _DEBUG

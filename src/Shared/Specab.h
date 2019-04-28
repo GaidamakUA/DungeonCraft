@@ -19,7 +19,7 @@
 #ifndef __SPECAB_H__
 #define __SPECAB_H__
 
-#include "externs.h"
+#include "Externs.h"
 //#include <afxtempl.h>
 
 #include "ASL.h"

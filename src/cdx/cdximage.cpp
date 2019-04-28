@@ -56,13 +56,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-#include "CDXImage.h"
-#include "CDXImageTGA.h"
-#include "CDXImagePSD.h"
-#include "CDXImageBMP.h"
-#include "CDXImageJPG.h"
-#include "CDXImagePCX.h"
-#include "CDXImagePNG.h"
+#include "cdximage.h"
+#include "cdximagetga.h"
+#include "cdximagepsd.h"
+#include "cdximagebmp.h"
+#include "cdximagejpg.h"
+#include "cdximagepcx.h"
+#include "cdximagepng.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

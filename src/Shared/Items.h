@@ -20,7 +20,7 @@
 #define __ITEMS_H__
 
 //#include "externs.h"
-#include "SpecAb.h"
+#include "Specab.h"
 //#include "Spell.h"
 #include "SharedQueue.h"
 #include "PicData.h"

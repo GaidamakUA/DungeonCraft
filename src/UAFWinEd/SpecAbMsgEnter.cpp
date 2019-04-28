@@ -1,9 +1,9 @@
 // SpecAbMsgEnter.cpp : implementation file
 //
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
-#include "uafwined.h"
+#include "UAFWinEd.h"
 #include "SpecAbMsgEnter.h"
 
 #ifdef _DEBUG

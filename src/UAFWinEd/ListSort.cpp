@@ -18,7 +18,7 @@
 *
 * Code downloaded from http://www.codeguru.com
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #ifdef UAFEDITOR
 #endif

@@ -20,11 +20,11 @@
 #define __SPELL_H__
 
 //#include "externs.h"
-#include "SpecAb.h"
+#include "Specab.h"
 #include "SharedQueue.h"
 #include "PicData.h"
 #include "class.h"
-#include "gamerules.h"
+#include "GameRules.h"
 //#include "ProjectVersion.h"
 
 

@@ -20,9 +20,9 @@
 #define __COMBATANTS_H__
 
 //#include "SharedQueue.h"
-#include "GameEvent.h"
+#include "gameevent.h"
 #include "Combatant.h"
-#include "DrawTile.h"
+#include "Drawtile.h"
 
 enum combatVictorType { NoWinner, PartyWins, PartyRanAway, MonsterWins };
 

@@ -17,14 +17,14 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "resource.h"
 
 #include "monster.h"
 #include "char.h"
 #include "ChooseNPC.h"
-#include "GlobalData.h"
+#include "globaldata.h"
 #include "CombatMonsterDetails.h"
 #include "ChooseCombatMonsters.h"
 

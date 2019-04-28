@@ -1,9 +1,9 @@
 #ifndef __OBJECT_SCRIPTS_H__
 #define __OBJECT_SCRIPTS_H__
 
-#include "..\Shared\stdafx.h"
-#include "..\Shared\SharedQueue.h"
-#include "Externs.h"
+#include "../Shared/stdafx.h"
+#include "../Shared/SharedQueue.h"
+#include "externs.h"
 
 class CObjectScript
 {

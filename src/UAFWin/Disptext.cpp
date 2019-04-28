@@ -17,7 +17,7 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 //#include "externs.h"
 #include "Dungeon.h"
@@ -27,17 +27,17 @@
 #include "char.h"
 #include "class.h"
 #include "level.h"
-#include "GlobalData.h"
-#include "GameEvent.h"
+#include "globaldata.h"
+#include "gameevent.h"
 #include "party.h"
-#include "Graphics.h"
-#include "DispText.h"
+#include "graphics.h"
+#include "Disptext.h"
 //#include "GameMenu.h"
-#include "combatants.h"
-#include "DrawTile.h"
+#include "Combatants.h"
+#include "Drawtile.h"
 #include "monster.h"
-#include "treas.h"
-#include "Viewport.h"
+#include "Treas.h"
+#include "viewport.h"
 #include "FormattedText.h"
 //#include "Getinput.h"
 

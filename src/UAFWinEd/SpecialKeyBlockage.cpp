@@ -1,11 +1,11 @@
 // SpecialKeyBlockage.cpp : implementation file
 //
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "GlobalData.h"
+#include "globaldata.h"
 #include "ItemKeyQuestDlg.h"
 #include "SpecialKeyBlockage.h"
 

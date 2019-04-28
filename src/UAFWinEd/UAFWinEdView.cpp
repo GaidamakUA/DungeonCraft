@@ -17,7 +17,7 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
@@ -25,18 +25,18 @@
 #include "MainFrm.h"
 #include "UAFWinEdDoc.h"
 #include "UAFWinEdView.h"
-#include "GlobalData.h"
-#include "Level.h"
-#include "Viewport.h"
-#include "Graphics.h"
+#include "globaldata.h"
+#include "level.h"
+#include "viewport.h"
+#include "graphics.h"
 #include "EditWallSlots.h"
-#include "ZoneDlg.h"
+#include "Zonedlg.h"
 #include "EditBGSlots.h"
 #include "EntryPointDlg.h"
 #include "AccessDlg.h"
 #include "EventViewer.h"
-#include "SoundMgr.h"
-#include "Party.h"
+#include "soundmgr.h"
+#include "party.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

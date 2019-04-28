@@ -20,7 +20,7 @@
 #define AFX_SOUNDCHOOSER_H__06CAAEF3_8C7C_11D3_88D6_00105AA4563A__INCLUDED_
 
 
-#include "SoundMgr.h"
+#include "soundmgr.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CSoundChooser dialog

@@ -44,7 +44,7 @@
 static char rcsid[] = "@(#) $Id: cdxiso.cpp,v 1.6 2013/12/16 01:35:59 cocoaspud Exp $";
 #endif
 
-#include "CDX.h"
+#include "cdx.h"
 #include "cdxmap.h"
 
 //////////////////////////////////////////////////////////////////////////////////

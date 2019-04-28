@@ -20,7 +20,7 @@
 #define AFX_SOUNDEVENTDLG_H__91CA2F41_8E9E_11D3_BF9A_00A0CC25685D__INCLUDED_
 
 
-#include "GameEvent.h"
+#include "gameevent.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CSoundEventDlg dialog

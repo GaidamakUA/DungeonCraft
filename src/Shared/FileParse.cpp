@@ -16,14 +16,14 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #ifdef UAFEDITOR
 #else
 #endif
 #include "FileParse.h"
 #ifdef UAFEngine
-#include "specab.h"
+#include "Specab.h"
 #endif
 
 #ifdef _DEBUG

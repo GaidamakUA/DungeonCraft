@@ -1,9 +1,9 @@
 // SearchParamDlg.cpp : implementation file
 //
 
-#include "..\Shared\stdafx.h"
-#include "uafwined.h"
-#include "Mainfrm.h"
+#include "../Shared/stdafx.h"
+#include "UAFWinEd.h"
+#include "MainFrm.h"
 #include "SearchParamDlg.h"
 
 #ifdef _DEBUG

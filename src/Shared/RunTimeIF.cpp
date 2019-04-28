@@ -16,20 +16,20 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 
 #include "RunTimeIF.h"
 
 #include "Char.h"
 #ifdef UAFEngine
-#include "..\UAFWin\combatants.h"
+#include "../UAFWin/Combatants.h"
 #endif
-#include "monster.h"
+#include "Monster.h"
 #include "Level.h"
-#include "party.h"
+#include "Party.h"
 #include "GlobalData.h"
-#include "SpecAb.h"
+#include "Specab.h"
 
 #ifdef UAFEngine
 void die(int);

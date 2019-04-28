@@ -21,7 +21,7 @@
 
 //#include "char.h"
 #include "class.h"
-#include "gameevent.h"
+#include "GameEvent.h"
 
 /*
 Valid Classes

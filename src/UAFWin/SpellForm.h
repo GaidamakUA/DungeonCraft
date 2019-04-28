@@ -20,7 +20,7 @@
 #define __SPELLFORM_H__
 
 #include "TextForm.h"
-#include "Spell.h"
+#include "spell.h"
 
 enum SPELL_FORM_INPUT_MESSAGE_TYPE
 {

@@ -16,9 +16,9 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\ProjectVersion.h"
-#include "..\UAFwinEd\resource.h"
+#include "../UAFWinEd/resource.h"
 
 //#ifdef UAFEDITOR
 //#include "..\UAFWinEd\UAFWinEd.h"
@@ -32,21 +32,21 @@
 #include "PicData.h"
 #include "PicSlot.h"
 #include "SoundMgr.h"
-#include "spell.h"
+#include "Spell.h"
 #include "GlobalData.h"
 #ifdef UAFEDITOR
-#include "..\UAFwinEd\CrossReference.h"
+#include "../UAFWinEd/CrossReference.h"
 #endif
 #ifdef UAFEngine
-#include "..\UAFWin\combatants.h"
-#include "..\UAFWin\DrawTile.h"
+#include "../UAFWin/Combatants.h"
+#include "../UAFWin/Drawtile.h"
 #endif
-#include "party.h"
+#include "Party.h"
 
 #include "GPDLOpCodes.h"
 #include "GPDLcomp.h"
 #include "GPDLexec.h"
-#include "..\UAFWin\FormattedText.h"
+#include "../UAFWin/FormattedText.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

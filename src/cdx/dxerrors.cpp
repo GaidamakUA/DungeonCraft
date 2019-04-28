@@ -38,7 +38,7 @@
 static char rcsid[] = "@(#) $Id: dxerrors.cpp,v 1.9 2015/08/27 19:34:05 stevens-madison Exp $";
 #endif
 
-#include "CDX.h"
+#include "cdx.h"
 //#include <d3drmwin.h>
 #include "cdxscreen.h"
 #include <stdarg.h>

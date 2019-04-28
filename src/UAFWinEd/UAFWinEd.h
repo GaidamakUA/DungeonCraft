@@ -27,8 +27,8 @@
 //#include "resource.h"       // main symbols
 
 //#include "tfxdatatip.h"
-#include "GlobText.h"
-#include "ColorBox.h"
+#include "Globtext.h"
+#include "Colorbox.h"
 
 extern COLORREF m_Colors[MAX_COLOR_SLOTS];
 COLORREF GetWallColor(int slot);

@@ -17,7 +17,7 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "resource.h"
 #pragma warning (disable:4091)
@@ -28,12 +28,12 @@
 
 #include "UAFWinEdDoc.h"
 #include "UAFWinEdView.h"
-#include "GameEvent.h"
+#include "gameevent.h"
 
 #include "CharacterEditor.h"
 #include "ChurchDlg.h"
-#include "ShopDlg.h"
-#include "SpellDlg.h"
+#include "Shopdlg.h"
+#include "Spelldlg.h"
 #include "ItemEditor.h"
 #include "EventViewer.h"
 #include "EditWallSlots.h"
@@ -42,25 +42,25 @@
 #include "GlobalDataDlg.h"
 #include "DesignList.h"
 #include "SelectLevel.h"
-#include "ZoneDlg.h"
+#include "Zonedlg.h"
 #include "SmallPicPoolDlg.h"
 #include "IconPicPoolDlg.h"
 #include "MonsterEditor.h"
 #include "SpellEditor.h"
-#include "DbUtils.h"
+#include "Dbutils.h"
 #include "EntryPointDlg.h"
 #include "StepEventDlg.h"
-#include "Graphics.h"
+#include "graphics.h"
 #include "MainFrm.h"
-#include "FileParse.h"
+#include "fileparse.h"
 #include "ItemDB.h"
 #include "VersionDlg.h"
 #include "ImportFRUAData.h"
-#include "ConfigFile.h"
+#include "configfile.h"
 #include "AskSureDlg.h"
-#include "SoundMgr.h"
+#include "soundmgr.h"
 #include "ScrollPicDlg.h"
-#include "Party.h"
+#include "party.h"
 #include "EditorOptions.h"
 #include "DesignStatsDlg.h"
 #include "JournalDataDlg.h"
@@ -72,7 +72,7 @@
 #include "SelectFolderDialog.h"
 #include "ChooseSpeclAbDlg.h"
 //#include "..\UAFWinEd\Resource.h"
-#include "..\UAFWinEd\ImportWarning.h"
+#include "../UAFWinEd/ImportWarning.h"
 
 extern HBRUSH m_ColorBrushes[MAX_COLOR_SLOTS];
 extern void TestAllSpecialAbilities(A_SPECABILITY_DEF_L *pAbilities);

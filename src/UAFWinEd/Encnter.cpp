@@ -17,14 +17,14 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "globtext.h"
-#include "GlobalData.h"
-#include "GameEvent.h"
-#include "buttons.h"
+#include "Globtext.h"
+#include "globaldata.h"
+#include "gameevent.h"
+#include "Buttons.h"
 #include "SelectPicDlg.h"
 #include "Encnter.h"
 

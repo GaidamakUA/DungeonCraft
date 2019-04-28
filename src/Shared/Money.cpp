@@ -21,11 +21,11 @@
 #include <math.h>
 
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\UAFWinEd.h"
+#include "../UAFWinEd/UAFWinEd.h"
 #include "class.h"
 #elif UAFEngine
-#include "externs.h"
-#include "..\UAFWin\Dungeon.h"
+#include "Externs.h"
+#include "../UAFWin/Dungeon.h"
 #include "class.h"
 #endif
 

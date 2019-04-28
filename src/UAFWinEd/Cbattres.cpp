@@ -17,16 +17,16 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 //#include "UAFWinEd.h"
-#include "GlobalData.h"
-#include "GameEvent.h"
+#include "globaldata.h"
+#include "gameevent.h"
 //#include "chooseit.h"
-#include "itemdlg.h"
+#include "Itemdlg.h"
 #include "GetMoneySackData.h"
-#include "CbatTres.h"
+#include "Cbattres.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

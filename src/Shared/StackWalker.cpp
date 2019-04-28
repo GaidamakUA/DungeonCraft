@@ -1,5 +1,5 @@
-#include "..\shared\stdafx.h"
-#include "Stackwalker.h"
+#include "../Shared/stdafx.h"
+#include "StackWalker.h"
 
 void *My_malloc(int size);
 void My_free(void *addr);
@@ -9,11 +9,13 @@ void My_free(void *addr);
 #error "'imagehlp.h' should only included here, not before this point! Otherwise there are some problems!"
 #endif
 
-#pragma pack( push, before_imagehlp, 8 )
+/* winemaker: #pragma pack( push, before_imagehlp, 8 ) */
+#include <pshpack8.h>
 #pragma warning (disable:4091)
 #include <imagehlp.h>
 
-#pragma pack( pop, before_imagehlp )
+/* winemaker: #pragma pack( pop, before_imagehlp ) */
+#include <poppack.h>
 
 
 // Global data:
@@ -158,7 +160,8 @@ void CleanupStackWalk()
 // **************************************** ToolHelp32 ************************
 #define MAX_MODULE_NAME32 255
 #define TH32CS_SNAPMODULE   0x00000008
-#pragma pack( push, 8 )
+/* winemaker: #pragma pack( push, 8 ) */
+#include <pshpack8.h>
 typedef struct tagMODULEENTRY32
 {
   DWORD   dwSize;
@@ -174,7 +177,8 @@ typedef struct tagMODULEENTRY32
 } MODULEENTRY32;
 typedef MODULEENTRY32 *  PMODULEENTRY32;
 typedef MODULEENTRY32 *  LPMODULEENTRY32;
-#pragma pack( pop )
+/* winemaker: #pragma pack( pop ) */
+#include <poppack.h>
 
 
 static bool GetModuleListTH32(ModuleList& modules, DWORD pid, FILE *fLogFile)

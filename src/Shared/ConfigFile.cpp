@@ -16,13 +16,13 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 
 //#include "afxtempl.h"
-#include "externs.h"
-#include "char.h"
-#include "monster.h"
+#include "Externs.h"
+#include "Char.h"
+#include "Monster.h"
 #include "class.h"
 #include "ConfigFile.h"
 

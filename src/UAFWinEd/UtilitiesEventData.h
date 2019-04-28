@@ -20,7 +20,7 @@
 #define AFX_UTILITIESEVENTDATA_H__901861E6_8ADB_11D3_88C9_00105AA4563A__INCLUDED_
 
 
-#include "GameEvent.h"
+#include "gameevent.h"
 #include "SortableListCtrl.h"
 
 /////////////////////////////////////////////////////////////////////////////

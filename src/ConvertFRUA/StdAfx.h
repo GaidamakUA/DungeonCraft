@@ -21,9 +21,9 @@
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 #include <iostream>
-#include <Afxtempl.h>
+#include <afxtempl.h>
 extern CString jsonPath;
-#include "j.h"
+#include "J.h"
 void die(const char *msg);
 void NotImplemented(int msg, bool);
 void WriteLine(FILE *f, const char*key, const char *value);

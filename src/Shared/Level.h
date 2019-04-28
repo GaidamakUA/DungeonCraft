@@ -20,7 +20,7 @@
 #define __LEVEL_H__
 
 //#include "externs.h"
-#include "items.h"
+#include "Items.h"
 #include "PicData.h"
 #include "PicSlot.h"
 #include "GameEvent.h"

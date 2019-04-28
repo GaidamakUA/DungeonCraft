@@ -21,9 +21,9 @@
 
 #include "GameEvent.h"
 #include "SharedQueue.h"
-#include "level.h"
-#include "char.h"
-#include "TagList.h"
+#include "Level.h"
+#include "Char.h"
+#include "Taglist.h"
 
 const int DRUNK_THRESHOLD = 60;
 const int DRINK_POINT_DEC_PER_HOUR = 10;

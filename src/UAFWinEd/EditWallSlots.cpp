@@ -17,18 +17,18 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "GlobalData.h"
-#include "Level.h"
-#include "PicSlot.h"
-#include "Graphics.h"
+#include "globaldata.h"
+#include "level.h"
+#include "picslot.h"
+#include "graphics.h"
 #include "WallPicDlg.h"
-#include "ColorBox.h"
-#include "Spell.h"
-#include "SpellDlg.h"
+#include "Colorbox.h"
+#include "spell.h"
+#include "Spelldlg.h"
 #include "ScrollPicDlg.h"
 #include "SpecialKeyBlockage.h"
 #include "EditWallSlots.h"

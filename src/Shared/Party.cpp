@@ -16,26 +16,26 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 
-#include "externs.h"
+#include "Externs.h"
 
 #ifdef UAFEDITOR
-#include "..\UAFWinEd\UAFWinEd.h"
+#include "../UAFWinEd/UAFWinEd.h"
 #endif
 // #include "externs.h"
 #include <math.h>
 #include "Char.h"
-#include "party.h"
+#include "Party.h"
 #include "GlobalData.h"
-#include "level.h"
+#include "Level.h"
 
 #ifdef UAFEngine
-#include "..\UAFWin\dgngame.h"
-#include "..\UAFWin\disptext.h"
-#include "..\UAFWin\Path.h"
-#include "..\UAFWin\FormattedText.h"
+#include "../UAFWin/Dgngame.h"
+#include "../UAFWin/Disptext.h"
+#include "../UAFWin/Path.h"
+#include "../UAFWin/FormattedText.h"
 #endif
 
 

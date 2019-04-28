@@ -21,7 +21,7 @@
 
 //lint -e1411
 
-#include "items.h" 
+#include "Items.h" 
 #include "Money.h"
 #include "SoundMgr.h"
 

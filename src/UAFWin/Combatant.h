@@ -19,7 +19,7 @@
 #ifndef __COMBATANT_H__
 #define __COMBATANT_H__
 
-#include "SharedQueue.h"
+#include "sharedqueue.h"
 #include "monster.h"
 #include "spell.h"
 #include "Path.h"

@@ -19,7 +19,7 @@
 #if !defined(AFX_QUESTEVENTDATA_H__A7A7FB53_887F_11D3_88C8_00105AA4563A__INCLUDED_)
 #define AFX_QUESTEVENTDATA_H__A7A7FB53_887F_11D3_88C8_00105AA4563A__INCLUDED_
 
-#include "GameEvent.h"
+#include "gameevent.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CQuestEventData dialog

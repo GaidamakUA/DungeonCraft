@@ -17,17 +17,17 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 #include "externs.h"
 #include "Dungeon.h"
-#include "Graphics.h"
-#include "GlobalData.h"
-#include "GetInput.h"
-#include "Viewport.h"
+#include "graphics.h"
+#include "globaldata.h"
+#include "Getinput.h"
+#include "viewport.h"
 #include "CharStatsForm.h"
-#include "GPDLcomp.h"
-#include "GPDLexec.h"
+#include "gpdlcomp.h"
+#include "gpdlexec.h"
 
 void My_free(void *addr);
 

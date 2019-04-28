@@ -38,12 +38,12 @@ CSelectFolderDialog oSelectFolderDialog(TRUE, "c:\\my documents",
 	"HTML Files (*.html, *.htm)|*.html;*.htm||", NULL);
 */
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "resource.h"
 #include "SelectFolderDialog.h"
-#include <DLGS.H>
-#include <WINUSER.H>
-#include <IO.H>
+#include <dlgs.h>
+#include <winuser.h>
+#include <io.h>
 #pragma warning (disable:4091)
 #include <imagehlp.h>
 #pragma comment(lib, "imagehlp")

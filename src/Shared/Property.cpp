@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "externs.h"
+#include "Externs.h"
 
 
 #include "Property.h"

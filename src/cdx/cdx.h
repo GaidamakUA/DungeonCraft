@@ -138,7 +138,7 @@
 	#include "cdxtile.h"
 	#include "cdxmap.h"
 	#include "cdxsprite.h"
-	#include "cdxsound.h"
+	#include "Cdxsound.h"
 	#include "cdxmusic.h"
 	#include "cdxinput.h"
 	//#include "cdxlink.h"

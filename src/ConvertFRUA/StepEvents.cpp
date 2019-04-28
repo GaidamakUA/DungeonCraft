@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Translate.h"
 
 #define Str stepEvents.Fetch_String

@@ -19,7 +19,7 @@
 #ifndef __SURFACEMGR_H__
 #define __SURFACEMGR_H__
 
-#include "externs.h"
+#include "Externs.h"
 
 const int NUM_SURFACE_TYPES = 17;
 enum SurfaceType { BogusDib=0, CommonDib=1, CombatDib=2, WallDib=4, DoorDib=8, 

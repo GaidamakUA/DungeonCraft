@@ -16,30 +16,30 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 
 #ifdef UAFEDITOR
 //#include "..\UAFWinEd\UAFWinEd.h"
 #else
 //#include "externs.h"
-#include "..\UAFWin\Dungeon.h"
+#include "../UAFWin/Dungeon.h"
 #endif
 
-#include "char.h"
-#include "level.h"
+#include "Char.h"
+#include "Level.h"
 #include "class.h"
 #include "ConfigFile.h"
 #ifdef UAFEngine
-#include "..\UAFWIN\DrawTile.h"
-#include "..\UAFWin\combatants.h"
+#include "../UAFWin/Drawtile.h"
+#include "../UAFWin/Combatants.h"
 #endif
 #include "GlobalData.h"
 #include "Specab.h"
 
 #include "GPDLOpCodes.h"
-#include "GPDLComp.h"
-#include "GPDLExec.h"
+#include "GPDLcomp.h"
+#include "GPDLexec.h"
 #ifdef UAFEDITOR
 #include "Monster.h"
 #endif

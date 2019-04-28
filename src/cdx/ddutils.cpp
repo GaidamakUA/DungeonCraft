@@ -39,7 +39,7 @@ static char rcsid[] = "@(#) $Id: ddutils.cpp,v 1.4 2001/10/13 15:19:59 cocoaspud
 #undef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 
-#include "CDX.h"
+#include "cdx.h"
 #include "cdxscreen.h"
 #include "cdxsurface.h"
 

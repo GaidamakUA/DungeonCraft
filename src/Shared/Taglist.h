@@ -16,7 +16,7 @@
 // MKawick@sprintmail.com
 //******************************************
 
-#include "externs.h"
+#include "Externs.h"
 
 #define FC
 

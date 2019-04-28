@@ -32,7 +32,7 @@
 static char rcsid[] = "@(#) $Id: cdxspritelist.cpp,v 1.5 2013/12/16 01:35:59 cocoaspud Exp $";
 #endif
 
-#include "CDX.h"
+#include "cdx.h"
 #include "cdxsprite.h"
 
 //////////////////////////////////////////////////////////////////////////////////

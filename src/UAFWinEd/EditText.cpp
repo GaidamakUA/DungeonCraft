@@ -17,14 +17,14 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
-#include "Char.h"
-#include "..\Shared\GPDLOpCodes.h"
-#include "..\Shared\GPDLcomp.h"
-#include "..\Shared\GPDLexec.h"
+#include "char.h"
+#include "../Shared/GPDLOpCodes.h"
+#include "../Shared/GPDLcomp.h"
+#include "../Shared/GPDLexec.h"
 #include "EditText.h"
 #include "Help.h"
 

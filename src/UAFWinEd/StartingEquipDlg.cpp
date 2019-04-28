@@ -1,12 +1,12 @@
 // StartingEquipDlg.cpp : implementation file
 //
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
-#include "uafwined.h"
+#include "UAFWinEd.h"
 
 //#include "GlobalData.h"
-#include "ItemDlg.h"
+#include "Itemdlg.h"
 #include "StartingEquipDlg.h"
 
 #ifdef _DEBUG

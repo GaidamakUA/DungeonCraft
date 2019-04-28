@@ -16,20 +16,20 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 //#include "externs.h"
 #include "Dungeon.h"
 
 #include "char.h"
-#include "GlobalData.h"
+#include "globaldata.h"
 #include "party.h"
-#include "DispText.h"
+#include "Disptext.h"
 #include "Combatant.h"
-#include "DrawTile.h"
+#include "Drawtile.h"
 #include "Combatants.h"
-#include "DrawTile.h"
-#include "Viewport.h"
+#include "Drawtile.h"
+#include "viewport.h"
 #include "Screen.h"
 #include "GameMenu.h"
 #include "FormattedText.h"

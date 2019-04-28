@@ -25,7 +25,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CGetMoneySackData dialog
-#include "Money.h"
+#include "money.h"
 
 class CGetMoneySackData : public CDialog
 {

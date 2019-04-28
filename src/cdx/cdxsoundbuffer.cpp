@@ -62,7 +62,7 @@ static char rcsid[] = "@(#) $Id: cdxsoundbuffer.cpp,v 1.4 2001/10/13 15:19:59 co
 #endif
 
 #include "cdx.h"
-#include "cdxsound.h"
+#include "Cdxsound.h"
 
 #ifdef CDX_ACM_SUPPORT
 #include <mmreg.h>

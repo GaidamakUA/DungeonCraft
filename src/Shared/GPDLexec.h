@@ -21,7 +21,7 @@
 #define __GPDLEXEC_H__
 
 // 19 Apr PRS #include "GPDLCode.h"
-#include "RegExp.h"
+#include "regexp.h"
 
 #define DOWN_ARROW      0x28
 #define UP_ARROW        0x26

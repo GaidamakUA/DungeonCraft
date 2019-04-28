@@ -17,13 +17,13 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 #include "resource.h"
 
-#include "GlobalData.h"
-#include "Monster.h"
-#include "Level.h"
+#include "globaldata.h"
+#include "monster.h"
+#include "level.h"
 #include "DesignStatsDlg.h"
 
 #ifdef _DEBUG

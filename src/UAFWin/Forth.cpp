@@ -1,5 +1,5 @@
 #include <stdafx.h>
-#include "Externs.h"
+#include "externs.h"
 #include "CombatSummary.h"
 
 void die(CString msg);

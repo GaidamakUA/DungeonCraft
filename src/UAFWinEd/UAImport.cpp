@@ -17,15 +17,15 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 //#include "..\Shared\Version.h"
 
 //#include "UAFWinEd.h"
-#include "GlobalData.h"
-#include "Level.h"
-#include "GameEvent.h"
-#include "PicSlot.h"
-#include "SoundMgr.h"
+#include "globaldata.h"
+#include "level.h"
+#include "gameevent.h"
+#include "picslot.h"
+#include "soundmgr.h"
 #include "UAImport.h"
 
 // force 1 byte packing alignment for this file

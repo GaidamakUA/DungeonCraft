@@ -1,7 +1,7 @@
 #ifndef __PROPERTY_H__
 #define __PROPERTY_H__
 
-#include "..\shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "class.h"
 
 enum PropModifier 

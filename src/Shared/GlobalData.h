@@ -20,9 +20,9 @@
 #define __GLOBAL_DATA__
 
 
-#include "items.h"
-#include "char.h"
-#include "party.h"
+#include "Items.h"
+#include "Char.h"
+#include "Party.h"
 #include "GameEvent.h"
 #include "SoundMgr.h"
 

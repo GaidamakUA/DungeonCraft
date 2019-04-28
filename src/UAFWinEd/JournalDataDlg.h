@@ -24,7 +24,7 @@
 #endif // _MSC_VER > 1000
 
 #include "SortableListCtrl.h"
-#include "GlobalData.h"
+#include "globaldata.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CJournalDataDlg dialog

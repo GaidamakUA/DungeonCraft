@@ -76,7 +76,7 @@
 static char rcsid[] = "@(#) $Id: Cdxinput.cpp,v 1.7 2015/08/27 19:34:05 stevens-madison Exp $";
 #endif
 
-#include "CDX.h"
+#include "cdx.h"
 #include "cdxinput.h"
 
 

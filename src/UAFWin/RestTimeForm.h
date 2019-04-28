@@ -21,7 +21,7 @@
 
 #include "externs.h"
 #include "TextForm.h"
-#include "GameEvent.h"
+#include "gameevent.h"
 
 #define RTF_DAYS_FIELD  0
 #define RTF_HOURS_FIELD  1

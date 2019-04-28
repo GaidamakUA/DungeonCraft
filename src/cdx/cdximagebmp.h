@@ -43,7 +43,7 @@
 #ifndef CDXIMAGEBMP_H
 #define CDXIMAGEBMP_H
 
-#include "CDXImageBase.h"
+#include "cdximagebase.h"
 
 class CDXImageBMP : public CDXImageBase  
 {

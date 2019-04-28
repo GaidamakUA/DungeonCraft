@@ -21,8 +21,8 @@
 
 //#include "externs.h"
 #include "class.h"
-#include "items.h"
-#include "money.h"
+#include "Items.h"
+#include "Money.h"
 //#include "ProjectVersion.h"
 //#include "SoundMgr.h"
 

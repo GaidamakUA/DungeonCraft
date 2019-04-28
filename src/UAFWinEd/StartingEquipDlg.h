@@ -6,7 +6,7 @@
 #endif // _MSC_VER > 1000
 // StartingEquipDlg.h : header file
 //
-#include "GlobalData.h"
+#include "globaldata.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CStartingEquipDlg dialog

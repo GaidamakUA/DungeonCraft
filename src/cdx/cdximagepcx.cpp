@@ -32,7 +32,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 #include "cdxdebug.h"
-#include "CDXImagePCX.h"
+#include "cdximagepcx.h"
 
 #define PCX_MANUF_ZSOFT			0x0a
 #define PCX_PC_PAINTBRUSH_VER	5

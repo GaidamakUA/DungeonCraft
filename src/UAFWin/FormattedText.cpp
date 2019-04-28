@@ -17,16 +17,16 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 
 //#include "externs.h"
 #include "Dungeon.h"
-#include "Graphics.h"
-#include "Party.h"
-#include "Viewport.h"
+#include "graphics.h"
+#include "party.h"
+#include "viewport.h"
 #include "MouseThread.h"
 #include "Path.h"
-#include "DrawTile.h"
+#include "Drawtile.h"
 
 #include "FormattedText.h"
 

@@ -17,7 +17,7 @@
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-#include "..\Shared\stdafx.h"
+#include "../Shared/stdafx.h"
 #include "resource.h"
 
 #include "UAFWinEd.h"
@@ -29,8 +29,8 @@
 #include "class.h"
 #include "CrossReference.h"
 #include "ImportWarning.h"
-#include "Spell.h"
-#include "GlobalData.h"
+#include "spell.h"
+#include "globaldata.h"
 #include <io.h>
 
 #ifdef _DEBUG

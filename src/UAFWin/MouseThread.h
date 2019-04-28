@@ -19,7 +19,7 @@
 #ifndef _MOUSETHREAD_H_
 #define _MOUSETHREAD_H_
 
-#include "Thread.h"
+#include "thread.h"
 
 //#define DEFAULT_CURSOR 0
 #define NOALLOW_CURSOR 1
