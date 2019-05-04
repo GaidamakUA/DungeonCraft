@@ -46,7 +46,7 @@ typedef struct CDX_MIDI_TYP
 #else
 
 #include <wchar.h>
-#include <direct.h>
+//#include <direct.h>
 
 #include <dsound.h>
 #include <dmksctrl.h>
@@ -54,7 +54,7 @@ typedef struct CDX_MIDI_TYP
 #include <dmusicc.h>
 #include <dmusicf.h>
 
-#define MULTI_TO_WIDE( x,y )  MultiByteToWideChar( CP_ACP,MB_PRECOMPOSED, y,-1,x,_MAX_PATH);
+#define MULTI_TO_WIDE( x,y )  MultiByteToWideChar( CP_ACP,MB_PRECOMPOSED, y,-1,x,MAX_PATH);
 
 typedef struct CDX_MIDI_TYP
 {
@@ -90,7 +90,7 @@ public:
 	HRESULT RemoveAll();
 	BOOL    IsPlaying(int MidiID);
 	HRESULT SetVolume(long Vol);
-	long    GetVolume();
+	LONG    GetVolume();
 
 	CDX_MIDI                 m_Midi[CDX_NUM_SEGMENTS]; // array of midi's and data
 	int                      m_ActiveMidi;             // current id of active midi

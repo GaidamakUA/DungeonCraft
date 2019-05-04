@@ -69,13 +69,13 @@ short CDXMusicCd::Read(void)
 	m_nNumberOfTracks = 0;
 	m_MCIOpen.lpstrDeviceType = (LPCTSTR)MCI_DEVTYPE_CD_AUDIO;
 
-	if(mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE|MCI_OPEN_TYPE_ID, (DWORD)(LPVOID)&m_MCIOpen))
+	if(mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE|MCI_OPEN_TYPE_ID, (DWORDLONG)(LPVOID)&m_MCIOpen))
 	{
 		return 0;
 	}	
 		
 	m_MCIStatus.dwItem = MCI_STATUS_NUMBER_OF_TRACKS;
-	if(mciSendCommand(m_MCIOpen.wDeviceID, MCI_STATUS, MCI_STATUS_ITEM|MCI_WAIT, (DWORD)(LPVOID)&m_MCIStatus))
+	if(mciSendCommand(m_MCIOpen.wDeviceID, MCI_STATUS, MCI_STATUS_ITEM|MCI_WAIT, (DWORDLONG)(LPVOID)&m_MCIStatus))
 	{
 		mciSendCommand(m_MCIOpen.wDeviceID, MCI_CLOSE, NULL, NULL);
 		return 0;
@@ -88,7 +88,7 @@ short CDXMusicCd::Read(void)
 	for(i = 0; i < m_nNumberOfTracks; i++)
 	{
 		m_MCIStatus.dwTrack = i + 1;
-		mciSendCommand(m_MCIOpen.wDeviceID, MCI_STATUS, MCI_TRACK|MCI_STATUS_ITEM|MCI_WAIT,	(DWORD)(LPVOID)&m_MCIStatus);
+		mciSendCommand(m_MCIOpen.wDeviceID, MCI_STATUS, MCI_TRACK|MCI_STATUS_ITEM|MCI_WAIT,	(DWORDLONG)(LPVOID)&m_MCIStatus);
 		nTrackLength = (short)(MCI_MSF_MINUTE(m_MCIStatus.dwReturn)*60 + MCI_MSF_SECOND(m_MCIStatus.dwReturn));
 		m_nTrackLength[i] = nTrackLength;
 	}
@@ -139,14 +139,14 @@ void CDXMusicCd::Play(short nTrack)
 	MCI_PLAY_PARMS mciPlay;
 
 	m_MCIOpen.lpstrDeviceType = (LPCTSTR)MCI_DEVTYPE_CD_AUDIO;
-	if(mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE|MCI_OPEN_TYPE_ID, (DWORD)&m_MCIOpen))
+	if(mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE|MCI_OPEN_TYPE_ID, (DWORDLONG)&m_MCIOpen))
 	{
 		return;
 	}
 
 	// Set the time format to track/minute/second/frame (TMSF)
 	mciSet.dwTimeFormat = MCI_FORMAT_TMSF;
-	if(mciSendCommand(m_MCIOpen.wDeviceID, MCI_SET, MCI_SET_TIME_FORMAT, (DWORD)&mciSet))
+	if(mciSendCommand(m_MCIOpen.wDeviceID, MCI_SET, MCI_SET_TIME_FORMAT, (DWORDLONG)&mciSet))
 	{
 		mciSendCommand(m_MCIOpen.wDeviceID, MCI_CLOSE, 0, NULL);
 		return;
@@ -154,7 +154,7 @@ void CDXMusicCd::Play(short nTrack)
 
 	mciPlay.dwCallback = 0;
 	mciPlay.dwFrom = MCI_MAKE_TMSF(nTrack, 0, 0, 0);
-	if(mciSendCommand(m_MCIOpen.wDeviceID, MCI_PLAY, MCI_FROM, (DWORD)&mciPlay))
+	if(mciSendCommand(m_MCIOpen.wDeviceID, MCI_PLAY, MCI_FROM, (DWORDLONG)&mciPlay))
 	{
 		return;
 	}
@@ -168,7 +168,7 @@ void CDXMusicCd::Play(short nTrack)
 void CDXMusicCd::Stop(void)
 {
   if(mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE|MCI_OPEN_TYPE_ID,
-                   (DWORD)(LPVOID)&m_MCIOpen))
+                   (DWORDLONG)(LPVOID)&m_MCIOpen))
   {
       return;
   }

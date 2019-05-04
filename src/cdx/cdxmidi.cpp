@@ -249,10 +249,10 @@ int CDXMidi::LoadMidi(const char *name)
 		return -1;
 
 	// get current working directory
-	char szDir[_MAX_PATH];
-	WCHAR wszDir[_MAX_PATH]; 
+	char szDir[MAX_PATH];
+	WCHAR wszDir[MAX_PATH];
 
-	if(GetCurrentDirectory(_MAX_PATH, szDir) == 0)
+	if(GetCurrentDirectory(MAX_PATH, szDir) == 0)
 	{
 		return -1;
 	}
@@ -268,7 +268,7 @@ int CDXMidi::LoadMidi(const char *name)
 	}
 
 	// convert filename to wide string
-	WCHAR wfilename[_MAX_PATH]; 
+	WCHAR wfilename[MAX_PATH];
 	MULTI_TO_WIDE(wfilename, name);
  
 	// setup object description

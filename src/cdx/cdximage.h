@@ -76,7 +76,7 @@ public:
 
 private:
 	DWORD GetFileFormat(LONG lSize, CHAR* lpCache);
-  char m_filename[_MAX_PATH+1];
+  char m_filename[MAX_PATH+1];
 
 };
 

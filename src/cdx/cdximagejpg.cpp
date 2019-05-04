@@ -86,8 +86,8 @@ CDX_LPDIRECTDRAWSURFACE CDXImageJPG::GetImage(CDX_LPDIRECTDRAW lpDD, LONG lSize,
 	pstm->Release();
 
 	// get width and height of picture
-	long hmWidth;
-	long hmHeight;
+	int hmWidth;
+	int hmHeight;
 	gpPicture->get_Width(&hmWidth);
 	gpPicture->get_Height(&hmHeight);
 

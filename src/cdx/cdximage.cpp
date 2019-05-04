@@ -98,8 +98,8 @@ CDX_LPDIRECTDRAWSURFACE CDXImage::GetImage(CDX_LPDIRECTDRAW lpDD, const char *fi
 	CDXFile fs;
     CHAR* lpCache;
 
-  strncpy(m_filename, filename, _MAX_PATH);
-  m_filename[_MAX_PATH]='\0';
+  strncpy(m_filename, filename, MAX_PATH);
+  m_filename[MAX_PATH]='\0';
 
 	if( FAILED(fs.OpenRead(filename)) )
 		return NULL;

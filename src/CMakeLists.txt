@@ -583,4 +583,4 @@ add_executable(src
         UAFWinEd/XBrowseForFolder.cpp
         UAFWinEd/XBrowseForFolder.h
         UAFWinEd/Zonedlg.cpp
-        UAFWinEd/Zonedlg.h Shared/locale_win32.h)
+        UAFWinEd/Zonedlg.h)

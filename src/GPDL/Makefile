@@ -133,8 +133,8 @@ RC_SRCS               = $(gpdlcomp_RC_SRCS) \
 
 ### Tools
 
-CC = winegcc
-CXX = wineg++
+CC = winegcc -mno-cygwin
+CXX = wineg++ -mno-cygwin
 RC = wrc
 AR = ar
 
