@@ -115,8 +115,8 @@
 #include <ddraw.h>
 #include <dinput.h>
 #include <dsound.h>
-#include <dplay.h>
-#include <dplobby.h>
+//#include <dplay.h>
+//#include <dplobby.h>
 
 // CDX Includes
 #include "cdxtypes.h"

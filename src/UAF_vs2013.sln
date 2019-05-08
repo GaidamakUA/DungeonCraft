@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GPDLcomp", "GPDL\GPDLcomp_vs2013.vcxproj", "{0C20C0CA-02D9-4A13-B08D-EFDAB61B8C32}"
 EndProject
@@ -23,7 +23,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0C20C0CA-02D9-4A13-B08D-EFDAB61B8C32}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0C20C0CA-02D9-4A13-B08D-EFDAB61B8C32}.Debug|Win32.Build.0 = Debug|Win32
 		{0C20C0CA-02D9-4A13-B08D-EFDAB61B8C32}.Release|Win32.ActiveCfg = Release|Win32
 		{0C20C0CA-02D9-4A13-B08D-EFDAB61B8C32}.Release|Win32.Build.0 = Release|Win32
 		{DECD0186-F021-4864-A9E3-318AE98B413E}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -41,5 +40,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44E2C2DA-477C-4A96-A1A1-3E89221E1499}
 	EndGlobalSection
 EndGlobal

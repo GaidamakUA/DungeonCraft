@@ -1717,6 +1717,7 @@
 #define IDS_HELP_level_Width            2800
 #define IDS_HELP_level_none             2800
 #define IDS_HELP_event_none             2900
+#define ID_VIEW_TOOLBAR                 32770
 #define ID_ITEMS_WALL                   32771
 #define ID_ITEMS_DOOR                   32772
 #define ID_ITEMS_BACKDROP               32773
@@ -1767,6 +1768,7 @@
 #define ID_VALIDATE_DESIGN              32830
 #define ID_GAME_VERSION                 32831
 #define ID_APP_HelpWallEdit             32832
+#define ID_APP_EXIT                     32833
 #define ID_ACCESSOPTIONS                32834
 #define IDC_TILEMAPDATA                 32835
 #define ID_EDIT_CONFIG                  32836

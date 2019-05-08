@@ -3,6 +3,7 @@
 #define __GPDLCOMP_H__
 
 #include "GPDLOpCodes.h"
+#include "stdafx.h"
 
 #define MAXSTACK 20
 

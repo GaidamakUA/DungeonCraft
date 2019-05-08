@@ -36,7 +36,7 @@ void usage(void) {
 	fprintf(stderr,"Usage:\n");
 	fprintf(stderr,"   DiscourseCompile  <input text file> <output binary file> [listfile]\n");
   fprintf(stderr," Press Enter -----");
-  gets(line);
+  gets_s(line);
 	exit(1);
 }
 
@@ -54,7 +54,7 @@ int ProcessErrorMessage(const CString& errMsg, bool wait)
   if (wait)
   {
     fprintf(stderr, "    Press Enter  ");
-    gets(line);
+    gets_s(line);
   };
   return 0;
 }
