@@ -67,7 +67,7 @@ struct FOLDER_PROPS
 	LPCTSTR lpszTitle;
 	LPCTSTR lpszInitialFolder;
 	UINT    ulFlags;
-  BOOL    bNewDesign;
+	BOOL    bNewDesign;
 };
 
 #ifndef __AFX_H__
@@ -79,19 +79,21 @@ class CRect : public tagRECT
 {
 public:
 	//CRect() { }
-	CRect(int l = 0, int t = 0, int r = 0, int b = 0) 
-	{ 
-		left = l; 
-		top = t; 
-		right = r; 
-		bottom = b; 
+	CRect(int l = 0, int t = 0, int r = 0, int b = 0)
+	{
+		left = l;
+		top = t;
+		right = r;
+		bottom = b;
 	}
 	int Width() const { return right - left; }
 	int Height() const { return bottom - top; }
 	void SwapLeftRight() { SwapLeftRight(LPRECT(this)); }
-	static void SwapLeftRight(LPRECT lpRect) { LONG temp = lpRect->left; 
-											   lpRect->left = lpRect->right; 
-											   lpRect->right = temp; }
+	static void SwapLeftRight(LPRECT lpRect) {
+		LONG temp = lpRect->left;
+		lpRect->left = lpRect->right;
+		lpRect->right = temp;
+	}
 	operator LPRECT() { return this; }
 };
 #endif
@@ -102,12 +104,12 @@ static void ScreenToClientX(HWND hWnd, LPRECT lpRect)
 {
 	_ASSERTE(::IsWindow(hWnd));
 	::ScreenToClient(hWnd, (LPPOINT)lpRect);
-	::ScreenToClient(hWnd, ((LPPOINT)lpRect)+1);
+	::ScreenToClient(hWnd, ((LPPOINT)lpRect) + 1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // MoveWindowX - helper function in case non-MFC
-static void MoveWindowX(HWND hWnd, CRect& rect, BOOL bRepaint)
+static void MoveWindowX(HWND hWnd, CRect & rect, BOOL bRepaint)
 {
 	_ASSERTE(::IsWindow(hWnd));
 	::MoveWindow(hWnd, rect.left, rect.top,
@@ -116,7 +118,7 @@ static void MoveWindowX(HWND hWnd, CRect& rect, BOOL bRepaint)
 
 ///////////////////////////////////////////////////////////////////////////////
 // SizeBrowseDialog - resize dialog, move controls
-static void SizeBrowseDialog(HWND hWnd, FOLDER_PROPS *fp)
+static void SizeBrowseDialog(HWND hWnd, FOLDER_PROPS * fp)
 {
 	TRACE(_T("in void SizeBrowseDialog\n"));
 
@@ -188,10 +190,10 @@ static void SizeBrowseDialog(HWND hWnd, FOLDER_PROPS *fp)
 		{
 			//TRACERECT(rectCancel);
 			MoveWindowX(hwndCancel, rectCancel, FALSE);
-      if (fp->bNewDesign)
-      {
-        SetWindowText(hwndCancel,"New Design");
-      };
+			if (fp->bNewDesign)
+			{
+				SetWindowText(hwndCancel, "New Design");
+			};
 		}
 
 		// move the OK button
@@ -242,86 +244,86 @@ static void SizeBrowseDialog(HWND hWnd, FOLDER_PROPS *fp)
 ///////////////////////////////////////////////////////////////////////////////
 // BrowseCallbackProc - SHBrowseForFolder callback function
 static int CALLBACK BrowseCallbackProc(HWND hWnd,		// Window handle to the browse dialog box
-									   UINT uMsg,		// Value identifying the event
-									   LPARAM lParam,	// Value dependent upon the message 
-									   LPARAM lpData)	// Application-defined value that was 
-														// specified in the lParam member of the 
-														// BROWSEINFO structure
+	UINT uMsg,		// Value identifying the event
+	LPARAM lParam,	// Value dependent upon the message 
+	LPARAM lpData)	// Application-defined value that was 
+					 // specified in the lParam member of the 
+					 // BROWSEINFO structure
 {
 	switch (uMsg)
 	{
-		case BFFM_INITIALIZED:		// sent when the browse dialog box has finished initializing. 
+	case BFFM_INITIALIZED:		// sent when the browse dialog box has finished initializing. 
+	{
+		TRACE(_T("hWnd=%X\n"), hWnd);
+
+		// remove context help button from dialog caption
+		LONG lStyle = ::GetWindowLong(hWnd, GWL_STYLE);
+		lStyle &= ~DS_CONTEXTHELP;
+		::SetWindowLong(hWnd, GWL_STYLE, lStyle);
+		lStyle = ::GetWindowLong(hWnd, GWL_EXSTYLE);
+		lStyle &= ~WS_EX_CONTEXTHELP;
+		::SetWindowLong(hWnd, GWL_EXSTYLE, lStyle);
+
+		FOLDER_PROPS* fp = (FOLDER_PROPS*)lpData;
+		if (fp)
 		{
-			TRACE(_T("hWnd=%X\n"), hWnd);
-
-			// remove context help button from dialog caption
-			LONG lStyle = ::GetWindowLong(hWnd, GWL_STYLE);
-			lStyle &= ~DS_CONTEXTHELP;
-			::SetWindowLong(hWnd, GWL_STYLE, lStyle);
-			lStyle = ::GetWindowLong(hWnd, GWL_EXSTYLE);
-			lStyle &= ~WS_EX_CONTEXTHELP;
-			::SetWindowLong(hWnd, GWL_EXSTYLE, lStyle);
-
-			FOLDER_PROPS *fp = (FOLDER_PROPS *) lpData;
-			if (fp)
+			if (fp->lpszInitialFolder && (fp->lpszInitialFolder[0] != _T('\0')))
 			{
-				if (fp->lpszInitialFolder && (fp->lpszInitialFolder[0] != _T('\0')))
-				{
-					// set initial directory
-					::SendMessage(hWnd, BFFM_SETSELECTION, TRUE, (LPARAM)fp->lpszInitialFolder);
-				}
-
-				if (fp->lpszTitle && (fp->lpszTitle[0] != _T('\0')))
-				{
-					// set window caption
-					::SetWindowText(hWnd, fp->lpszTitle);
-				}
+				// set initial directory
+				::SendMessage(hWnd, BFFM_SETSELECTION, TRUE, (LPARAM)fp->lpszInitialFolder);
 			}
 
-			SizeBrowseDialog(hWnd, fp);
-		}
-		break;
-
-		case BFFM_SELCHANGED:		// sent when the selection has changed
-		{
-			TCHAR szDir[MAX_PATH*2] = { 0 };
-
-			// fail if non-filesystem
-			BOOL bRet = SHGetPathFromIDList((LPITEMIDLIST) lParam, szDir);
-			if (bRet)
+			if (fp->lpszTitle && (fp->lpszTitle[0] != _T('\0')))
 			{
-				// fail if folder not accessible
-				if (_taccess(szDir, 00) != 0)
+				// set window caption
+				::SetWindowText(hWnd, fp->lpszTitle);
+			}
+		}
+
+		SizeBrowseDialog(hWnd, fp);
+	}
+	break;
+
+	case BFFM_SELCHANGED:		// sent when the selection has changed
+	{
+		TCHAR szDir[MAX_PATH * 2] = { 0 };
+
+		// fail if non-filesystem
+		BOOL bRet = SHGetPathFromIDList((LPITEMIDLIST)lParam, szDir);
+		if (bRet)
+		{
+			// fail if folder not accessible
+			if (_taccess(szDir, 00) != 0)
+			{
+				bRet = FALSE;
+			}
+			else
+			{
+				SHFILEINFO sfi;
+				::SHGetFileInfo((LPCTSTR)lParam, 0, &sfi, sizeof(sfi),
+					SHGFI_PIDL | SHGFI_ATTRIBUTES);
+				TRACE(_T("dwAttributes=0x%08X\n"), sfi.dwAttributes);
+
+				// fail if pidl is a link
+				if (sfi.dwAttributes & SFGAO_LINK)
 				{
+					TRACE(_T("SFGAO_LINK\n"));
 					bRet = FALSE;
 				}
-				else
-				{
-					SHFILEINFO sfi;
-					::SHGetFileInfo((LPCTSTR)lParam, 0, &sfi, sizeof(sfi), 
-							SHGFI_PIDL | SHGFI_ATTRIBUTES);
-					TRACE(_T("dwAttributes=0x%08X\n"), sfi.dwAttributes);
-
-					// fail if pidl is a link
-					if (sfi.dwAttributes & SFGAO_LINK)
-					{
-						TRACE(_T("SFGAO_LINK\n"));
-						bRet = FALSE;
-					}
-				}
 			}
-
-			// if invalid selection, disable the OK button
-			if (!bRet)
-			{
-				::EnableWindow(GetDlgItem(hWnd, IDOK), FALSE);
-			}
-
-			TRACE(_T("szDir=%s\n"), szDir);
 		}
-		break;
+
+		// if invalid selection, disable the OK button
+		if (!bRet)
+		{
+			::EnableWindow(GetDlgItem(hWnd, IDOK), FALSE);
+		}
+
+		TRACE(_T("szDir=%s\n"), szDir);
 	}
-         
+	break;
+	}
+
 	return 0;
 }
 
@@ -350,13 +352,13 @@ static int CALLBACK BrowseCallbackProc(HWND hWnd,		// Window handle to the brows
 // Returns:     BOOL - TRUE = success;  FALSE = user hit Cancel
 //
 BOOL XBrowseForFolder(HWND hWnd,
-					  LPCTSTR lpszInitialFolder,
-					  int nRootFolder,
-					  LPCTSTR lpszCaption,
-					  LPTSTR lpszBuf,
-					  DWORD dwBufSize,
-					  BOOL bEditBox, /* =FALSE*/
-            BOOL bNewDesign /* =FALSE */)
+	LPCTSTR lpszInitialFolder,
+	int nRootFolder,
+	LPCTSTR lpszCaption,
+	LPTSTR lpszBuf,
+	DWORD dwBufSize,
+	BOOL bEditBox, /* =FALSE*/
+	BOOL bNewDesign /* =FALSE */)
 {
 	_ASSERTE(lpszBuf);
 	_ASSERTE(dwBufSize >= MAX_PATH);
@@ -364,7 +366,7 @@ BOOL XBrowseForFolder(HWND hWnd,
 	if (lpszBuf == NULL || dwBufSize < MAX_PATH)
 		return FALSE;
 
-	ZeroMemory(lpszBuf, dwBufSize*sizeof(TCHAR));
+	ZeroMemory(lpszBuf, dwBufSize * sizeof(TCHAR));
 
 	BROWSEINFO bi = { 0 };
 
@@ -376,7 +378,7 @@ BOOL XBrowseForFolder(HWND hWnd,
 			bi.pidlRoot = pidlRoot;
 	}
 
-	TCHAR szInitialPath[MAX_PATH*2] = { _T('\0') };
+	TCHAR szInitialPath[MAX_PATH * 2] = { _T('\0') };
 	if (lpszInitialFolder)
 	{
 		// is this a folder path string or a csidl?
@@ -390,8 +392,8 @@ BOOL XBrowseForFolder(HWND hWnd,
 		else
 		{
 			// string
-			_tcsncpy(szInitialPath, lpszInitialFolder, 
-						sizeof(szInitialPath)/sizeof(TCHAR)-2);
+			_tcsncpy(szInitialPath, lpszInitialFolder,
+				sizeof(szInitialPath) / sizeof(TCHAR) - 2);
 		}
 		TRACE(_T("szInitialPath=<%s>\n"), szInitialPath);
 	}
@@ -399,25 +401,25 @@ BOOL XBrowseForFolder(HWND hWnd,
 	if ((szInitialPath[0] == _T('\0')) && (bi.pidlRoot == NULL))
 	{
 		// no initial folder and no root, set to current directory
-		::GetCurrentDirectory(sizeof(szInitialPath)/sizeof(TCHAR)-2, 
-				szInitialPath);
+		::GetCurrentDirectory(sizeof(szInitialPath) / sizeof(TCHAR) - 2,
+			szInitialPath);
 	}
 
 	FOLDER_PROPS fp;
 
 	bi.hwndOwner = hWnd;
-	bi.ulFlags   = BIF_RETURNONLYFSDIRS;	// do NOT use BIF_NEWDIALOGSTYLE, 
+	bi.ulFlags = BIF_RETURNONLYFSDIRS;	// do NOT use BIF_NEWDIALOGSTYLE, 
 											// or BIF_STATUSTEXT
 	if (bEditBox)
 		bi.ulFlags |= BIF_EDITBOX;
 	//bi.ulFlags  |= BIF_NONEWFOLDERBUTTON;
-	bi.lpfn      = BrowseCallbackProc;
-	bi.lParam    = (LPARAM) &fp;
+	bi.lpfn = BrowseCallbackProc;
+	bi.lParam = (LPARAM)& fp;
 
 	fp.lpszInitialFolder = szInitialPath;
 	fp.lpszTitle = lpszCaption;
 	fp.ulFlags = bi.ulFlags;
-  fp.bNewDesign = bNewDesign;
+	fp.bNewDesign = bNewDesign;
 
 	BOOL bRet = FALSE;
 
@@ -425,11 +427,11 @@ BOOL XBrowseForFolder(HWND hWnd,
 
 	if (pidlFolder)
 	{
-		TCHAR szBuffer[MAX_PATH*2] = { _T('\0') };
+		TCHAR szBuffer[MAX_PATH * 2] = { _T('\0') };
 
 		if (SHGetPathFromIDList(pidlFolder, szBuffer))
 		{
-			_tcsncpy(lpszBuf, szBuffer, dwBufSize-1);
+			_tcsncpy(lpszBuf, szBuffer, dwBufSize - 1);
 			bRet = TRUE;
 		}
 		else
@@ -439,14 +441,14 @@ BOOL XBrowseForFolder(HWND hWnd,
 	}
 
 	// free up pidls
-	IMalloc *pMalloc = NULL; 
-	if (SUCCEEDED(SHGetMalloc(&pMalloc)) && pMalloc) 
+	IMalloc* pMalloc = NULL;
+	if (SUCCEEDED(SHGetMalloc(&pMalloc)) && pMalloc)
 	{
 		if (pidlFolder)
-			pMalloc->Free(pidlFolder);  
+			pMalloc->Free(pidlFolder);
 		if (pidlRoot)
-			pMalloc->Free(pidlRoot);  
-		pMalloc->Release(); 
+			pMalloc->Free(pidlRoot);
+		pMalloc->Release();
 	}
 
 	return bRet;
